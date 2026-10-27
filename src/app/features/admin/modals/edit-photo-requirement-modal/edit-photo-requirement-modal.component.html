@@ -1,0 +1,29 @@
+<section id="EditPhotoRequirementModal" class="EditPhotoRequirementModal" [class.Active]="isOpen()">
+  <div class="EditPhotoRequirementModalOverlay" (click)="closeFromOverlay($event)"></div>
+  <div class="EditPhotoRequirementCard">
+    <div class="EditPhotoRequirementHeader">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1751ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+      <h2>Изменить требование к фотографии</h2>
+    </div>
+    <div class="EditPhotoRequirementContent">
+      <div class="EditPhotoRequirementField">
+        <label>Тип фотографии</label>
+        <input type="text" id="EditPhotoRequirementTypeInput" class="EditPhotoRequirementInput" [(ngModel)]="editPhotoType">
+      </div>
+      <div class="EditPhotoRequirementField">
+        <label>Отображаемое имя</label>
+        <input type="text" id="EditPhotoRequirementDisplayNameInput" class="EditPhotoRequirementInput" [(ngModel)]="editPhotoDisplayName">
+      </div>
+      <div class="EditPhotoRequirementField">
+        <label>Обязательное поле</label>
+        <select id="EditPhotoRequirementIsRequireInput" class="EditPhotoRequirementSelect" [(ngModel)]="editPhotoIsRequire">
+          <option value="true">Да</option>
+          <option value="false">Нет</option>
+        </select>
+      </div>
+    </div>
+    <div class="EditPhotoRequirementFooter">
+      <button class="EditPhotoRequirementSubmitButton" type="button" (click)="submitEditPhotoRequirement()">Сохранить</button>
+    </div>
+  </div>
+</section>

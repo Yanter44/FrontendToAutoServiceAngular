@@ -1,0 +1,39 @@
+<section id="CreateBranchModal" class="CreateBranch" [class.Active]="isOpen()">
+  <div class="CreateBranchModalOverlay" (click)="close()"></div>
+  <div class="CreateBranchModalCard">
+    <div class="CreateBranchModalTitle">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1751ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>
+      <h3>Новая ветка</h3>
+    </div>
+    <p class="CreateBranchModalHint">Укажите название и наценку для новой ветки</p>
+
+    <div class="CreateBranchModalField">
+      <label for="CreateBranchNameInput">Название</label>
+      <input
+        id="CreateBranchNameInput"
+        type="text"
+        name="branchName"
+        [(ngModel)]="name"
+        placeholder="Например, Москва центр"
+      >
+    </div>
+
+    <div class="CreateBranchModalField">
+      <label for="CreateBranchFeeInput">Наценка</label>
+      <input
+        id="CreateBranchFeeInput"
+        type="number"
+        name="branchFee"
+        min="0"
+        step="0.01"
+        [(ngModel)]="fee"
+        placeholder="Например, 15"
+      >
+    </div>
+
+    <div class="CreateBranchModalButtons">
+      <button type="button" class="CreateBranchCancelButton" (click)="close()">Отмена</button>
+      <button type="button" class="CreateBranchSaveButton" (click)="submit()">Создать</button>
+    </div>
+  </div>
+</section>

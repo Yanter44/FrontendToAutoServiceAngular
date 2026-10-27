@@ -1,0 +1,438 @@
+.ApplicationsScreen::-webkit-scrollbar {
+    width: 4px;            
+}
+
+.ApplicationsScreen::-webkit-scrollbar-track {
+    background: transparent;       
+}
+
+.ApplicationsScreen::-webkit-scrollbar-thumb {
+    background: #b8d4e3;        
+    border-radius: 20px;           
+    transition: all 0.3s ease;
+}
+
+.ApplicationsScreen::-webkit-scrollbar-thumb:hover {
+    background: #7eb8d4;         
+}
+
+.ApplicationsScreen::-webkit-scrollbar-thumb:active {
+    background: #5ba3c4;        
+}
+
+.ApplicationsScreen::-webkit-scrollbar-corner {
+    background: transparent;
+}
+.ApplicationsScreen{
+    height: 100%;
+    overflow-y: auto;
+    min-height: 0;
+}
+.ApplicationsTable {
+    width: 100%;
+    background:var(--surface);
+    border-collapse: collapse;
+    border-radius: 14px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.ApplicationsTable th {
+    background:var(--surface-muted);
+    text-align: left;
+    padding: 16px 20px;
+    font-size: 13px;
+    color:var(--muted);
+    border-bottom:1px solid var(--border);
+}
+
+.ApplicationsTable td {
+    padding: 18px 20px;
+    font-size: 14px;
+    border-bottom:1px solid var(--hover);
+}
+
+.ApplicationHeaderSection{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.ApplicationsSortSection {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+    margin-bottom: 15px;
+}
+
+.ApplicationsSortSelect {
+    position:relative;
+    width:240px;
+}
+
+.ApplicationsSortSelect select {
+    width:100%;
+    height: 48px;
+    padding:0 48px 0 18px;
+    border:1px solid var(--border);
+    border-radius:16px;
+    background:var(--surface);
+    font-size:15px;
+    font-weight:500;
+    color:#1f2937;
+    cursor:pointer;
+    outline:none;
+    appearance:none;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+
+    box-shadow: 0 6px 20px rgba(15,23,42,.05);
+    transition:
+        border-color .25s,
+        box-shadow .25s,
+        transform .15s;
+}
+
+.ApplicationsSortSelect select:hover{
+    border-color:var(--border);
+}
+
+.ApplicationsSortSelect select:focus{
+    border-color:#4F7CFF;
+    box-shadow:
+        0 0 0 4px rgba(79,124,255,.12),
+        0 10px 25px rgba(79,124,255,.12);
+}
+.ApplicationsSortSelect:hover .SelectArrow{
+    color:#4F7CFF;
+}
+
+.ApplicationsSortSelect:focus-within .SelectArrow{
+    color:#4F7CFF;
+}
+.ApplicationsSearchSort{
+    width: 380px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 0 18px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(15, 23, 42, .05);
+    transition: .25s;
+}
+
+.ApplicationsSearchSort:hover{
+    border-color:var(--border);
+}
+
+.ApplicationsSearchSort:focus-within{
+    border-color:#4F7CFF;
+    box-shadow:
+        0 0 0 4px rgba(79,124,255,.12),
+        0 10px 25px rgba(79,124,255,.12);
+}
+
+.ApplicationsSearchSort svg{
+    width:20px;
+    height:20px;
+    fill:var(--faint);
+    flex-shrink:0;
+}
+
+.ApplicationsSearchSort input{
+    flex:1;
+
+    border:none;
+    outline:none;
+
+    background:transparent;
+
+    font-size:15px;
+    color:#1f2937;
+}
+
+.ApplicationsSearchSort input::placeholder{
+    color:var(--faint);
+}
+
+.BtnAddNewApplication {
+    border: none;
+    background: #1a53ff;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: 0.2s;
+}
+
+.BtnAddNewApplication:hover {
+    background: #003fe0;
+}
+.ApplicationsMetricContent{
+    display: flex;
+    gap: 5px;
+    text-align: left;
+    flex-direction: column;
+    padding-left: 10px;
+}
+.ApplicationsMetricTotal .ApplicationsMetricIcon{
+    padding: 10px;
+    border-radius: 15px;
+    background:var(--accent-soft);
+}
+
+.ApplicationsMetricModeration .ApplicationsMetricIcon{
+    padding: 10px;
+    border-radius: 15px;
+    background: #FEF6E5;
+}
+.ApplicationsMetricApproved .ApplicationsMetricIcon{
+    padding: 10px;
+    border-radius: 15px;
+    background: #E7F9EB;
+}
+.ApplicationsMetricNew .ApplicationsMetricIcon{
+    padding: 10px;
+    border-radius: 15px;
+    background: #F1E3FE;
+}
+.ApplicationMetricSvgIcon {
+    width: 28px;
+    height: 28px;
+}
+.ApplicationsMetrics {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+
+    width: 100%;
+    margin-top: 18px;
+    cursor: pointer;
+}
+
+.TotalApplications {
+    color: blue;
+}
+.ApplicationsInModeration{
+    color: #ffca00;
+}
+.ApprovedApplications{
+    color: #4DFE62;
+}
+.NewApplications{
+    color: #6835CF;
+}
+
+.ApplicationsMetric {
+    position: relative;
+    display: flex;
+    align-items: center;
+    
+    gap: 10px;
+    min-height: 112px;
+    padding: 18px 20px;
+
+    background:var(--surface);
+    border:1px solid var(--hover);
+    border-radius: 16px;
+
+    box-shadow:
+        0 2px 8px rgba(31, 41, 55, 0.03);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+.ApplicationsMetric:hover {
+    transform: translateY(-2px);
+    border-color: #e3e8f0;
+    box-shadow: 0 8px 24px rgba(31, 41, 55, 0.07);
+}
+.ApplicationsPagination{
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+}
+.ModerationStatus {
+    background: #fef3c7;
+    color: #d97706;
+}
+.ProcessingStatus {
+    background: #c7eafe;
+    color: #067fd9;
+}
+
+.ApprovedStatus {
+    background: #dcfce7;
+    color: #16a34a;
+}
+
+.RejectedStatus {
+    background:var(--danger-soft);
+    color: #dc2626;
+}
+@media (max-width: 1024px) {
+    .ApplicationHeaderSection{
+        flex-direction: column;
+        gap: 12px;
+        display: flex;
+        margin-bottom: 16px;
+        align-items: center;
+    }
+    .ApplicationsSortSection {
+        flex-wrap: wrap;
+    }
+    .ApplicationsMetric{
+        min-width: 65px;
+        font-size: 14px;
+    }
+    .ApplicationsSearchSort,
+    .ApplicationsSortSelect {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .ApplicationsMetrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .ApplicationsTable {
+        table-layout: fixed;
+        width: 100%;
+    }
+    .ApplicationsTable thead {
+        display: none;
+    }
+
+    .ApplicationsTable tbody tr {
+        display: block;
+        background:var(--surface);
+        border-radius: 16px;
+        padding: 16px;
+        margin-bottom: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        border:1px solid var(--border);
+        transition: all 0.2s ease;
+    }
+
+    .ApplicationsTable tbody tr:active {
+        transform: scale(0.98);
+    }
+
+    .ApplicationsTable tbody td {
+        display: block;
+        align-items: center;
+        padding: 8px 0;
+        margin-left: 20px;
+        border: none;
+        border-bottom:1px solid var(--hover);
+        text-align: left;
+        word-break: break-word;
+    }
+
+    .ApplicationsTable tbody td:last-child {
+        border-bottom: none;
+        padding-top: 12px;
+        justify-content: flex-start;
+    }
+
+    .ApplicationsTable tbody td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color:var(--muted);
+        font-size: 12px;
+        min-width: 80px;
+        flex-shrink: 0;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .ApplicationsTable tbody td {
+        background: transparent !important;
+    }
+
+    .ApplicationsTable tbody td:last-child {
+        gap: 8px;
+    }
+
+    .ApplicationsTable tbody td:last-child .BtnRedactPrompt,
+    .ApplicationsTable tbody td:last-child .BtnDeletePrompt {
+        width: 40px;
+        height: 36px;
+    }
+
+    .ApplicationsTable {
+        background: transparent;
+        border-radius: 0;
+        overflow: visible;
+    }
+
+    .ApplicationsSortSection {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .ApplicationsSearchSort {
+        width: 100%;
+        max-width: 100%;
+        height: 44px;
+    }
+
+    .ApplicationsSortSelect {
+        width: 100%;
+    }
+
+    .ApplicationsSortSelect select {
+        height: 44px;
+    }
+
+    .TableSection {
+        padding: 12px;
+    }
+
+    .ApplciationsScreen {
+        padding: 0;
+    }
+    .ApplicationsPagination{
+        justify-content: center;
+    }
+}
+
+@media (max-width: 640px) {
+    .ApplicationsMetrics {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media(max-width: 1400px) {
+    .ApplicationsMetric {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        min-height: 112px;
+        padding: 18px 20px;
+        background:var(--surface);
+        border:1px solid var(--hover);
+        border-radius: 16px;
+        box-shadow: 0 2px 8px rgba(31, 41, 55, 0.03);
+        transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        flex-direction: column;
+    }
+    .ApplicationsMetricContent
+ {
+    display: flex;
+    gap: 5px;
+    text-align: center;
+    flex-direction: column;
+    padding-left: 10px;
+}
+}

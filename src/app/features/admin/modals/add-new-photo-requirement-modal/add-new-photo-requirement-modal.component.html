@@ -1,0 +1,29 @@
+<section id="AddNewPhotoRequirementModal" class="AddNewPhotoRequirement" [class.Active]="isOpen()">
+  <div class="AddNewPhotoRequirementOverlay" (click)="closeFromOverlay($event)"></div>
+  <div class="AddNewPhotoRequirementCard">
+    <div class="AddNewPhotoRequirementHeader">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1751ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+      <h2>Добавить тип фото</h2>
+    </div>
+    <div class="AddNewPhotoRequirementContent">
+      <div class="AddNewPhotoRequirementField">
+        <label>Тип фотографии</label>
+        <input type="text" id="PhotoTypeRequirementInput" class="AddNewPhotoRequirementInput" [(ngModel)]="photoType">
+      </div>
+      <div class="AddNewPhotoRequirementField">
+        <label>Отображаемое имя</label>
+        <input type="text" id="PhotoDisplayNameRequirementInput" class="AddNewPhotoRequirementInput" [(ngModel)]="photoDisplayName">
+      </div>
+      <div class="AddNewPhotoRequirementField">
+        <label>Обязательное поле</label>
+        <select id="PhotoIsRequiredRequirementInput" class="AddNewPhotoRequirementSelect" [(ngModel)]="photoIsRequire">
+          <option value="true">Да</option>
+          <option value="false">Нет</option>
+        </select>
+      </div>
+    </div>
+    <div class="AddNewPhotoRequirementFooter">
+      <button class="AddNewPhotoRequirementSubmitButton" type="button" (click)="submitNewPhotoRequirement()">Сохранить</button>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,52 @@
+<section id="AddNewExpertModal" class="AddNewPtoExpertSection" [class.Active]="isOpen()">
+    <div class="AddNewPtoExpertModalOverlay" (click)="closeFromOverlay($event)"></div>
+    
+    <div class="AddNewPtoExpertCard">
+        <div class="AddNewPtoExpertHeader">
+            <div class="AddNewPtoExpertHeaderTitle">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1751ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/> <circle cx="9" cy="7" r="4"/> <line x1="19" y1="8" x2="19" y2="14"/> <line x1="22" y1="11" x2="16" y2="11"/> </svg>
+                <h2>Добавить эксперта</h2>
+            </div>
+        </div>
+
+        <div class="AddNewPtoExpertContent">
+            <div class="AddNewPtoExpertFieldGroup">
+                <div class="AddNewPtoExpertField">
+                    <label>Фамилия</label>
+                    <input type="text" class="AddNewPtoExpertInput" placeholder="Иванов" [(ngModel)]="expertMiddleName">
+                </div>
+                
+                <div class="AddNewPtoExpertField">
+                    <label>Имя</label>
+                    <input type="text" class="AddNewPtoExpertInput" placeholder="Иван" [(ngModel)]="expertFirstName">
+                </div>
+
+                <div class="AddNewPtoExpertField">
+                    <label>Отчество</label>
+                    <input type="text" class="AddNewPtoExpertInput"  placeholder="Иванович" [(ngModel)]="expertLastName">
+                </div>
+            </div>
+
+            <div class="AddNewPtoExpertField">
+                <label>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px; vertical-align: middle;"> <line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/> </svg>
+                    Порядковый номер (3 цифры)
+                </label>
+                <input type="text" class="AddNewPtoExpertInput"  placeholder="Например: 001" maxlength="3" [(ngModel)]="expertSequenceNumber">
+            </div>
+
+            <div class="AddNewPtoExpertField">
+                <label>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px; vertical-align: middle;"> <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/> </svg>
+                    Ключ эксперта (.zip архив)
+                </label>
+                <input #expertKeyInput type="file" accept=".zip" class="AddNewPtoExpertInput" (change)="onExpertKeySelected($event)">
+            </div>
+        </div>
+
+        <div class="AddNewPtoExpertFooter">
+            <button type="button" class="AddNewPtoExpertCancelBtn" (click)="closeFromOverlay($event)">Отмена</button>
+            <button type="button" class="AddNewPtoExpertSubmitBtn" (click)="addNewExpert()">Добавить</button>
+        </div>
+    </div>
+</section>

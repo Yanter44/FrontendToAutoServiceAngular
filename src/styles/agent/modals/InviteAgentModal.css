@@ -1,0 +1,190 @@
+.InviteAgentSection {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+.InviteAgentSection.Active {
+  display: flex;
+}
+
+.InviteAgentOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(17, 24, 39, 0.55);
+  backdrop-filter: blur(2px);
+  animation: InviteAgentFadeIn 0.15s ease;
+}
+
+.InviteAgentCard {
+  position: relative;
+  width: min(480px, calc(100% - 32px));
+  background:var(--surface);
+  border-radius: 14px;
+  box-shadow: 0 24px 64px rgba(17, 24, 39, 0.25);
+  overflow: hidden;
+  animation: InviteAgentSlideIn 0.2s ease;
+}
+
+.InviteAgentHeader {
+  position: relative;
+  padding: 22px 24px 14px;
+}
+
+.InviteAgentTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.InviteAgentHeader h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color:var(--text);
+}
+.InviteAgentSubtitle {
+  margin: 6px 0 0;
+  font-size: 14px;
+  color:var(--muted);
+}
+.InviteAgentClose {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  font-size: 22px;
+  line-height: 1;
+  color:var(--faint);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.InviteAgentClose:hover {
+  background: #f3f4f6;
+  color:var(--text);
+}
+
+.InviteAgentContent {
+  padding: 4px 24px 8px;
+}
+
+.InviteAgentLabel {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+}
+.InviteAgentInput {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 9px;
+  font-size: 15px;
+  color:var(--text);
+  background:var(--surface);
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.InviteAgentInput::placeholder {
+  color:var(--faint);
+}
+.InviteAgentInput:focus {
+  border-color: #388bed;
+  box-shadow: 0 0 0 3px rgba(56, 139, 237, 0.15);
+}
+.InviteAgentInput:disabled {
+  background: #f3f4f6;
+  color:var(--muted);
+  cursor: not-allowed;
+}
+.InviteAgentHint {
+  margin: 8px 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color:var(--faint);
+}
+
+.InviteAgentFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 18px 24px 22px;
+}
+
+.InviteAgentCancel,
+.InviteAgentSubmit {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 9px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.05s, opacity 0.15s;
+}
+.InviteAgentCancel {
+  background: #f3f4f6;
+  color: #374151;
+}
+.InviteAgentCancel:hover:not(:disabled) {
+  background: #e5e7eb;
+}
+.InviteAgentSubmit {
+  background: #1a53ff;
+  color: #ffffff;
+}
+.InviteAgentSubmit:hover:not(:disabled) {
+  background: #2a7adc;
+}
+.InviteAgentSubmit:active:not(:disabled),
+.InviteAgentCancel:active:not(:disabled) {
+  transform: translateY(1px);
+}
+.InviteAgentSubmit:disabled,
+.InviteAgentCancel:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+
+@keyframes InviteAgentFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes InviteAgentSlideIn {
+  from { opacity: 0; transform: translateY(12px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0)    scale(1); }
+}
+
+
+@media (max-width: 520px) {
+  .InviteAgentSection.Active {
+    align-items: flex-end;
+  }
+  .InviteAgentCard {
+    width: 100%;
+    border-radius: 16px 16px 0 0;
+    animation: InviteAgentSlideUp 0.25s ease;
+  }
+  .InviteAgentFooter {
+    flex-direction: column-reverse;
+  }
+  .InviteAgentCancel,
+  .InviteAgentSubmit {
+    width: 100%;
+  }
+}
+@keyframes InviteAgentSlideUp {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0);    }
+}

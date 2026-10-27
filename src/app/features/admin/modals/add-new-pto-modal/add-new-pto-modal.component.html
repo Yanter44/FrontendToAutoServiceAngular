@@ -1,0 +1,128 @@
+<section id="AddNewPtoModal" class="AddNewPtoSection" [class.Active]="isOpen()">
+  <div class="AddNewPtoModalOverlay" (click)="closeFromOverlay($event)"></div>
+  <div class="AddNewPtoCard">
+    <div class="AddNewPtoHeader">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1751ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      <h2>Добавить ПТО</h2>
+    </div>
+    <div class="AddNewPtoContent">
+      <div class="AddNewPtoFieldsGroup">
+        <div class="FieldGroupHeader">Юридические данные</div>
+        <div class="AddNewPtoField">
+          <label>Название ПТО</label>
+          <input type="text" id="PtoNameInput" class="AddNewPtoInput" [(ngModel)]="ptoName">
+        </div>
+        <div class="AddNewPtoField">
+          <label>Номер РСА</label>
+          <input type="text" id="PtoRsaNumberInput" class="AddNewPtoInput" [(ngModel)]="ptoRsa">
+        </div>
+        <div class="AddNewPtoField">
+          <label>Адрес пункта</label>
+          <input type="text" id="PtoAddressInput" class="AddNewPtoInput" [(ngModel)]="ptoAddress">
+        </div>
+      </div>
+      <div class="AddNewPtoFieldsGroup">
+        <div class="FieldGroupHeader">Геолокация</div>
+        <div class="AddNewPtoField">
+          <label>Широта</label>
+          <input type="number" id="PtoLatitudeInput" step="any" class="AddNewPtoInput" [(ngModel)]="ptoLatitude">
+        </div>
+        <div class="AddNewPtoField">
+          <label>Долгота</label>
+          <input type="number" id="PtoLongtitudeInput" step="0.000001" class="AddNewPtoInput" min="-180" max="180" [(ngModel)]="ptoLongitude">
+        </div>
+      </div>
+      <div class="AddNewPtoFieldsGroup">
+        <div class="FieldGroupHeader">Пропускная способность ПТО</div>
+          <div class="AddNewPtoField">
+            <label>Выделенный лимит</label>
+            <input type="number" id="PtoMaximumThroughput" class="AddNewPtoInput" [(ngModel)]="ptoMaximumThroughput">
+          </div>
+      </div>
+      <div class="AddNewPtoFieldsGroup">
+        <div class="FieldGroupHeader">Ключи доступа</div>
+        <div class="AddNewPtoField">
+          <label>Ключ Оператора ПТО (.zip архив без сжатия)</label>
+          <input type="file" accept=".zip" class="AddNewPtoInput" (change)="onOperatorKeySelected($event)">
+        </div>
+
+        <hr class="AddNewPtoFieldHr">
+
+        <div class="AddNewPtoField">
+          <label>Технические эксперты</label>
+          <div class="AddNewPtoExpertList">
+            @for (exp of state.ptoExpertsDraft(); track $index; let i = $index) {
+            <div class="AddNewPtoExpertListItem">
+          
+              <div class="AddNewPtoExpertInfo">
+                <div class="AddNewPtoExpertAvatar">
+                  {{ exp.firstName.charAt(0) }} 
+                </div>
+                <div class="AddNewPtoExpertText">
+                  <span class="ExpertName">{{exp.middleName}} {{ exp.firstName }} {{exp.lastName}}</span>
+                  
+                  <span class="ExpertCode">Порядковый номер: {{ exp.sequenceNumber  }}</span>
+                </div>
+              </div>
+              <div class="AddNewPtoExpertActions">
+                @if (exp.keyFile) {
+                <span class="ExpertKeyStatus Success">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <polyline points="20 6 9 17 4 12"></polyline> </svg>
+                  Ключ прикреплен
+                </span>
+                } @else {
+                <span class="ExpertKeyStatus Error">Нет ключа</span>
+                }
+          
+                <button type="button" class="RemoveExpertBtn" (click)="removeExpert(i)">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M3 6h18"></path> <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path> </svg>
+                </button>
+              </div>
+          
+            </div>
+            } @empty {
+            <div class="AddNewPtoExpertEmpty">
+              Эксперты еще не добавлены.
+            </div>
+            }
+          </div>
+          <button type="button" class="AddNewPtoAddExpertBtn" (click)="openAddExpertModal()">+ Добавить эксперта</button>
+        </div>
+        
+      </div>
+      <div class="AddNewPtoFieldsGroup">
+        <div class="FieldGroupHeader">Ценовая политика</div>
+        <div class="AddNewPtoPricePoliciesBorder">
+          <table class="PtoPricePolicyTable">
+            <thead>
+              <tr>
+                <th>Категория транспорта</th>
+                <th>Стоимость обслуживания (руб)</th>
+              </tr>
+            </thead>
+            <tbody class="PtoPricePolicyTableBody">
+              @if (!pricePolicies.length) {
+                <tr><td colspan="2" style="text-align:center;">Нет доступных категорий</td></tr>
+              } @else {
+                @for (row of pricePolicies; track row.vehicleCategoriesBySrtsId) {
+                  <tr class="PtoPricePolicyTableRow" [attr.data-category-id]="row.vehicleCategoriesBySrtsId">
+                    <td>{{ row.name }}</td>
+                    <td>
+                      <div class="PtoPriceInputWrapper">
+                        <input type="number" min="0" class="PtoPriceInputTable PtoPricePolicyInput" placeholder="0" [(ngModel)]="row.price">
+                        <span class="PtoPriceCurrencySign">₽</span>
+                      </div>
+                    </td>
+                  </tr>
+                }
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="AddNewPtoFooter">
+      <button type="button" class="AddNewPtoSubmitButton" (click)="submitNewPto()">Сохранить</button>
+    </div>
+  </div>
+</section>

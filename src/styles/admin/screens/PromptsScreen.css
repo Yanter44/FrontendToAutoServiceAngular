@@ -1,0 +1,335 @@
+.LibraryOfPromptsScreen{
+    height: 100%;
+    overflow-y: auto;
+    min-height: 0;
+}
+.LibraryOfPromptsScreen::-webkit-scrollbar {
+    width: 4px;            
+}
+
+.LibraryOfPromptsScreen::-webkit-scrollbar-track {
+    background: transparent;       
+}
+
+.LibraryOfPromptsScreen::-webkit-scrollbar-thumb {
+    background: #b8d4e3;        
+    border-radius: 20px;           
+    transition: all 0.3s ease;
+}
+
+.LibraryOfPromptsScreen::-webkit-scrollbar-thumb:hover {
+    background: #7eb8d4;         
+}
+
+.LibraryOfPromptsScreen::-webkit-scrollbar-thumb:active {
+    background: #5ba3c4;        
+}
+
+.LibraryOfPromptsScreen::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+.PromptTable {
+    background:var(--surface);
+    border-radius: 14px;
+    overflow: hidden;
+    table-layout: fixed;
+    width: 100%;
+    max-height: 500px;
+    overflow-y: auto;
+    overflow-x: auto;
+    border-collapse: separate;
+    border-spacing: 0;
+    
+}
+
+.PromptTable th {
+    text-align: center;
+    padding: 16px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background:var(--surface-muted);
+    font-size: 13px;
+    color:var(--muted);
+    border-bottom:1px solid var(--border);
+}
+
+.PromptTable td {
+    padding: 18px 20px;
+    font-size: 14px;
+    text-align: center;
+    border-bottom:1px solid var(--hover);
+    word-wrap: break-word;
+    word-break: break-all; 
+    white-space: normal;
+}
+
+
+.PromptsSortSelect:hover .SelectArrow{
+    color:#4F7CFF;
+}
+
+.PromptsSortSelect:focus-within .SelectArrow{
+    color:#4F7CFF;
+}
+.PromptsSearchSort{
+    width: 380px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 0 18px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(15, 23, 42, .05);
+    transition: .25s;
+}
+
+.PromptsSearchSort:hover{
+    border-color:var(--border);
+}
+
+.PromptsSearchSort:focus-within{
+    border-color:#4F7CFF;
+    box-shadow:
+        0 0 0 4px rgba(79,124,255,.12),
+        0 10px 25px rgba(79,124,255,.12);
+}
+
+.PromptsSearchSort svg{
+    width:20px;
+    height:20px;
+    fill:var(--faint);
+    flex-shrink:0;
+}
+
+.PromptsSearchSort input{
+    flex:1;
+
+    border:none;
+    outline:none;
+
+    background:transparent;
+
+    font-size:15px;
+    color:#1f2937;
+}
+
+.PromptsSearchSort input::placeholder{
+    color:var(--faint);
+}
+
+.PromptsSortSelect {
+    position:relative;
+    width:240px;
+}
+
+.PromptsSortSection {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+    margin-bottom: 15px;
+}
+
+.PromptsSortSelect select {
+    width:100%;
+    height: 48px;
+    padding:0 48px 0 18px;
+    border:1px solid var(--border);
+    border-radius:16px;
+    background:var(--surface);
+    font-size:15px;
+    font-weight:500;
+    color:#1f2937;
+    cursor:pointer;
+    outline:none;
+    appearance:none;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+
+    box-shadow: 0 6px 20px rgba(15,23,42,.05);
+    transition:
+        border-color .25s,
+        box-shadow .25s,
+        transform .15s;
+}
+
+.PromptsSortSelect select:hover{
+    border-color:var(--border);
+}
+
+.PromptsSortSelect select:focus{
+    border-color:#4F7CFF;
+    box-shadow:
+        0 0 0 4px rgba(79,124,255,.12),
+        0 10px 25px rgba(79,124,255,.12);
+}
+.PromptHeaderSection{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.BtnRedactPrompt:hover {
+    background-color:var(--surface-muted); 
+    border-color: #3b82f6;    
+}
+
+.BtnDeletePrompt:hover {
+    background-color:var(--danger-soft); 
+    border-color: #ef4444;  
+}
+
+.BtnRedactPrompt:active,
+.BtnDeletePrompt:active {
+    transform: scale(0.96); 
+}
+
+.BtnAddNewPrompt {
+    border: none;
+    background: #1a53ff;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: 0.2s;
+}
+
+.BtnAddNewPrompt:hover {
+    background: #003fe0;
+}
+.BtnRedactPrompt, 
+.BtnDeletePrompt {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    
+    width: 44px;  
+    height: 36px;
+    
+    background-color:var(--surface);
+    border:1px solid var(--border);
+    border-radius: 8px;      
+    
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: all 0.2s ease-in-out; 
+}
+.PromptsPagination{
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+}
+@media (max-width: 1024px) {
+    .PromptTable thead {
+        display: none;
+    }
+
+    .PromptTable tbody tr {
+        display: block;
+        background:var(--surface);
+        border-radius: 16px;
+        padding: 16px;
+        margin-bottom: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        border:1px solid var(--border);
+        transition: all 0.2s ease;
+    }
+
+    .PromptTable tbody tr:active {
+        transform: scale(0.98);
+    }
+
+    .PromptTable tbody td {
+        display: block;
+        align-items: center;
+        padding: 8px 0;
+        margin-left: 20px;
+        border: none;
+        border-bottom:1px solid var(--hover);
+        text-align: left;
+        word-break: break-word;
+    }
+
+    .PromptTable tbody td:last-child {
+        border-bottom: none;
+        padding-top: 12px;
+        justify-content: flex-start;
+    }
+
+    .PromptTable tbody td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color:var(--muted);
+        font-size: 12px;
+        min-width: 80px;
+        flex-shrink: 0;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .PromptTable tbody td {
+        background: transparent !important;
+    }
+
+    .PromptTable tbody td:last-child {
+        gap: 8px;
+    }
+
+    .PromptTable tbody td:last-child .BtnRedactPrompt,
+    .PromptTable tbody td:last-child .BtnDeletePrompt {
+        width: 40px;
+        height: 36px;
+    }
+
+    .PromptTable {
+        background: transparent;
+        border-radius: 0;
+        overflow: visible;
+    }
+
+    .PromptHeaderSection {
+        flex-direction: column;
+        gap: 12px;
+        align-items: center;
+        margin-bottom: 16px;
+    }
+
+    .PromptsSortSection {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .PromptsSearchSort {
+        width: 100%;
+        max-width: 100%;
+        height: 44px;
+    }
+
+    .PromptsSortSelect {
+        width: 100%;
+    }
+
+    .PromptsSortSelect select {
+        height: 44px;
+    }
+
+    .BtnAddNewPrompt {
+        justify-content: center;
+        padding: 12px;
+    }
+
+    .TableSection {
+        padding: 12px;
+    }
+
+    #LibraryOfPromptsScreen {
+        padding: 0;
+    }
+}

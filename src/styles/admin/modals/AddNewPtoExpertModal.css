@@ -1,0 +1,184 @@
+.AddNewPtoExpertSection {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000; 
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.AddNewPtoExpertModalOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(0 0 0 / 40%);
+    backdrop-filter: blur(3px);
+}
+
+.AddNewPtoExpertCard {
+    position: relative;
+    width: 100%;
+    max-width: 500px; 
+    background:var(--surface);
+    border-radius: 16px;
+    z-index: 10001;
+    overflow: hidden;
+    border:1px solid var(--hover);
+
+    display: flex;
+    flex-direction: column;
+    max-height: 85vh;
+
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    transform: translateY(100px) scale(0.95);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.AddNewPtoExpertSection.Active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.AddNewPtoExpertSection.Active .AddNewPtoExpertCard {
+    transform: translateY(0) scale(1);
+}
+
+.AddNewPtoExpertHeader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px 24px;
+    background:var(--surface-muted);
+    border-bottom:1px solid var(--border);
+}
+
+.AddNewPtoExpertHeaderTitle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.AddNewPtoExpertHeaderTitle h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color:var(--text);
+    margin: 0;
+}
+
+.AddNewPtoExpertContent {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow-y: auto;
+}
+
+.AddNewPtoExpertFieldGroup {
+    display: flex;
+    gap: 12px;
+}
+.AddNewPtoExpertFieldGroup .AddNewPtoExpertField {
+    flex: 1;
+}
+
+.AddNewPtoExpertField {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.AddNewPtoExpertField label {
+    font-size: 14px;
+    font-weight: 500;
+    color:var(--text-secondary);
+    display: flex;
+    align-items: center;
+}
+
+.AddNewPtoExpertInput {
+    width: 100%;
+    padding: 12px 14px;
+    border:1.5px solid var(--border-strong);
+    border-radius: 10px;
+    font-size: 14px;
+    color:var(--text);
+    background:var(--surface);
+    box-sizing: border-box;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.AddNewPtoExpertInput:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 213, 0.15);
+}
+
+.AddNewPtoExpertInput[type="file"] {
+    padding: 10px;
+    color:var(--muted);
+}
+.AddNewPtoExpertInput[type="file"]::file-selector-button {
+    border: none;
+    background:var(--border);
+    color:var(--text-secondary);
+    border-radius: 6px;
+    padding: 8px 14px;
+    margin-right: 12px;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 13px;
+    transition: background 0.2s ease;
+}
+.AddNewPtoExpertInput[type="file"]::file-selector-button:hover {
+    background:var(--border-strong);
+}
+
+.AddNewPtoExpertFooter {
+    padding: 16px 24px 24px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    border-top:1px solid var(--hover);
+    background:var(--surface);
+}
+
+.AddNewPtoExpertCancelBtn {
+    padding: 10px 20px;
+    background:var(--hover);
+    color:var(--text-secondary);
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.AddNewPtoExpertCancelBtn:hover {
+    background:var(--border);
+}
+
+.AddNewPtoExpertSubmitBtn {
+    padding: 10px 24px;
+    background: #1751ff;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.AddNewPtoExpertSubmitBtn:hover {
+    background: #003be5;
+}

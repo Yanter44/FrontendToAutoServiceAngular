@@ -1,0 +1,644 @@
+/* =========================================================
+   OVERLAY / МОДАЛКА
+   ========================================================= */
+.CreateApplication {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.CreateApplication.Active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+}
+
+.CreateApplication-AppCard {
+    width: 900px;
+    max-width: 95vw;
+    max-height: 90vh;
+
+    background:var(--surface);
+    border-radius: 20px;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+
+    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.18);
+
+    transform: translateY(30px);
+    transition: transform 0.25s ease;
+}
+
+.CreateApplication.Active .CreateApplication-AppCard {
+    transform: translateY(0);
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+.CreateApplication-CardHeader {
+    padding: 24px 28px 18px;
+    border-bottom:1px solid var(--border);
+    text-align: left;
+    flex-shrink: 0;
+    background:var(--surface);
+}
+
+.CreateApplication-CardHeader h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0;
+    color:var(--text);
+}
+
+.CreateApplication-CardTitle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 4px;
+}
+
+.CreateApplication-CardHeader p {
+    margin: 0;
+    font-size: 13px;
+    color:var(--muted);
+}
+
+/* =========================================================
+   BODY (сайдбар + скролл-контент)
+   ========================================================= */
+.CreateApplication-Body {
+    display: flex;
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: hidden;
+}
+
+/* Левый сайдбар с якорями секций */
+.CreateApplication-SectionNav {
+    width: 210px;
+    flex-shrink: 0;
+    padding: 20px 12px;
+    border-right:1px solid var(--border);
+    background:var(--surface-muted);
+
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    overflow-y: auto;
+}
+
+.CreateApplication-SectionNav a {
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color:var(--text-secondary);
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.15s ease, color 0.15s ease;
+    white-space: nowrap;
+}
+
+.CreateApplication-SectionNav a:hover {
+    background: #e0e7ff;
+    color: #1a53ff;
+}
+
+.CreateApplication-SectionNav a.Active {
+    background: #e0e7ff;
+    color: #1a53ff;
+}
+
+/* Основной скролл-контейнер */
+.CreateApplication-CardFormScrollable {
+    overflow-y: auto;
+    padding: 20px 28px 24px;
+    flex: 1 1 auto;
+    min-height: 0;
+}
+
+/* Кастомный скроллбар */
+.CreateApplication-CardFormScrollable::-webkit-scrollbar {
+    width: 6px;
+}
+
+.CreateApplication-CardFormScrollable::-webkit-scrollbar-track {
+    background: transparent;
+    margin: 8px 0;
+}
+
+.CreateApplication-CardFormScrollable::-webkit-scrollbar-thumb {
+    background:var(--border-strong);
+    border-radius: 100px;
+    transition: background 0.2s ease;
+}
+
+.CreateApplication-CardFormScrollable::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+.CreateApplication-CardForm {
+    display: contents;
+}
+
+/* =========================================================
+   СЕКЦИИ ФОРМЫ
+   ========================================================= */
+.CreateApplication-FormRow {
+    background:var(--surface-muted);
+    border:1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 20px 8px;
+    margin-bottom: 18px;
+}
+
+.CreateApplication-FormRow:last-child {
+    margin-bottom: 0;
+}
+
+/* Заголовок секции */
+.CreateApplication-RowInfo {
+    margin: 0 0 18px;
+    padding: 0 0 12px;
+    text-align: left;
+    border-bottom:1px solid var(--border);
+
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 15px;
+    font-weight: 600;
+    color:var(--text);
+}
+
+.CreateApplication-RowInfo h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0;
+    color:var(--text);
+}
+
+.CreateApplication-RowInfo p {
+    margin: 4px 0 0;
+    font-size: 13px;
+    color:var(--muted);
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+/* Сетка полей внутри секции */
+.CreateApplication-RowInputs {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px 20px;
+}
+
+/* На всю ширину */
+.CreateApplication-FormGroup.FullWidth,
+.CreateApplication-RowInputs > .CreateApplication-RowInfo {
+    grid-column: 1 / -1;
+}
+
+/* =========================================================
+   ФОРМ-ГРУППЫ И ИНПУТЫ
+   ========================================================= */
+.CreateApplication-FormGroup {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0;
+    min-width: 0;
+}
+
+.CreateApplication-FormGroup label {
+    margin-bottom: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color:var(--text-secondary);
+}
+
+.CreateApplication-FormGroup input {
+    height: 46px;
+    border:1px solid var(--border-strong);
+    border-radius: 10px;
+    padding: 0 14px;
+    font-family: inherit;
+    font-size: 14px;
+    color:var(--text);
+    background:var(--surface);
+
+    outline: none;
+    box-shadow: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.CreateApplication-FormGroup input::placeholder {
+    color:var(--faint);
+}
+
+.CreateApplication-FormGroup input:hover {
+    border-color:var(--border-strong);
+}
+
+.CreateApplication-FormGroup input:focus,
+.CreateApplication-FormGroup input:focus-visible {
+    border-color: #3b66f5;
+    box-shadow: 0 0 0 3px rgba(59, 102, 245, 0.15);
+    outline: none;
+}
+
+.CreateApplication-FormGroup input:disabled {
+    background:var(--hover);
+    color:var(--faint);
+    cursor: not-allowed;
+}
+
+/* =========================================================
+   SELECT
+   ========================================================= */
+.CreateApplicationCategorySelect,
+#CreateApplication-PtoSelect {
+    width: 100%;
+    height: 46px;
+    padding: 0 36px 0 14px;
+
+    border:1px solid var(--border-strong);
+    border-radius: 10px;
+
+    font-family: inherit;
+    font-size: 14px;
+    color:var(--text-secondary);
+    background-color:var(--surface);
+
+    outline: none;
+    cursor: pointer;
+    appearance: none;
+
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='%2364748b' d='M1 1l5 5 5-5'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+.CreateApplicationCategorySelect:hover,
+#CreateApplication-PtoSelect:hover {
+    border-color:var(--faint);
+}
+
+.CreateApplicationCategorySelect:focus,
+#CreateApplication-PtoSelect:focus {
+    border-color: #3b82f6;
+    background-color:var(--surface);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+/* =========================================================
+   ЧЕКБОКС-СТРОКА
+   ========================================================= */
+.CreateApplication-CheckboxRow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+    margin-left: 0;
+
+    font-size: 13px;
+    color:var(--muted);
+    cursor: pointer;
+    user-select: none;
+}
+
+.CreateApplication-CheckboxRow input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    accent-color: #1a53ff;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.CreateApplication-CheckboxRow span {
+    line-height: 1.3;
+}
+
+/* =========================================================
+   КНОПКИ (ФУТЕР)
+   ========================================================= */
+.CreateApplication-CardActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+
+    padding: 16px 28px;
+    margin-top: 0;
+
+    border-top:1px solid var(--border);
+    background:var(--surface);
+    flex-shrink: 0;
+}
+
+.CreateApplication-CreateButton,
+.CreateApplication-CancelButton {
+    border: none;
+    border-radius: 10px;
+    padding: 12px 22px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 14px;
+    font-family: inherit;
+    transition: background 0.15s ease, transform 0.1s ease, opacity 0.15s ease;
+}
+
+.CreateApplication-CreateButton {
+    background: #1a53ff;
+    color: #ffffff;
+}
+
+.CreateApplication-CreateButton:hover {
+    background: #1640d6;
+}
+
+.CreateApplication-CreateButton:active {
+    transform: translateY(1px);
+}
+
+.CreateApplication-CreateButton:disabled {
+    background: #94a3b8;
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+.CreateApplication-CancelButton {
+    background:var(--border);
+    color:var(--text-secondary);
+}
+
+.CreateApplication-CancelButton:hover {
+    background:var(--border-strong);
+}
+
+/* =========================================================
+   ДОКУМЕНТЫ
+   ========================================================= */
+.DocsContainer {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+    grid-column: 1 / -1;
+}
+
+.DocUploadBtn {
+    width: 100px;
+    height: 100px;
+    border:2px dashed var(--border-strong);
+    border-radius: 10px;
+    background:var(--surface);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0;
+    outline: none;
+    font-family: inherit;
+}
+
+.DocUploadBtn:hover {
+    border-color: #3b82f6;
+    background:var(--accent-soft);
+}
+
+.DocUploadBtn .PlusIcon {
+    font-size: 28px;
+    color: #3b66f5;
+    font-weight: 300;
+    line-height: 1;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.DocUploadBtn:hover .PlusIcon {
+    color: #3b82f6;
+    transform: scale(1.1);
+}
+
+.DocUploadText {
+    display: flex;
+    flex-direction: column;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.2;
+    color:var(--muted);
+    text-align: center;
+}
+
+.DocUploadBtn:hover .DocUploadText {
+    color: #3b82f6;
+}
+
+.UploadedDocCard {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    border:1px solid var(--border);
+    background:var(--surface);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    box-sizing: border-box;
+    grid-column: auto;
+}
+
+/* =========================================================
+   ФОТО
+   ========================================================= */
+.PhotosContainer {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+    grid-column: 1 / -1;
+}
+
+.UploadWrapper {
+    flex-shrink: 0;
+}
+
+.PhotoUploadBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 120px;
+    height: 120px;
+    background-color:var(--surface);
+    border:2px dashed var(--border-strong);
+    border-radius: 18px;
+    cursor: pointer;
+    user-select: none;
+    transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+    flex-direction: column;
+    padding: 0;
+    font-family: inherit;
+}
+
+.PhotoUploadBtn:hover {
+    border-color: #3b66f5;
+    background-color: #f4f7ff;
+    transform: translateY(-2px);
+}
+
+.PhotoUploadBtn .PlusIcon {
+    font-size: 28px;
+    color: #3b66f5;
+    font-weight: 300;
+    line-height: 1;
+}
+
+.PhotoUploadText {
+    display: flex;
+    flex-direction: column;
+    font-size: 13px;
+    color:var(--text-secondary);
+    line-height: 1.2;
+    align-items: center;
+}
+
+.UploadedPhotoCard {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    overflow: hidden;
+    border:1px solid var(--border);
+    box-sizing: border-box;
+    background:var(--surface-muted);
+}
+
+.UploadedPhotoCard img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.PhotoBadge {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(2px);
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 10px;
+    font-weight: 600;
+    text-align: center;
+    padding: 4px 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Кнопка удаления */
+.BtnRemovePhoto {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.92);
+    border: none;
+    color:var(--muted);
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.1s ease, background 0.2s ease, color 0.2s ease;
+    z-index: 10;
+    padding: 0;
+}
+
+.BtnRemovePhoto:hover {
+    background: #ef4444;
+    color: #ffffff;
+    transform: scale(1.1);
+}
+
+/* Обёртка кнопки загрузки документа внутри grid */
+.DocUploadWrapper {
+    grid-column: auto;
+    margin-bottom: 0;
+}
+
+/* =========================================================
+   АДАПТИВ
+   ========================================================= */
+@media (max-width: 900px) {
+    .CreateApplication-AppCard {
+        width: calc(100vw - 16px);
+        max-width: none;
+        max-height: 92dvh;
+        border-radius: 16px;
+    }
+
+    .CreateApplication-SectionNav {
+        display: none;
+    }
+
+    .CreateApplication-CardFormScrollable {
+        padding: 16px 18px 20px;
+    }
+
+    .CreateApplication-CardHeader,
+    .CreateApplication-CardActions {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+}
+
+@media (max-width: 700px) {
+    .CreateApplication-RowInputs {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .CreateApplication-FormRow {
+        padding: 16px 14px 4px;
+    }
+
+    .PhotoUploadBtn {
+        width: 100px;
+        height: 100px;
+    }
+
+    .UploadedPhotoCard {
+        width: 88px;
+        height: 88px;
+    }
+}

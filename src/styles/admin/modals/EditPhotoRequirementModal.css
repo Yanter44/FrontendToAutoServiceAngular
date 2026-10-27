@@ -1,0 +1,139 @@
+.EditPhotoRequirementModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.EditPhotoRequirementModal.Active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.EditPhotoRequirementModalOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(0 0 0 / 20%);
+    backdrop-filter: blur(2px);
+}
+
+.EditPhotoRequirementCard {
+    position: relative;
+    width: 100%;
+    max-width: min(500px, calc(100vw - 16px));
+    background:var(--surface);
+    border-radius: 16px;
+    border:1px solid var(--hover);
+    box-shadow:
+        0 20px 25px -5px rgba(0, 0, 0, 0.1),
+        0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+    overflow: hidden;
+    z-index: 10001;
+    transform: translateY(100px);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.EditPhotoRequirementModal.Active .EditPhotoRequirementCard {
+    transform: translateY(0);
+}
+
+.EditPhotoRequirementHeader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px;
+    background:var(--surface-muted);
+    border-bottom:1px solid var(--border);
+}
+
+.EditPhotoRequirementHeader h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    color:var(--text);
+}
+
+.EditPhotoRequirementContent {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.EditPhotoRequirementField {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.EditPhotoRequirementField label {
+    font-size: 15px;
+    font-weight: 500;
+    color:var(--text-secondary);
+}
+
+.EditPhotoRequirementInput,
+.EditPhotoRequirementSelect {
+    width: 100%;
+    padding: 12px 16px;
+    border:1.5px solid var(--border-strong);
+    border-radius: 10px;
+    font-size: 15px;
+    color:var(--text);
+    background:var(--surface);
+    box-sizing: border-box;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.EditPhotoRequirementInput:focus,
+.EditPhotoRequirementSelect:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 213, 0.15);
+}
+
+.EditPhotoRequirementFooter {
+    padding: 0 24px 28px 24px;
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.EditPhotoRequirementSubmitButton {
+    flex: 1;
+    padding: 14px;
+    background: #1751ff;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        transform 0.1s ease;
+}
+
+.EditPhotoRequirementSubmitButton:hover {
+    background: #003be5;
+}
+
+.EditPhotoRequirementSubmitButton:active {
+    transform: scale(0.98);
+}
+

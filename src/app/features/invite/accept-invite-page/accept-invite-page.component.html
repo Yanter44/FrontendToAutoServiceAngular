@@ -1,0 +1,54 @@
+<div class="AcceptInvitePage">
+  <div class="AcceptInviteCard">
+    <div class="AcceptInviteHeader">
+      <h1>ТО-АГЕНТ</h1>
+      <p>Завершение регистрации</p>
+    </div>
+
+    @if (loading) {
+      <div class="AcceptInviteLoader">
+        <div class="Spinner"></div>
+        <p>Проверяем приглашение…</p>
+      </div>
+    }
+
+    @if (formVisible) {
+      <div class="AcceptInviteForm">
+        <div class="AcceptInviteInfo">
+          <p>Вас пригласили на роль <b>{{ roleLabel }}</b></p>
+          <p class="AcceptInviteEmail">{{ email }}</p>
+        </div>
+
+        <div class="AcceptInviteField">
+          <label for="InviteFio">ФИО</label>
+          <input id="InviteFio" type="text" maxlength="150" autocomplete="name"
+                 placeholder="Иванов Иван Иванович" [(ngModel)]="fio">
+        </div>
+        <div class="AcceptInviteField">
+          <label for="InvitePassword">Пароль</label>
+          <input id="InvitePassword" type="password" autocomplete="new-password"
+                 placeholder="Минимум 6 символов" [(ngModel)]="password" >
+        </div>
+        <div class="AcceptInviteField">
+          <label for="InvitePasswordConfirm">Повторите пароль</label>
+          <input id="InvitePasswordConfirm" type="password" autocomplete="new-password"
+                 placeholder="Повторите пароль" [(ngModel)]="passwordConfirm">
+        </div>
+
+        <button type="button" class="AcceptInviteSubmit" [disabled]="submitting" (click)="submit()">
+          {{ submitLabel }}
+        </button>
+        @if (formError) {
+          <p class="AcceptInviteError">{{ formError }}</p>
+        }
+      </div>
+    }
+
+    @if (errorState) {
+      <div class="AcceptInviteErrorState">
+        <span class="ErrorIcon">⚠️</span>
+        <p>{{ errorText }}</p>
+      </div>
+    }
+  </div>
+</div>

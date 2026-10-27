@@ -1,0 +1,172 @@
+<app-app-loader />
+
+<div id="AppContent">
+  <div class="AgentPage">
+    <aside class="Sidebar">
+      <div class="LogoContainer">
+        <img src="/assets/Images/car.png" class="LogoImage" alt="ТО-Агент">
+        <span class="LogoText">ТО-АГЕНТ</span>
+      </div>
+
+      <nav class="Navigation">
+        <a routerLink="/admin/applications" routerLinkActive="Active" class="MenuLink NavigationOrders">
+          <svg class="MenuLinkSvgImage" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 3.00001V3.00001C19.6569 3.00001 21 4.34315 21 6.00001L21 8.14286C21 8.47698 21 8.64405 20.9234 8.76602C20.8834 8.82962 20.8296 8.8834 20.766 8.92336C20.644 9 20.477 9 20.1429 9L15 9M18 3.00001V3.00001C16.3431 3.00001 15 4.34315 15 6.00001L15 9M18 3.00001L7 3.00001C5.11438 3.00001 4.17157 3.00001 3.58579 3.58579C3 4.17158 3 5.11439 3 7.00001L3 21L6 20L9 21L12 20L15 21L15 9" stroke="currentColor"></path><path d="M7 7L11 7" stroke="currentColor" stroke-linecap="round"></path><path d="M8 11H7" stroke="currentColor" stroke-linecap="round"></path><path d="M7 15L10 15" stroke="currentColor" stroke-linecap="round"></path></svg>
+          <span class="MenuLinkSpan">Все заявки</span>
+        </a>
+
+        <a routerLink="/admin/users" routerLinkActive="Active" class="MenuLink NavigationUsers">
+          <svg class="MenuLinkSvgImage" viewBox="0 -0.5 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M14.9238 7.281C14.9227 8.5394 13.9018 9.55874 12.6435 9.558C11.3851 9.55726 10.3654 8.53673 10.3658 7.27833C10.3662 6.01994 11.3864 5 12.6448 5C13.2495 5.00027 13.8293 5.24073 14.2567 5.6685C14.6841 6.09627 14.924 6.67631 14.9238 7.281Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M14.9968 12.919H10.2968C8.65471 12.9706 7.35028 14.3166 7.35028 15.9595C7.35028 17.6024 8.65471 18.9484 10.2968 19H14.9968C16.6388 18.9484 17.9432 17.6024 17.9432 15.9595C17.9432 14.3166 16.6388 12.9706 14.9968 12.919V12.919Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M20.6878 9.02403C20.6872 9.98653 19.9066 10.7664 18.9441 10.766C17.9816 10.7657 17.2016 9.9852 17.2018 9.0227C17.202 8.06019 17.9823 7.28003 18.9448 7.28003C19.4072 7.28003 19.8507 7.4638 20.1776 7.7909C20.5045 8.11799 20.688 8.56158 20.6878 9.02403V9.02403Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M4.3338 9.02401C4.3338 9.98664 5.11417 10.767 6.0768 10.767C7.03943 10.767 7.8198 9.98664 7.8198 9.02401C7.8198 8.06137 7.03943 7.28101 6.0768 7.28101C5.11417 7.28101 4.3338 8.06137 4.3338 9.02401V9.02401Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="MenuLinkSpan">Пользователи</span>
+        </a>
+
+        <a routerLink="/admin/ptos" routerLinkActive="Active" class="MenuLink NavigationTo">
+          <svg class="MenuLinkSvgImage" fill="currentColor" viewBox="-351 153 256 256" xmlns="http://www.w3.org/2000/svg"><path d="M-223.4,158.8l-120.5,60.7v183.1h9.6V225.3l110.9-55.6l111,55.8v177.1h9.4V219.5L-223.4,158.8z M-149.7,303.5l-14.8-38.2 c-2.7-7.2-8.8-13.5-20.3-13.5h-20.9h-35.7h-21.1c-11.3,0-17.3,6.2-20.3,13.5l-14.8,38.2c-5.8,0.8-16.2,7.6-16.2,20.6v48.6h14.4v15.6 c0,19.1,27.1,19,27.1,0v-15.6h48.8h48.8v15.6c0,19,27.1,19.1,27.1,0v-15.6h14.4v-48.6C-133.5,311.1-143.8,304.1-149.7,303.5z M-285.5,343.4c-6.8,0-12.5-5.8-12.5-12.9c0-7,5.6-12.9,12.5-12.9c6.8,0,12.5,5.8,12.5,12.9C-273,337.6-278.5,343.4-285.5,343.4z M-223.7,303.1h-58.5l11.1-30.1c1.3-4.3,3.5-7.2,8.4-7.4h39h39c4.9,0,7,3.1,8.4,7.4l11.1,30.1H-223.7z M-161.7,343.4 c-6.8,0-12.5-5.8-12.5-12.9c0-7,5.6-12.9,12.5-12.9s12.5,5.8,12.5,12.9C-149.2,337.6-154.9,343.4-161.7,343.4z"></path></svg>
+          <span class="MenuLinkSpan">Пункты ТО</span>
+        </a>
+
+        <a routerLink="/admin/prompts" routerLinkActive="Active" class="MenuLink NavigationLibraryOfPrompts">
+          <svg class="MenuLinkSvgImage" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19.5617 7C19.7904 5.69523 18.7863 4.5 17.4617 4.5H6.53788C5.21323 4.5 4.20922 5.69523 4.43784 7" stroke="currentColor" stroke-width="1.5"></path><path d="M17.4999 4.5C17.5283 4.24092 17.5425 4.11135 17.5427 4.00435C17.545 2.98072 16.7739 2.12064 15.7561 2.01142C15.6497 2 15.5194 2 15.2588 2H8.74099C8.48035 2 8.35002 2 8.24362 2.01142C7.22584 2.12064 6.45481 2.98072 6.45704 4.00434C6.45727 4.11135 6.47146 4.2409 6.49983 4.5" stroke="currentColor" stroke-width="1.5"></path><path d="M15 18H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path><path d="M2.38351 13.793C1.93748 10.6294 1.71447 9.04765 2.66232 8.02383C3.61017 7 5.29758 7 8.67239 7H15.3276C18.7024 7 20.3898 7 21.3377 8.02383C22.2855 9.04765 22.0625 10.6294 21.6165 13.793L21.1935 16.793C20.8437 19.2739 20.6689 20.5143 19.7717 21.2572C18.8745 22 17.5512 22 14.9046 22H9.09536C6.44881 22 5.12553 22 4.22834 21.2572C3.33115 20.5143 3.15626 19.2739 2.80648 16.793L2.38351 13.793Z" stroke="currentColor" stroke-width="1.5"></path></svg>
+          <span class="MenuLinkSpan">Библиотека промптов</span>
+        </a>
+
+        <a routerLink="/admin/photogallery" routerLinkActive="Active" class="MenuLink NavigationLibraryOfPhotos">
+          <svg class="MenuLinkSvgImage" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M432,112V96a48.14,48.14,0,0,0-48-48H64A48.14,48.14,0,0,0,16,96V352a48.14,48.14,0,0,0,48,48H80" style="fill:none;stroke:currentColor;stroke-linejoin:round;stroke-width:32px"></path><rect x="96" y="128" width="400" height="336" rx="45.99" ry="45.99" style="fill:none;stroke:currentColor;stroke-linejoin:round;stroke-width:32px"></rect></svg>
+          <span class="MenuLinkSpan">Библиотека изображений</span>
+        </a>
+
+        <a routerLink="/admin/requirements" routerLinkActive="Active" class="MenuLink NavigationRequirements">
+          <svg class="MenuLinkSvgImage" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M1 3C0.447715 3 0 3.44772 0 4C0 4.55228 0.447716 5 1 5H9C9.55228 5 10 4.55228 10 4C10 3.44772 9.55228 3 9 3H1Z" fill="currentColor"></path><path d="M1 7C0.447715 7 0 7.44772 0 8C0 8.55228 0.447715 9 1 9H7C7.55228 9 8 8.55228 8 8C8 7.44772 7.55228 7 7 7H1Z" fill="currentColor"></path><path d="M0 12C0 11.4477 0.447715 11 1 11H9C9.55228 11 10 11.4477 10 12C10 12.5523 9.55228 13 9 13H1C0.447716 13 0 12.5523 0 12Z" fill="currentColor"></path><path d="M15.707 7.20711C16.0975 6.81658 16.0975 6.18342 15.707 5.79289C15.3165 5.40237 14.6833 5.40237 14.2928 5.79289L11.9999 8.08579L11.2115 7.29741C10.821 6.90689 10.1878 6.90689 9.79729 7.29741C9.40676 7.68793 9.40676 8.3211 9.79729 8.71162L11.2928 10.2071C11.6833 10.5976 12.3165 10.5976 12.707 10.2071L15.707 7.20711Z" fill="currentColor"></path></svg>
+          <span class="MenuLinkSpan">Требования</span>
+        </a>
+
+        <a routerLink="/admin/neuron-networks" routerLinkActive="Active" class="MenuLink NavigationNeuronNetworks">
+          <svg class="MenuLinkSvgImage" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" stroke-width="3" stroke="currentColor" fill="none"><circle cx="34.52" cy="11.43" r="5.82"></circle><circle cx="53.63" cy="31.6" r="5.82"></circle><circle cx="34.52" cy="50.57" r="5.82"></circle><circle cx="15.16" cy="42.03" r="5.82"></circle><circle cx="15.16" cy="19.27" r="5.82"></circle><circle cx="34.51" cy="29.27" r="4.7"></circle><line x1="20.17" y1="16.3" x2="28.9" y2="12.93"></line><line x1="38.6" y1="15.59" x2="49.48" y2="27.52"></line><line x1="50.07" y1="36.2" x2="38.67" y2="46.49"></line><line x1="18.36" y1="24.13" x2="30.91" y2="46.01"></line><line x1="20.31" y1="44.74" x2="28.7" y2="48.63"></line><line x1="17.34" y1="36.63" x2="31.37" y2="16.32"></line></svg>
+          <span class="MenuLinkSpan">Нейронные сети</span>
+        </a>
+
+        <a routerLink="/admin/accruals" routerLinkActive="Active" class="MenuLink NavigationAccruals">
+          <svg class="MenuLinkSvgImage" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 19H6.2C5.0799 19 4.51984 19 4.09202 18.782C3.71569 18.5903 3.40973 18.2843 3.21799 17.908C3 17.4802 3 16.9201 3 15.8V8.2C3 7.07989 3 6.51984 3.21799 6.09202C3.40973 5.71569 3.71569 5.40973 4.09202 5.21799C4.51984 5 5.0799 5 6.2 5H17.8C18.9201 5 19.4802 5 19.908 5.21799C20.2843 5.40973 20.5903 5.71569 20.782 6.09202C21 6.51984 21 7.0799 21 8.2V8.5M9 9.5V8.5M9 9.5H11.0001M9 9.5C7.88279 9.49998 7.00244 9.62616 7.0001 10.8325C6.99834 11.7328 7.00009 12 9.00009 12C11.0001 12 11.0001 12.2055 11.0001 13.1667C11.0001 13.889 11 14.5 9 14.5M9 15.5V14.5M9 14.5L7.0001 14.5M14 10H17M14 20L16.025 19.595C16.2015 19.5597 16.2898 19.542 16.3721 19.5097C16.4452 19.4811 16.5147 19.4439 16.579 19.399C16.6516 19.3484 16.7152 19.2848 16.8426 19.1574L21 15C21.5523 14.4477 21.5523 13.5523 21 13C20.4477 12.4477 19.5523 12.4477 19 13L14.8426 17.1574C14.7152 17.2848 14.6516 17.3484 14.601 17.421C14.5561 17.4853 14.5189 17.5548 14.4903 17.6279C14.458 17.7102 14.4403 17.7985 14.405 17.975L14 20Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="MenuLinkSpan">Начисления</span>
+        </a>
+      </nav>
+    </aside>
+
+    <div class="SidebarOverlay" id="sidebarOverlay" (click)="closeMobileNav()"></div>
+    <div class="SheetBackdrop" id="sheetBackdrop" (click)="closeAllDropdowns()"></div>
+
+    <main class="MainContent">
+      <header class="Header">
+        <button type="button" class="MobileMenuButton" id="mobileMenuButton" aria-label="Открыть меню"
+                [attr.aria-expanded]="mobileNavOpen()" (click)="toggleMobileNav($event)">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div class="UserProfile">
+          <app-theme-switch />
+          <div class="NotificationBlock" id="NotificationTrigger" #notificationTrigger
+               [class.Active]="notificationsOpen()" (click)="toggleNotifications($event)">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18.7491 9.70957V9.00497C18.7491 5.13623 15.7274 2 12 2C8.27256 2 5.25087 5.13623 5.25087 9.00497V9.70957C5.25087 10.5552 5.00972 11.3818 4.5578 12.0854L3.45036 13.8095C2.43882 15.3843 3.21105 17.5249 4.97036 18.0229C9.57274 19.3257 14.4273 19.3257 19.0296 18.0229C20.789 17.5249 21.5612 15.3843 20.5496 13.8095L19.4422 12.0854C18.9903 11.3818 18.7491 10.5552 18.7491 9.70957Z" stroke="currentColor" stroke-width="1.5"></path><path opacity="0.5" d="M7.5 19C8.15503 20.7478 9.92246 22 12 22C14.0775 22 15.845 20.7478 16.5 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>
+            @if (unreadCount() > 0) {
+              <span class="NotificationCountBadge" id="NotificationCountField">{{ unreadCount() }}</span>
+            }
+          </div>
+
+          <div class="Profile" id="profileTrigger" #profileTrigger [class.Active]="profileOpen()" (click)="toggleProfile($event)">
+            <div class="UserAvatar" id="useravatarletter">{{ avatarLetter() }}</div>
+            <div class="UserData">
+              <p class="UserName" id="username">{{ displayName() }}</p>
+              <p class="UserRole" id="userrole">{{ roleText() }}</p>
+            </div>
+            <svg class="ProfileArrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M 15 10 L 10 16 L 5 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+          </div>
+        </div>
+      </header>
+
+      <div class="Workspace" [class.SidebarOpen]="sidebarOpen()">
+        <div class="ContentArea">
+          <router-outlet />
+        </div>
+
+        <aside class="DetailsSidebar">
+          @if (detailsSidebar.slot(); as slot) {
+            <ng-container [ngComponentOutlet]="slot.component" />
+          }
+        </aside>
+      </div>
+    </main>
+  </div>
+
+  <section class="ProfileSetting" id="profileDropdown" #profileDropdown [class.Active]="profileOpen()">
+    <div class="ProfileCard">
+      <div class="ProfileHeader">
+        <div class="ProfileCardUserAvatar" id="DropDownAvatarLetter">{{ avatarLetter() }}</div>
+        <div class="ProfileCardUserData">
+          <p class="ProfileCardUserName" id="DropDownUsername">{{ displayName() }}</p>
+          <p class="ProfileCardUserRole" id="DropDownUserRole">{{ roleText() }}</p>
+        </div>
+        <button type="button" class="SheetCloseButton" id="ProfileSettingCloseBtn" aria-label="Закрыть" (click)="closeAllDropdowns()">×</button>
+      </div>
+      <div class="SeparationDivider"></div>
+      <div class="ProfileBody">
+        <div class="MyProfileButton">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /><circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+          <p>Мой профиль</p>
+        </div>
+        <div class="MySupportButton">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+          <p>Поддержка</p>
+        </div>
+      </div>
+      <div class="SeparationDivider"></div>
+      <div class="SignOutButton" (click)="signOut()">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /><path d="M16 17L21 12L16 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /><path d="M21 12H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+        <p>Выйти</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="NotificationModal" id="NotificationModalDropDown" #notificationDropdown [class.Active]="notificationsOpen()">
+    <div class="NotificationModalCard">
+      <div class="NotificationModalHeader">
+        <span>Уведомления</span>
+        <div class="NotificationModalHeaderActions">
+          @if (unreadCount() > 0) {
+            <button type="button" class="NotificationMarkAll" (click)="markAllNotifications($event)">Прочитать все</button>
+          }
+          <button type="button" class="SheetCloseButton" id="NotificationModalCloseBtn" aria-label="Закрыть" (click)="closeAllDropdowns(); $event.stopPropagation()">×</button>
+        </div>
+      </div>
+      <div class="NotificaitonModalSeparationDivider"></div>
+      <div class="NotificationModalBody">
+        @for (item of notifications(); track item.id) {
+          <div class="NotificationModalField" (click)="markNotificationRead(item, $event)">
+            @if (!item.isRead) {
+              <span class="NotificationModalMarkIsRead" aria-hidden="true"></span>
+            }
+            <div class="NotificationModalFieldImage">
+              <app-notification-icon [type]="item.notificationType" />
+            </div>
+            <div class="NotificationModalTextContent">
+              <div class="NotificationModalFieldContentTitle">
+                <span>{{ notificationTitle(item.notificationType, item.title) }}</span>
+              </div>
+              <div class="NotificationModalFieldContentMessage">
+                <span>{{ item.message }}</span>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+      @if (notificationHub.hasMore()) {
+        <div class="NotificationModalFooter">
+          <div class="NotificationModalFooterSpanHolder">
+            <span (click)="showMoreNotifications($event)">{{ notificationHub.loadingMore() ? 'Загрузка...' : 'Показать еще' }}</span>
+          </div>
+        </div>
+      }
+    </div>
+  </section>
+</div>
+
+<app-admin-modals />

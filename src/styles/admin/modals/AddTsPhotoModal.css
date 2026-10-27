@@ -1,0 +1,154 @@
+.AddTsPhoto {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    font-family: 'Manrope', sans-serif;
+}
+
+.AddTsPhoto.Active {
+    display: flex;
+}
+
+.AddTsPhotoModalOverlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(15, 23, 42, 0.4); 
+    backdrop-filter: blur(2px);
+}
+
+.AddTsPhotoModalCard {
+    position: relative; 
+    background:var(--surface);
+    padding: 28px;
+    border-radius: 16px;
+    width: 360px;
+    max-width: calc(100vw - 24px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.AddTsPhotoModalCard h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    color:var(--text);
+    text-align: center;
+}
+
+.AddTsPhotoModalField {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.AddTsPhotoModalField label {
+    font-size: 13px;
+    font-weight: 600;
+    color:var(--muted);
+}
+
+#AddTsPhotoModalPhotoType {
+    width: 100%;
+    padding: 12px 16px;
+    border:1px solid var(--border-strong);
+    border-radius: 8px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 14px;
+    color:var(--text-secondary);
+    background-color:var(--surface-muted);
+    outline: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+#AddTsPhotoModalPhotoType:focus {
+    border-color: #3b82f6;
+    background-color:var(--surface);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.AddTsPhotoModalFileDropZone {
+    border:2px dashed var(--border-strong);
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    background:var(--surface-muted);
+    transition: all 0.2s ease;
+}
+
+.AddTsPhotoModalFileDropZone:hover {
+    border-color: #3b82f6;
+    background:var(--accent-soft);
+}
+
+.AddTsPhotoModalFileDropZone input[type="file"] {
+    display: none;
+}
+
+.DropZoneText {
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    color:var(--muted);
+}
+
+.AddTsPhotoModalFileDropZone:hover .DropZoneText {
+    color: #3b82f6;
+}
+
+.AddTsPhotoModalButtons {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 8px;
+}
+
+.AddTsPhotoModalButtons button {
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+.AddTsPhotoCancelButton {
+    background:var(--hover);
+    color:var(--muted);
+}
+
+.AddTsPhotoCancelButton:hover {
+    background:var(--border);
+    color:var(--text-secondary);
+}
+
+.AddTsPhotoSaveButton {
+    background: #3b82f6; 
+    color: #ffffff;
+}
+
+.AddTsPhotoSaveButton:hover {
+    background: #2563eb;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.AddTsPhotoSaveButton:active {
+    transform: scale(0.98);
+}
+.DropZonePreviewImg {
+    width: 100%;
+    max-height: 140px; 
+    object-fit: contain; 
+    border-radius: 6px;
+}

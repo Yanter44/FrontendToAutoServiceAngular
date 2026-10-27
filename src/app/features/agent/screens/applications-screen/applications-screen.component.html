@@ -1,0 +1,105 @@
+<section class="TableSection">
+  <div class="ApplicationHeaderSection">
+    <div class="ApplicationsSortSection">
+      <div class="ApplicationsSearchSort">
+        <svg viewBox="-102.4 -102.4 1228.80 1228.80"> <path d="M448 768A320 320 0 1 0 448 128a320 320 0 0 0 0 640z m297.344-76.992l214.592 214.592-54.336 54.336-214.592-214.592a384 384 0 1 1 54.336-54.336z" /> </svg>
+        <input id="ApplicationsSearchSortInput" type="text" placeholder="Поиск по № заявки, клиенту, VIN или ТС..." #searchInput (input)="onSearchInput(searchInput.value)">
+      </div>
+      <div class="ApplicationsSortSelect">
+        <select name="applicationsSort" [ngModel]="sort" (ngModelChange)="onSortChange($event)">
+          <option value="newest">Сначала новые</option>
+          <option value="oldest">Сначала старые</option>
+          <option value="numberAsc">№ Id ↑</option>
+          <option value="numberDesc">№ Id ↓</option>
+        </select>
+        <svg class="SelectArrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <polyline points="6 9 12 15 18 9"></polyline> </svg>
+      </div>
+    </div>
+    <button class="BtnAddNewApplication" type="button" (click)="openCreate()">+ Новая заявка</button>
+  </div>
+
+  <div class="ApplicationsMetrics">
+    <div class="ApplicationsMetric ApplicationsMetricTotal">
+      <div class="ApplicationsMetricIcon">
+        <svg class="ApplicationMetricSvgIcon TotalApplications" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M18 3.00001V3.00001C19.6569 3.00001 21 4.34315 21 6.00001L21 8.14286C21 8.47698 21 8.64405 20.9234 8.76602C20.8834 8.82962 20.8296 8.8834 20.766 8.92336C20.644 9 20.477 9 20.1429 9L15 9M18 3.00001V3.00001C16.3431 3.00001 15 4.34315 15 6.00001L15 9M18 3.00001L7 3.00001C5.11438 3.00001 4.17157 3.00001 3.58579 3.58579C3 4.17158 3 5.11439 3 7.00001L3 21L6 20L9 21L12 20L15 21L15 9" stroke="currentColor"></path> <path d="M7 7L11 7" stroke="currentColor" stroke-linecap="round"></path> <path d="M8 11H7" stroke="currentColor" stroke-linecap="round"></path> <path d="M7 15L10 15" stroke="currentColor" stroke-linecap="round"></path> </svg>
+      </div>
+      <div class="ApplicationsMetricContent">
+        <span class="ApplicationsMetricTitle">Всего заявок</span>
+        <strong class="ApplicationsMetricValue">{{ agentState.applicationsMetrics().totalApplicationsCount }}</strong>
+      </div>
+    </div>
+
+    <div class="ApplicationsMetric ApplicationsMetricModeration">
+      <div class="ApplicationsMetricIcon">
+        <svg class="ApplicationMetricSvgIcon ApplicationsInModeration" fill="#ffc014" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 473.068 473.068" xml:space="preserve" stroke="#ffc014"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g id="Layer_2_32_"> <g> <path d="M355.498,181.955c8.8-6.139,29.396-20.519,29.396-55.351v-71.77h9.819c4.492,0,8.171-3.679,8.171-8.169v-38.5 c0-4.49-3.679-8.165-8.171-8.165H78.348c-4.494,0-8.164,3.675-8.164,8.165v38.5c0,4.491,3.67,8.169,8.164,8.169h9.822v73.071 c0,34.499,10.506,42.576,29.068,53.89l80.75,49.203v20.984c-20.336,12.23-73.464,44.242-80.429,49.107 c-8.792,6.135-29.388,20.51-29.388,55.352v61.793h-9.822c-4.494,0-8.164,3.676-8.164,8.166v38.498c0,4.49,3.67,8.17,8.164,8.17 h316.365c4.492,0,8.171-3.68,8.171-8.17V426.4c0-4.49-3.679-8.166-8.171-8.166h-9.819v-63.104 c0-34.493-10.506-42.572-29.073-53.885l-80.741-49.202v-20.987C295.41,218.831,348.541,186.822,355.498,181.955z M252.725,272.859l87.797,53.5c6.749,4.109,10.342,6.373,12.001,9.002c1.996,3.164,2.962,9.627,2.962,19.768v63.104H117.571 v-61.793c0-19.507,9.719-26.289,16.816-31.242c5.545-3.865,54.391-33.389,85.873-52.289c4.422-2.658,7.13-7.441,7.13-12.611 v-37.563c0-5.123-2.667-9.883-7.053-12.55l-87.806-53.504c-6.736-4.105-10.328-6.369-11.991-9.009 c-2-3.156-2.971-9.626-2.971-19.767V54.835h237.915v71.77c0,19.5-9.719,26.288-16.812,31.235 c-5.545,3.872-54.387,33.395-85.873,52.295c-4.426,2.658-7.135,7.442-7.135,12.601v37.563 C245.666,265.431,248.345,270.188,252.725,272.859z"></path> <path d="M131.553,359.607c-2,1.494-3.099,2.502-3.099,6.07c0,3.574,0,38.018,0,38.018s-0.394,3.707,3.781,3.707 c2.026,0,52.428,0.055,103.912,0.111c51.482-0.057,101.888-0.111,103.907-0.111c4.171,0,3.777-3.707,3.777-3.707 s0-34.442,0-38.018c0-3.568-1.102-4.576-3.094-6.07c-14.13-10.562-76.944-60.125-104.591-60.125 C208.491,299.48,145.674,349.046,131.553,359.607z"></path> </g> </g> </g> </g></svg>
+      </div>
+      <div class="ApplicationsMetricContent">
+        <span class="ApplicationsMetricTitle">На модерации</span>
+        <strong class="ApplicationsMetricValue">{{ agentState.applicationsMetrics().totalApplicationsInModerationCount }}</strong>
+      </div>
+    </div>
+
+    <div class="ApplicationsMetric ApplicationsMetricApproved">
+      <div class="ApplicationsMetricIcon">
+        <svg class="ApplicationMetricSvgIcon ApprovedApplications" viewBox="0 0 57 57" fill="none" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" clip-rule="evenodd" d="M28.5 0.5C43.964 0.5 56.5 13.036 56.5 28.5C56.5 43.964 43.964 56.5 28.5 56.5C13.036 56.5 0.5 43.964 0.5 28.5C0.5 13.036 13.036 0.5 28.5 0.5ZM28.5 6.1C16.1288 6.1 6.1 16.1288 6.1 28.5C6.1 40.8712 16.1288 50.9 28.5 50.9C40.8712 50.9 50.9 40.8712 50.9 28.5C50.9 16.1288 40.8712 6.1 28.5 6.1ZM37.7201 18.1201L22.9 32.9402L19.2799 29.3201C18.1864 28.2266 16.4136 28.2266 15.3201 29.3201C14.2266 30.4136 14.2266 32.1864 15.3201 33.2799L20.9201 38.8799C22.0136 39.9734 23.7864 39.9734 24.8799 38.8799L41.6799 22.0799C42.7734 20.9864 42.7734 19.2136 41.6799 18.1201C40.5864 17.0266 38.8136 17.0266 37.7201 18.1201Z" fill="currentColor" stroke="currentColor"/> </svg>
+      </div>
+      <div class="ApplicationsMetricContent">
+        <span class="ApplicationsMetricTitle">Одобрено</span>
+        <strong class="ApplicationsMetricValue">{{ agentState.applicationsMetrics().totalApplicationsApprovedCount }}</strong>
+      </div>
+    </div>
+
+    <div class="ApplicationsMetric ApplicationsMetricNew">
+      <div class="ApplicationsMetricIcon">
+        <svg class="ApplicationMetricSvgIcon NewApplications" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M3 9H21M17 13.0014L7 13M10.3333 17.0005L7 17M7 3V5M17 3V5M6.2 21H17.8C18.9201 21 19.4802 21 19.908 20.782C20.2843 20.5903 20.5903 20.2843 20.782 19.908C21 19.4802 21 18.9201 21 17.8V8.2C21 7.07989 21 6.51984 20.782 6.09202C20.5903 5.71569 20.2843 5.40973 19.908 5.21799C19.4802 5 18.9201 5 17.8 5H6.2C5.0799 5 4.51984 5 4.09202 5.21799C3.71569 5.40973 3.40973 5.71569 3.21799 6.09202C3 6.51984 3 7.07989 3 8.2V17.8C3 18.9201 3 19.4802 3.21799 19.908C3.40973 20.2843 3.71569 20.5903 4.09202 20.782C4.51984 21 5.07989 21 6.2 21Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </svg>
+      </div>
+      <div class="ApplicationsMetricContent">
+        <span class="ApplicationsMetricTitle">Сегодня</span>
+        <strong class="ApplicationsMetricValue">{{ agentState.applicationsMetrics().totalApplicationsTodayCount }}</strong>
+      </div>
+    </div>
+  </div>
+
+  <table class="ApplicationsTable">
+    <thead>
+      <tr>
+        <th>№ заявки</th>
+        <th>ТС</th>
+        <th>VIN</th>
+        <th>Клиент</th>
+        <th>Статус</th>
+        <th>Дата</th>
+      </tr>
+    </thead>
+    <tbody>
+      @if (loading()) {
+        <tr>
+          <td colspan="6"><app-screen-loading /></td>
+        </tr>
+      } @else if (displayedApplications().length === 0) {
+        <tr>
+          <td colspan="6" style="text-align: center;">У вас пока нет созданных заявок</td>
+        </tr>
+      } @else {
+        @for (app of displayedApplications(); track app.id) {
+          <tr class="ApplicationTableRow" [attr.data-application-id]="app.id" (click)="openSidebar(app)">
+            <td>{{ app.id }}</td>
+            <td style="text-transform: capitalize;">{{ vehicleLabel(app) }}</td>
+            <td [title]="app.vin || ''" style="font-family: monospace;">{{ app.vin || '—' }}</td>
+            <td>{{ app.fio || '—' }}</td>
+            <td><span [class]="statusMeta(app).className">{{ statusMeta(app).label }}</span></td>
+            <td>{{ app.createdAt | ruDate }}</td>
+          </tr>
+        }
+      }
+    </tbody>
+  </table>
+  <div class="ApplicationsPagination">
+    <app-pagination
+      [currentPage]="agentState.applicationsResult().page"
+      [totalItems]="agentState.applicationsResult().totalCount"
+      [pageSize]="pageSize"
+      (pageChange)="loadPage($event)">
+    </app-pagination>
+  </div>
+</section>

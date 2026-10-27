@@ -1,0 +1,123 @@
+<section class="FinanceSection">
+  <div class="FinanceStatus">
+    <div class="AvailableBalance">
+      <div class="FinanceBalanceInfo">
+        <p>Доступный баланс</p>
+        <p id="AgentFinanceBalance" class="FinanceBalance">{{ money(agentState.finances().balance) }}</p>
+      </div>
+      <div class="FinanceAvalibleBalanceSvgHolder">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M6 8H10" stroke="#40C057" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M20.8333 9H18.2308C16.4465 9 15 10.3431 15 12C15 13.6569 16.4465 15 18.2308 15H20.8333C20.9167 15 20.9583 15 20.9935 14.9979C21.5328 14.965 21.9623 14.5662 21.9977 14.0654C22 14.0327 22 13.994 22 13.9167V10.0833C22 10.006 22 9.96726 21.9977 9.9346C21.9623 9.43384 21.5328 9.03496 20.9935 9.00214C20.9583 9 20.9167 9 20.8333 9Z" stroke="#40C057" stroke-width="1.5"></path> <path d="M20.965 9C20.8873 7.1277 20.6366 5.97975 19.8284 5.17157C18.6569 4 16.7712 4 13 4L10 4C6.22876 4 4.34315 4 3.17157 5.17157C2 6.34315 2 8.22876 2 12C2 15.7712 2 17.6569 3.17157 18.8284C4.34315 20 6.22876 20 10 20H13C16.7712 20 18.6569 20 19.8284 18.8284C20.6366 18.0203 20.8873 16.8723 20.965 15" stroke="#40C057" stroke-width="1.5"></path> <path d="M17.9912 12H18.0002" stroke="#40C057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </svg>
+      </div>
+    </div>
+
+    <div class="DebtLimit">
+      <div class="FinanceBalanceInfo">
+        <p>Лимит задолженности</p>
+        <p id="AgentFinanceDebtLimit" class="FinanceDebtLimit">{{ money(agentState.finances().debtlimit) }}</p>
+      </div>
+      <div class="FinanceDebtLimitSvgHolder">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M6 8H10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M20.8333 9H18.2308C16.4465 9 15 10.3431 15 12C15 13.6569 16.4465 15 18.2308 15H20.8333C20.9167 15 20.9583 15 20.9935 14.9979C21.5328 14.965 21.9623 14.5662 21.9977 14.0654C22 14.0327 22 13.994 22 13.9167V10.0833C22 10.006 22 9.96726 21.9977 9.9346C21.9623 9.43384 21.5328 9.03496 20.9935 9.00214C20.9583 9 20.9167 9 20.8333 9Z" stroke="currentColor" stroke-width="1.5"></path> <path d="M20.965 9C20.8873 7.1277 20.6366 5.97975 19.8284 5.17157C18.6569 4 16.7712 4 13 4L10 4C6.22876 4 4.34315 4 3.17157 5.17157C2 6.34315 2 8.22876 2 12C2 15.7712 2 17.6569 3.17157 18.8284C4.34315 20 6.22876 20 10 20H13C16.7712 20 18.6569 20 19.8284 18.8284C20.6366 18.0203 20.8873 16.8723 20.965 15" stroke="currentColor" stroke-width="1.5"></path> <path d="M17.9912 12H18.0002" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </svg>
+      </div>
+    </div>
+
+    <div class="CurrentDebt">
+      <div class="FinanceBalanceInfo">
+        <p>Текущая задолженность</p>
+        <p id="AgentFinanceCurrentDebt" class="FinanceCurrentDebt">{{ money(agentState.finances().currentdebt) }}</p>
+      </div>
+      <div class="FinanceCurrentDebtSvgHolder">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M6 8H10" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M20.8333 9H18.2308C16.4465 9 15 10.3431 15 12C15 13.6569 16.4465 15 18.2308 15H20.8333C20.9167 15 20.9583 15 20.9935 14.9979C21.5328 14.965 21.9623 14.5662 21.9977 14.0654C22 14.0327 22 13.994 22 13.9167V10.0833C22 10.006 22 9.96726 21.9977 9.9346C21.9623 9.43384 21.5328 9.03496 20.9935 9.00214C20.9583 9 20.9167 9 20.8333 9Z" stroke="#FF0000" stroke-width="1.5"></path> <path d="M20.965 9C20.8873 7.1277 20.6366 5.97975 19.8284 5.17157C18.6569 4 16.7712 4 13 4L10 4C6.22876 4 4.34315 4 3.17157 5.17157C2 6.34315 2 8.22876 2 12C2 15.7712 2 17.6569 3.17157 18.8284C4.34315 20 6.22876 20 10 20H13C16.7712 20 18.6569 20 19.8284 18.8284C20.6366 18.0203 20.8873 16.8723 20.965 15" stroke="#FF0000" stroke-width="1.5"></path> <path d="M17.9912 12H18.0002" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="FinanceTableBorder">
+    <div class="FinanceTableHeader">
+      <p>История транзакций</p>
+    </div>
+    <div class="FinanceFilters">
+      <div class="FinanceFilterDatePicker">
+        <input type="date" id="FinanceDatePicker" name="dateFrom" [(ngModel)]="dateFrom" (change)="onDateRangeChange()">
+        <span>—</span>
+        <input type="date" name="dateTo" [(ngModel)]="dateTo" (change)="onDateRangeChange()">
+      </div>
+
+      <div class="FinanceFilterSelectWrapper">
+        <select class="FinanceFilterSelect" name="statusFilter" [(ngModel)]="statusFilter">
+          <option value="">Все статусы</option>
+          <option value="success">Успешно</option>
+          <option value="pending">Ожидание</option>
+        </select>
+      </div>
+
+      <div class="FinanceFilterSelectWrapper">
+        <select class="FinanceFilterSelect" name="typeFilter" [(ngModel)]="typeFilter">
+          <option value="">Все типы операций</option>
+          <option value="deposit">Пополнение</option>
+          <option value="withdrawal">Списание</option>
+        </select>
+      </div>
+    </div>
+
+    <table class="FinanceHistoryTable">
+      <thead>
+        <tr>
+          <th>Дата и время операции</th>
+          <th>Тип операции</th>
+          <th>Сумма</th>
+          <th>Описание</th>
+          <th>Статус</th>
+        </tr>
+      </thead>
+      <tbody>
+        @if (loading()) {
+          <tr>
+            <td colspan="5"><app-screen-loading /></td>
+          </tr>
+        } @else if (agentState.financesHistoryResult().items.length === 0) {
+          <tr>
+            <td colspan="5" style="text-align: center;">У вас пока нет финансовой истории</td>
+          </tr>
+        } @else {
+          @for (story of agentState.financesHistoryResult().items; track story.externalId) {
+            <tr>
+              <td class="FinanceDateTimeCell" data-label="Дата и время операции">{{ story.createdAt | ruDate:true }}</td>
+              <td data-label="Тип операции">
+                @if (isCredit(story)) {
+                  <div class="FinanceTypeWrapper FinanceTypeDeposit">
+                    <svg viewBox="0 0 24 24"><path fill="currentColor" d="M11 4v12h-4l5 5 5-5h-4v-12z"/></svg>
+                    <span>Пополнение</span>
+                  </div>
+                } @else if (isDebit(story)) {
+                  <div class="FinanceTypeWrapper FinanceTypeWithdrawal">
+                    <svg viewBox="0 0 24 24"><path fill="currentColor" d="M13 20v-12h4l-5-5-5 5h4v12z"/></svg>
+                    <span>Списание</span>
+                  </div>
+                }
+              </td>
+              <td class="FinanceAmountCell" data-label="Сумма">
+                <div [class.FinanceAmountDeposit]="isCredit(story)" [class.FinanceAmountWithDrawal]="isDebit(story)">{{ amountText(story) }}</div>
+              </td>
+              <td class="FinanceDescriptionCell" data-label="Описание">{{ story.description }}</td>
+              <td data-label="Статус">
+                @if (isSuccess(story)) {
+                  <span class="FinanceStatusBadge FinanceStatusSuccess">Успешно</span>
+                } @else {
+                  <span class="FinanceStatusBadge">{{ statusLabel(story) }}</span>
+                }
+              </td>
+            </tr>
+          }
+        }
+      </tbody>
+    </table>
+  </div>
+  <div class="FinancesPagination">
+    <app-pagination
+      [currentPage]="agentState.financesHistoryResult().page"
+      [totalItems]="agentState.financesHistoryResult().totalCount"
+      [pageSize]="pageSize"
+      (pageChange)="loadPage($event)">
+    </app-pagination>
+  </div>
+</section>

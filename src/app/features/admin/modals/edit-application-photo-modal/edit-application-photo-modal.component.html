@@ -1,0 +1,90 @@
+<section id="EditApplicationPhotoModal" class="EditApplicationPhotoSection" [class.Active]="isOpen()">
+  <div class="EditApplicationPhotoOverlay" (click)="closeFromOverlay($event)"></div>
+  <div class="EditApplicationCard">
+    <div class="EditApplicationHeader"><h2>Редактировать фото</h2></div>
+    <div class="EditApplicationPhotoContent">
+      <div class="EditApplicationPhotoPreviewRow">
+        <div class="EditApplicationPhotoPreviewCard">
+          <div class="EditApplicationPhotoPreviewLabel">Исходное фото</div>
+          <div class="EditApplicationPhotoOriginalPhotoHolder">
+            @if (originalPhotoUrl()) {
+              <img [src]="originalPhotoUrl()" class="OriginalPhotoPreview" alt="Исходное фото" />
+              <button type="button" class="PhotoZoomButton" aria-label="Увеличить фото" (click)="openPreview(originalPhotoUrl())">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.8"></circle><path d="M16 16L20 20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+              </button>
+            }
+          </div>
+        </div>
+        <div class="EditApplicationPhotoPreviewCard">
+          <div class="EditApplicationPhotoPreviewLabel">Результат генерации</div>
+          <div class="EditApplicationPhotoGeneratedPhotoResultHolder">
+            @if (generatingPhoto) {
+              <div class="GeneratedPhotoPlaceholder GeneratedPhotoPlaceholder--loading">
+                <div class="GeneratedPhotoSpinner"></div>
+                <span>Генерация, ожидайте…</span>
+              </div>
+            } @else if (generatedSrc()) {
+              <img [src]="generatedSrc()!" class="GeneratedPhotoPreview" alt="Сгенерированное фото" />
+              <button type="button" class="PhotoZoomButton" aria-label="Увеличить фото" (click)="openPreview(generatedSrc()!)">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.8"></circle><path d="M16 16L20 20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+              </button>
+            } @else {
+              <div class="GeneratedPhotoPlaceholder">Результат генерации появится здесь</div>
+            }
+          </div>
+        </div>
+      </div>
+      <div class="EditApplicationPhotoFieldGroup">
+        <div class="EditApplicationPhotoFieldHeadersGroups">
+          <div class="EditApplicationPhotoFieldDominantHeader">
+            <span>Дополнительные фото</span>
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle opacity="0.5" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"></circle> <path d="M12 17V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path> <circle cx="1" cy="1" r="1" transform="matrix(1 0 0 -1 11 9)" fill="currentColor"></circle> </g></svg>
+          </div>
+          <span class="EditApplicationPhotoFieldSubmissiveHeader">Эти фото так же будут учтены при генерации</span>
+        </div>
+        <div class="EditApplicationPhotoFieldAdditionalPhotos" id="EditApplicationPhotoAdditionalPhotos">
+          @for (photo of additionalPhotos(); track photo.id) {
+            <div class="EditApplicationPhotoFieldAdditionalPhotosItem">
+              <img [src]="photo.url" alt="" />
+            </div>
+          }
+          <div id="EditApplicationPhotoFieldAdditionalPhotosAddNewPhotoDropZone" class="EditApplicationPhotoFieldAdditionalPhotosAddNewPhotoDropZone" (click)="openGalleryPicker()">
+            <span class="EditApplicationPhotoFieldAdditionalPhotosDropZonePlusIcon">+</span>
+            <span class="EditApplicationPhotoFieldAdditionalPhotosDropZoneText">Добавить фото</span>
+          </div>
+        </div>
+      </div>
+      <div class="EditApplicationPhotoFieldsGroup">
+        <div class="EditApplicationPhotoFieldGroup">
+          <label>Нейросеть</label>
+          <select class="EditApplicationPhotoNeuronNetworkSelect" [(ngModel)]="selectedNeuronNetworkId">
+            @for (nn of state.allNeuronNetworks(); track nn.id) {
+              <option [ngValue]="nn.id">{{ nn.name }}</option>
+            }
+          </select>
+        </div>
+      </div>
+      <div class="EditApplicationPhotoFieldsGroup">
+        <div class="EditApplicationPhotoFieldGroup">
+          <label>Промпт-Теги</label>
+          <app-prompt-tags-input
+            [whitelist]="state.availablePrompts()"
+            [tags]="selectedTags()"
+            placeholder="Введите теги"
+            (tagsChange)="onPromptTagsChange($event)" />
+        </div>
+      </div>
+      <div class="EditApplicationFooter">
+        <button class="BtnSubmitGeneratePhoto" type="button" [disabled]="generatingPhoto" (click)="generatePhoto()">Сгенерировать</button>
+        <button class="BtnSubmitConfirmGeneratedPhoto" type="button" [disabled]="generatingPhoto || !generatedSrc()" (click)="confirmGeneratedPhoto()">Подтвердить</button>
+      </div>
+    </div>
+  </div>
+
+  @if (previewUrl(); as src) {
+    <div class="PhotoZoomOverlay" (click)="closePreview()">
+      <button type="button" class="PhotoZoomClose" aria-label="Закрыть" (click)="closePreview()">×</button>
+      <img [src]="src" alt="Увеличенное фото" (click)="$event.stopPropagation()" />
+    </div>
+  }
+</section>

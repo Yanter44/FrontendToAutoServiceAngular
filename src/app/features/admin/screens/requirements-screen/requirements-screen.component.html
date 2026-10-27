@@ -1,0 +1,85 @@
+<div class="RequirementsToPhotoAndDocumentsScreen" id="RequirementsToPhotoAndDocuments" data-screen="requirements">
+  @if (loading()) {
+    <app-screen-loading />
+  } @else {
+  <div class="RequirementsGrid">
+    <div class="RequirementsCard">
+      <div class="RequirementsCardHeader">
+        <div>
+          <h3>Типы фотографий</h3>
+          <span>Настройка обязательных фото для заявки</span>
+        </div>
+        <button class="PhotoRequirementsAddButton" type="button" (click)="addPhoto()">+</button>
+      </div>
+      <table class="RequirementsTable">
+        <thead>
+          <tr>
+            <th>Тип</th>
+            <th>Отображаемое имя</th>
+            <th>Обязательно</th>
+            <th>Действия</th>
+          </tr>
+        </thead>
+        <tbody id="PhotoRequirementsTableBody">
+          @for (item of state.photoRequirements(); track item.id) {
+            <tr [attr.data-requirement-id]="item.id">
+              <td>{{ item.photoType }}</td>
+              <td>{{ item.displayName }}</td>
+              <td><input type="checkbox" [checked]="item.isRequire" disabled></td>
+              <td>
+                <div class="PhotoRequirementActionsWrapper">
+                  <button type="button" class="BtnRedactPhotoRequirement" (click)="editPhoto(item)">
+                    <img src="/assets/Images/redactt.png" class="BtnIcon" alt="Редактировать" />
+                  </button>
+                  <button type="button" class="BtnDeletePhotoRequirement" (click)="deletePhoto(item)">
+                    <img src="/assets/Images/remove.png" class="BtnIcon" alt="Удалить" />
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="RequirementsCard">
+      <div class="RequirementsCardHeader">
+        <div>
+          <h3>Типы документов</h3>
+          <span>Настройка обязательных документов</span>
+        </div>
+        <button class="DocumentRequirementsAddButton" type="button" (click)="addDocument()">+</button>
+      </div>
+      <table class="RequirementsTable">
+        <thead>
+          <tr>
+            <th>Тип</th>
+            <th>Отображаемое имя</th>
+            <th>Обязательно</th>
+            <th>Действия</th>
+          </tr>
+        </thead>
+        <tbody id="DocumentRequirementsTableBody">
+          @for (item of state.documentRequirements(); track item.id) {
+            <tr [attr.data-requirement-id]="item.id">
+              <td>{{ item.documentType }}</td>
+              <td>{{ item.displayName }}</td>
+              <td><input type="checkbox" [checked]="item.isRequire" disabled></td>
+              <td>
+                <div class="DocumentRequirementActionsWrapper">
+                  <button type="button" class="BtnRedactDocumentRequirement" (click)="editDocument(item)">
+                    <img src="/assets/Images/redactt.png" class="BtnIcon" alt="Редактировать" />
+                  </button>
+                  <button type="button" class="BtnDeleteDocumentRequirement" (click)="deleteDocument(item)">
+                    <img src="/assets/Images/remove.png" class="BtnIcon" alt="Удалить" />
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+  }
+</div>

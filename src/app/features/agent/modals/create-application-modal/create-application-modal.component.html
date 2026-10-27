@@ -1,0 +1,264 @@
+<section class="CreateApplication" [class.Active]="isCreateOpen()" (click)="onCreateOverlayClick($event)">
+  <div class="CreateApplication-AppCard" (click)="$event.stopPropagation()">
+    <form class="CreateApplication-CardForm" (ngSubmit)="createApplication($event)">
+      <div class="CreateApplication-CardHeader">
+        <div class="CreateApplication-CardTitle">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1751ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/></svg>
+          <h2>Новая заявка</h2>
+        </div>
+        <p>Заполните данные для формирования заявки</p>
+      </div>
+
+      <div class="CreateApplication-CardFormScrollable">
+        <div class="CreateApplication-FormRow">
+          <div class="CreateApplication-RowInfo">
+            <h3>Информация о предоставленном документе</h3>
+          </div>
+          <div class="CreateApplication-RowInputs">
+            <div class="CreateApplication-FormGroup">
+              <label>Предоставленный документ</label>
+              <select class="CreateApplicationCategorySelect" name="providedDocumentId" [(ngModel)]="form.providedDocumentId">
+                <option [ngValue]="0">Выберите документ</option>
+                @for(providedDocument of agentState.applicationProvidedDocuments(); track providedDocument.id){
+                  <option [ngValue]="providedDocument.id">{{providedDocument.displayName}}</option>
+                }
+              </select>
+            </div>
+            <div class="CreateApplication-FormGroup">
+              <label>Серия, номер (через пробел)</label>
+              <input type="text" name="providedDocumentSeriesAndNumber" [(ngModel)]="form.providedDocumentSeriesAndNumber">
+            </div>
+            <div class="CreateApplication-FormGroup">
+              <label>Когда выдан</label>
+              <input type="date" name="providedDocumentWhenWasIssued" [(ngModel)]="form.providedDocumentWhenWasIssued">
+            </div>
+            <div class="CreateApplication-FormGroup">
+              <label>Кем выдан</label>
+              <input type="text" name="providedDocumentIssuedBy" [(ngModel)]="form.providedDocumentIssuedBy">
+            </div>
+            <div class="CreateApplication-RowInfo">
+                <h3>Основные данные о тс</h3>
+            </div>
+              <div class="CreateApplication-FormGroup">
+                <label>Категория ТС (СРТС или ПТС) </label>
+                <select class="CreateApplicationCategorySelect" id="CreateApplication-TsCategoryBySrtsOrPtsSelect" name="vehicleCategoryBySrtsOrPtsId" [(ngModel)]="form.vehicleCategoryBySrtsOrPtsId" (ngModelChange)="onCategoryBySrtsChange()">
+                  <option [ngValue]="0">Выберите категорию</option>
+                  @for (categorybysrts of agentState.vehicleCategoriesBySrts(); track categorybysrts.id) {
+                    <option [ngValue]="categorybysrts.id">{{ categorybysrts.name }}</option>
+                  }
+                </select>
+              </div>
+              <div class="CreateApplication-FormGroup">
+                <label>Категория ТС (ОКП)</label>
+                <select class="CreateApplicationCategorySelect" id="CreateApplication-TsCategoryByOkp" name="vehicleCategoyByOkpId" [(ngModel)]="form.vehicleCategoyByOkpId">
+                  <option [ngValue]="0">Выберите категорию</option>
+                  @for(categorybyokp of agentState.vehicleCategoriesByOkp(); track categorybyokp.id){
+                    <option [ngValue]="categorybyokp.id">{{categorybyokp.name}}</option>
+                  }                 
+                </select>
+              </div>
+              <div class="CreateApplication-FormGroup">
+                <label>VIN-номер</label>
+                <input type="text" id="CreateApplication-VinNumber" name="vin" [(ngModel)]="form.vin" [disabled]="form.isVinMissing" placeholder="17 знаков (XW8zzz...)">
+                <div class="CreateApplication-CheckboxRow">
+                  <input type="checkbox" name="isVinMissing" [(ngModel)]="form.isVinMissing" (ngModelChange)="clearVin($event)">
+                  <span>Отсутствует</span>
+                </div>
+              </div>
+              <div class="CreateApplication-FormGroup">
+                <label>Год выпуска</label>
+                <input type="text" id="CreateApplication-CarYear" name="vehicleYearOfRelease" [ngModel]="form.vehicleYearOfRelease || ''" (ngModelChange)="form.vehicleYearOfRelease = +$event || 0" placeholder="Например, 2012">
+              </div>
+              <div class="CreateApplication-FormGroup">
+                <label>Марка</label>
+                <input type="text" id="CreateApplication-CarBrand" name="brand" [(ngModel)]="form.brand" placeholder="Например, Daewoo">
+              </div>
+              <div class="CreateApplication-FormGroup">
+                <label>Модель</label>
+                <input type="text" id="CreateApplication-CarModel" name="model" [(ngModel)]="form.model" placeholder="Например, Matiz">
+              </div>
+              <div class="CreateApplication-FormGroup">
+                <label>Гос. номер</label>
+                <input type="text" id="CreateApplication-GosNumber" name="gosNumber" [(ngModel)]="form.gosNumber" placeholder="А000АА 777">
+              </div>
+              <div class="CreateApplication-FormGroup">
+                <label>Кузов №</label>
+                <input type="text" id="CreateApplication-VehicleBodyNumber" name="vehiclebodynumber" [(ngModel)]="form.vehicleBodyNumber" placeholder="">
+              </div>
+              <div class="CreateApplication-FormGroup">
+                <label>Шасси (рама) №</label>
+                <input type="text" id="CreateApplication-ChassisNumber" name="chassisNumber" [(ngModel)]="form.chassisNumber" [disabled]="form.isChassisNumberMissing">
+                <div class="CreateApplication-CheckboxRow">
+                  <input type="checkbox" id="CreateApplication-IsChassisNumberMissing" name="isChassisNumberMissing" [(ngModel)]="form.isChassisNumberMissing" (ngModelChange)="clearChassis($event)">
+                  <span>Отсутствует</span>
+                </div>
+              </div>
+              <div class="CreateApplication-FormGroup">
+                <label>Дополнительная маркировка</label>
+                <input type="text" id="CreateApplication-AdditionalMarking" name="additionalMarking" [ngModel]="form.additionalMarking || ''" (ngModelChange)="form.additionalMarking = +$event || 0">
+              </div>
+              <div class="CreateApplication-FormGroup">
+                <label>Масса без нагрузки (кг)</label>
+                <input type="number" id="CreateApplication-MassWithoutLoad" name="massWithoutLoad" [(ngModel)]="form.massWithoutLoad">
+              </div>
+              <div class="CreateApplication-FormGroup">
+                <label>Пробег ТС (км)</label>
+                <input type="text" id="CreateApplication-VehicleMileage" name="vehicleMileage" [ngModel]="form.vehicleMileage || ''" (ngModelChange)="form.vehicleMileage = +$event || 0">
+              </div>
+              <div class="CreateApplication-FormGroup">
+                <label>Разрешенная макс. масса (кг)</label>
+                <input type="number" id="CreateApplication-AllowedMaximumMass" name="allowedMaximumMass" [(ngModel)]="form.allowedMaximumMass">
+              </div>
+              <div class="CreateApplication-FormGroup">
+                <label>Тип топлива</label>
+                <input type="text" id="CreateApplication-FuelType" name="fuelType" [(ngModel)]="form.fuelType">
+              </div>
+              <div class="CreateApplication-FormGroup">
+                <label>Тип привода тормозной системы</label>
+                <input type="text" id="CreateApplication-TypeOfBrakeSystemDrive" name="typeOfBrakeSystemDrive" [(ngModel)]="form.typeOfBrakeSystemDrive">
+              </div>
+              <div class="CreateApplication-FormGroup">
+                <label>Марка шин</label>
+                <input type="text" id="CreateApplication-TireBrand" name="tireBrand" [(ngModel)]="form.tireBrand">
+              </div>
+              <div class="CreateApplication-FormGroup">
+                <label>Специальное назначение</label>
+                <input type="text" id="CreateApplication-SpecialPurpose" name="specialPurpose" [(ngModel)]="form.specialPurpose" [disabled]="form.isSpecialPurposeMissing">
+                <div class="CreateApplication-CheckboxRow">
+                  <input type="checkbox" id="CreateApplication-IsSpecialPurposeMissing" name="isSpecialPurposeMissing" [(ngModel)]="form.isSpecialPurposeMissing" (ngModelChange)="clearSpecialPurpose($event)">
+                  <span>Отсутствует</span>
+                </div>
+              </div>
+            <div class="CreateApplication-RowInfo">
+                <h3>Тахограф</h3>
+                <div class="CreateApplication-CheckboxRow">
+                  <input type="checkbox" id="CreateApplication-IsTahogramMissing" name="isTahogramMissing" [(ngModel)]="form.isTahogramMissing" (ngModelChange)="clearTahograph($event)">
+                  <span>Отсутствует</span>
+                </div>
+            </div>
+              <div class="CreateApplication-FormGroup">
+                <label>Марка тахографа</label>
+                <input type="text" id="CreateApplication-BrandOfTachograph" name="brandOfTachograph" [(ngModel)]="form.brandOfTachograph" [disabled]="form.isTahogramMissing">
+              </div>
+              <div class="CreateApplication-FormGroup">
+                <label>Модель тахографа</label>
+                <input type="text" id="CreateApplication-ModelOfTachograph" name="modelOfTachograph" [(ngModel)]="form.modelOfTachograph" [disabled]="form.isTahogramMissing">
+              </div>
+              <div class="CreateApplication-FormGroup">
+                <label>Серийный номер</label>
+                <input type="text" id="CreateApplication-SerialNumberOfTachograph" name="serialNumberOfTachograph" [(ngModel)]="form.serialNumberOfTachograph" [disabled]="form.isTahogramMissing">
+              </div>
+            <div class="CreateApplication-RowInfo">
+                <h3>Газобалонное оборудование</h3>
+                <div class="CreateApplication-CheckboxRow">
+                  <input type="checkbox" id="CreateApplication-IsGasCylinderEquipmentMissing" name="isGasCylinderEquipmentMissing" [(ngModel)]="form.isGasCylinderEquipmentMissing" (ngModelChange)="clearGasEquipment($event)">
+                  <span>Отсутствует</span>
+                </div>
+            </div>
+              <div class="CreateApplication-FormGroup">
+                <label>Номер</label>
+                <input type="text" id="CreateApplication-NumberOfGasCylinderEquipment" name="numberOfGasCylinderEquipment" [(ngModel)]="form.numberOfGasCylinderEquipment" [disabled]="form.isGasCylinderEquipmentMissing">
+              </div>
+              <div class="CreateApplication-FormGroup">
+                <label>Дата очередного освидетельствования</label>
+                <input type="date" id="CreateApplication-DateOfTheNextInspectionGasCylinderEquipment" name="dateOfTheNextInspectionGasCylinderEquipment" [(ngModel)]="form.dateOfTheNextInspectionGasCylinderEquipment" [disabled]="form.isGasCylinderEquipmentMissing">
+              </div>
+              <div class="CreateApplication-RowInfo">
+                <h3>Газовый баллон</h3>
+                <div class="CreateApplication-CheckboxRow">
+                  <input type="checkbox" id="CreateApplication-IsGasCylinderMissing" name="isGasCylinderMissing" [(ngModel)]="form.isGasCylinderMissing" (ngModelChange)="clearGasCylinder($event)">
+                  <span>Отсутствует</span>
+                </div>
+              </div>
+              <div class="CreateApplication-FormGroup">
+                <label>Год выпуска</label>
+                <input type="text" id="CreateApplication-GasCylinderYearOfRelease" name="gasCylinderYearOfRelease" [disabled]="form.isGasCylinderMissing" [ngModel]="form.gasCylinderYearOfRelease || ''" (ngModelChange)="form.gasCylinderYearOfRelease = +$event || 0">
+              </div>
+              <div class="CreateApplication-FormGroup">
+                <label>Серийный номер</label>
+                <input type="text" id="CreateApplication-GasCylinderSerialNumber" name="gasCylinderSerialNumber" [(ngModel)]="form.gasCylinderSerialNumber" [disabled]="form.isGasCylinderMissing">
+              </div>
+              <div class="CreateApplication-FormGroup">
+                <label>Дата последнего освидетельствования</label>
+                <input type="date" id="CreateApplication-DateOfTheLastInspectionGasCylinder" name="dateOfTheLastInspectionGasCylinder" [(ngModel)]="form.dateOfTheLastInspectionGasCylinder" [disabled]="form.isGasCylinderMissing">
+              </div>
+              <div class="CreateApplication-FormGroup">
+                <label>Дата очередного освидетельствования</label>
+                <input type="date" id="CreateApplication-DateOfTheNextInspectionGasCylinder" name="dateOfTheNextInspectionGasCylinder" [(ngModel)]="form.dateOfTheNextInspectionGasCylinder" [disabled]="form.isGasCylinderMissing">
+              </div>
+          </div>
+        </div>
+
+        <div class="CreateApplication-FormRow">
+          <div class="CreateApplication-RowInfo">
+            <h3>Собственник</h3>
+            <p>Контактные данные владельца ТС</p>
+          </div>
+          <div class="CreateApplication-RowInputs">
+            <div class="CreateApplication-FormGroup FullWidth">
+              <label for="client-fio">ФИО владельца</label>
+              <input type="text" id="CreateApplication-FIO" name="fio" [(ngModel)]="form.fio" placeholder="Иванов Иван Иванович">
+            </div>
+            <div class="CreateApplication-FormGroup">
+              <label for="client-email">Email</label>
+              <input type="text" id="CreateApplication-Email" name="email" [(ngModel)]="form.email" placeholder="ivanov23@gmail.com">
+            </div>
+            <div class="CreateApplication-FormGroup">
+              <label for="client-phone">Телефон</label>
+              <input type="text" id="CreateApplication-PhoneNumber" name="phoneNumber" [(ngModel)]="form.phoneNumber" placeholder="+7 --- --- -- --">
+            </div>
+          </div>
+        </div>
+
+        <div class="CreateApplication-FormRow">
+          <div class="CreateApplication-RowInfo">
+            <h3>Фотографии ТС</h3>
+            <p>Загрузите фотографии транспортного средства с разных ракурсов</p>
+          </div>
+          <div class="CreateApplication-RowInputs">
+            <div class="PhotosContainer">
+              @for (photo of agentState.uploadedPhotos(); track photo.id) {
+                <div class="UploadedPhotoCard" [attr.data-id]="photo.id">
+                  <button type="button" class="BtnRemovePhoto" (click)="removePhoto(photo.id)">&times;</button>
+                  <img [src]="photo.url" [alt]="photo.type">
+                  <div class="PhotoBadge">{{ photo.type }}</div>
+                </div>
+              }
+              <div class="CreateApplication-FormGroup UploadWrapper">
+                <button type="button" class="PhotoUploadBtn" (click)="openPhotoModal($event)">
+                  <span class="PlusIcon">+</span>
+                  <div class="PhotoUploadText">
+                    <span>Добавить</span>
+                    <span>фото</span>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="CreateApplication-FormRow">
+          <div class="CreateApplication-RowInfo">
+            <h3>ПТО</h3>
+            <p>Выберите пто из списка доступных по данной категории</p>
+          </div>
+          <div class="CreateApplication-RowInputs">
+            <select class="CreateApplicationCategorySelect" id="CreateApplication-PtoSelect" name="ptoId" [(ngModel)]="form.ptoId">
+              @if (filteredPtos().length === 0) {
+                <option [ngValue]="0">{{ form.vehicleCategoryBySrtsOrPtsId ? 'Нет доступных ПТО для этой категории' : 'Сначала выберите категорию ТС' }}</option>
+              } @else {
+                @for (pto of filteredPtos(); track pto.id) {
+                  <option [ngValue]="pto.id">{{ ptoLabel(pto) }}</option>
+                }
+              }
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="CreateApplication-CardActions">
+        <button type="button" class="CreateApplication-CancelButton" (click)="closeCreate()">Отмена</button>
+        <button type="submit" class="CreateApplication-CreateButton" [disabled]="creating">{{ createButtonText }}</button>
+      </div>
+    </form>
+  </div>
+</section>

@@ -1,0 +1,56 @@
+<section id="SelectGalleryPhotoModal" class="SelectGalleryPhotoSection" [class.Active]="isOpen()">
+  <div class="SelectGalleryPhotoOverlay" (click)="closeFromOverlay($event)"></div>
+  <div class="SelectGalleryPhotoCard">
+
+    <div class="SelectGalleryPhotoHeader">
+      <h2>Выбрать фото из галереи</h2>
+      <button type="button" class="SelectGalleryPhotoClose" (click)="closeFromOverlay($event)">&times;</button>
+    </div>
+
+    <div class="SelectGalleryPhotoContent">
+      <div class="SelectGalleryPhotoSearch">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <circle cx="11" cy="11" r="8" /> <line x1="21" y1="21" x2="16.65" y2="16.65" /> </svg>
+        <input type="text" id="SelectGalleryPhotoSearchInput" placeholder="Введите тег (например: BMW)"
+          [ngModel]="gallerySearch()" (ngModelChange)="gallerySearch.set($event)">
+      </div>
+
+      <div class="SelectGalleryPhotoCounter">
+        Выбрано: <strong>{{ selectedCount() }}</strong> из {{ maxSelection() }}
+        @if (selectedCount() > 0) {
+        <button type="button" class="BtnClearSelection" (click)="clearSelection()">Сбросить</button>
+        }
+      </div>
+
+      <div class="SelectGalleryPhotoGrid" id="SelectGalleryPhotoGrid">
+        @for (photo of filteredGallery(); track photo.id) {
+        <div class="PhotoGalleryImageHolder" [class.Active]="isGallerySelected(photo.id)"
+          [class.Disabled]="!isGallerySelected(photo.id) && isSelectionFull()" (click)="toggleGalleryPhoto(photo.id)">
+
+          <div class="PhotoGalleryImageCheckbox" [class.Checked]="isGallerySelected(photo.id)">
+            @if (isGallerySelected(photo.id)) {
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M5 12L10 17L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /> </svg>
+            }
+          </div>
+
+          <div class="PhotoGalleryImageHolderHeader">
+            <img [src]="photo.url" [alt]="photoName(photo)" loading="lazy">
+          </div>
+          <div class="PhotoGalleryImageHolderContent">
+            <span class="PhotoGalleryImageTag">{{ photo.tag ? '#' + photo.tag : '' }}</span>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+
+    <div class="SelectGalleryPhotoFooter">
+      <button type="button" class="BtnSelectGalleryPhotoCancel" (click)="closeFromOverlay($event)">
+        Отмена
+      </button>
+      <button type="button" class="BtnSelectGalleryPhotoConfirm" [disabled]="selectedCount() === 0"
+        (click)="confirmGalleryPicker()">
+        Подтвердить{{ selectedCount() ? ' (' + selectedCount() + ')' : '' }}
+      </button>
+    </div>
+  </div>
+</section>

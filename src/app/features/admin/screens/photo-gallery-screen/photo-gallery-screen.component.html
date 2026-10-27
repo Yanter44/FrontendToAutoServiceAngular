@@ -1,0 +1,59 @@
+<div class="LibraryOfPhotosScreen" id="LibraryOfPhotosScreen" data-screen="photogallery">
+  <section class="TableSection">
+    <div class="PhotoGalleryHeaderSection">
+      <div class="PhotoGallerySortSection">
+        <div class="PhotoGallerySearchSort">
+          <svg viewBox="-102.4 -102.4 1228.80 1228.80"><path d="M448 768A320 320 0 1 0 448 128a320 320 0 0 0 0 640z m297.344-76.992l214.592 214.592-54.336 54.336-214.592-214.592a384 384 0 1 1 54.336-54.336z" /></svg>
+          <input id="PhotoGallerySearchSortInput" type="text" [ngModel]="search()" (ngModelChange)="search.set($event)" placeholder="Поиск по названию ...">
+        </div>
+        <div class="PhotoGallerySortSelect">
+          <select [ngModel]="sort()" (ngModelChange)="sort.set($event)">
+            <option value="numberAsc">№ Изображения ↑</option>
+            <option value="numberDesc">№ Изображения ↓</option>
+          </select>
+          <svg class="SelectArrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </div>
+      </div>
+      <button type="button" class="BtnAddNewPhotoToGallery" (click)="add()">+ Добавить фото</button>
+    </div>
+
+    <div class="PhotoGallerySection">
+      @if (loading()) {
+        <app-screen-loading />
+      } @else if (items().length === 0) {
+        <div class="PhotoGalleryEmpty">
+          <p class="PhotoGalleryEmptyText">На данный момент галерея пуста</p>
+        </div>
+      } @else {
+        @for (photo of items(); track photo.id) {
+          <div class="PhotoGalleryImageHolder" [attr.data-photo-id]="photo.id">
+            <div class="PhotoGalleryImageHolderHeader">
+              <img [src]="photo.url" [alt]="fileName(photo)" loading="lazy">
+              <div class="PhotoGalleryImageCheckbox">
+                <input type="checkbox" [attr.data-photo-id]="photo.id">
+              </div>
+              <button type="button" class="PhotoGalleryImageMore" [attr.data-photo-id]="photo.id">
+                <svg viewBox="0 0 24 24">
+                  <circle cx="5" cy="12" r="1.5" />
+                  <circle cx="12" cy="12" r="1.5" />
+                  <circle cx="19" cy="12" r="1.5" />
+                </svg>
+              </button>
+            </div>
+            <div class="PhotoGalleryImageHolderContent">
+              <span class="PhotoGalleryImageName">{{ fileName(photo) }}</span>
+              <span class="PhotoGalleryImageGroup">{{ photo.group || '' }}</span>
+              <span class="PhotoGalleryImageTag">{{ photo.tag ? '#' + photo.tag : '' }}</span>
+              <div class="PhotoGalleryImageInfo">
+                <span>{{ date(photo) }}</span>
+              </div>
+            </div>
+          </div>
+        }
+      }
+    </div>
+    <div class="PhotoGalleryPagination">
+      <app-pagination [currentPage]="result().page || page()" [totalItems]="result().totalCount" [pageSize]="pageSize" (pageChange)="load($event)" />
+    </div>
+  </section>
+</div>

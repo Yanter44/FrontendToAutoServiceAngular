@@ -1,0 +1,190 @@
+@if (application(); as app) {
+  <div class="DetailsHeader">
+    <h3>Заявка №{{ app.id }}</h3>
+    <span [class]="statusMeta(app).className">{{ statusMeta(app).label }}</span>
+  </div>
+
+  <div class="DetailsTabs" style="cursor: pointer;">
+    <span class="Tab" [class.Active]="detailsTab === 'vehicle'" (click)="selectDetailsTab('vehicle')">Данные ТС/Клиента</span>
+    <span class="TabLink" [class.Active]="detailsTab === 'media'" (click)="selectDetailsTab('media')">Фото и документы</span>
+  </div>
+
+  <div id="Tab-VehicleData" class="TabContent" [class.Active]="detailsTab === 'vehicle'" [class.FadeIn]="detailsTab === 'vehicle' && tabFadeIn">
+    <div class="AppFacts">
+      <div class="AppHero">
+        <div class="AppHeroName">{{ titleOf(app) }}</div>
+      </div>
+
+      <div class="AppFactsGrid">
+        @for (item of primaryOf(app); track item.label) {
+          <div class="AppFact" [class.Wide]="item.wide" [class.Empty]="item.empty">
+            <span>{{ item.label }}</span>
+            <strong>{{ item.value }}</strong>
+          </div>
+        }
+      </div>
+
+      <div class="AppExtra">
+        @for (item of extraOf(app); track item.label) {
+          <div class="AppExtraRow" [class.Empty]="item.empty">
+            <span>{{ item.label }}</span>
+            <strong>{{ item.value }}</strong>
+          </div>
+        }
+      </div>
+
+      <div class="AppGroupLabel">Комплектация</div>
+
+      @let document = documentOf(app);
+      <section class="AppBlock" [class.Muted]="!document.present">
+        <div class="AppBlockHead">
+          <div class="AppBlockIcon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          </div>
+          <div class="AppBlockTitle">Документы</div>
+        </div>
+        @if (document.present) {
+          <div class="AppBlockBody">
+            @for (item of document.lines; track item.label) {
+              <div class="AppLine" [class.Empty]="item.empty">
+                <span>{{ item.label }}</span>
+                <strong>{{ item.value }}</strong>
+              </div>
+            }
+          </div>
+        }
+      </section>
+
+      @let tachograph = tachographOf(app);
+      <section class="AppBlock" [class.Muted]="!tachograph.present">
+        <div class="AppBlockHead">
+          <div class="AppBlockIcon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><polyline points="12 8 12 12 15 14"/></svg>
+          </div>
+          <div class="AppBlockTitle">Тахограф</div>
+          <span class="AppBadge" [class.Ok]="tachograph.present" [class.Off]="!tachograph.present">{{ tachograph.badge }}</span>
+        </div>
+        @if (tachograph.present) {
+          <div class="AppBlockBody">
+            @for (item of tachograph.lines; track item.label) {
+              <div class="AppLine" [class.Empty]="item.empty">
+                <span>{{ item.label }}</span>
+                <strong>{{ item.value }}</strong>
+              </div>
+            }
+          </div>
+        }
+      </section>
+
+      @let gasEquipment = gasEquipmentOf(app);
+      <section class="AppBlock" [class.Muted]="!gasEquipment.present">
+        <div class="AppBlockHead">
+          <div class="AppBlockIcon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 22h8"/><path d="M7 14h10a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2z"/><path d="M12 6V3"/></svg>
+          </div>
+          <div class="AppBlockTitle">ГБО</div>
+          <span class="AppBadge" [class.Ok]="gasEquipment.present" [class.Off]="!gasEquipment.present">{{ gasEquipment.badge }}</span>
+        </div>
+        @if (gasEquipment.present) {
+          <div class="AppBlockBody">
+            @for (item of gasEquipment.lines; track item.label) {
+              <div class="AppLine" [class.Empty]="item.empty">
+                <span>{{ item.label }}</span>
+                <strong>{{ item.value }}</strong>
+              </div>
+            }
+          </div>
+        }
+      </section>
+
+      @let gasCylinder = gasCylinderOf(app);
+      <section class="AppBlock" [class.Muted]="!gasCylinder.present">
+        <div class="AppBlockHead">
+          <div class="AppBlockIcon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2h6"/><path d="M10 2v3"/><path d="M14 2v3"/><rect x="8" y="5" width="8" height="17" rx="4"/></svg>
+          </div>
+          <div class="AppBlockTitle">Газовый баллон</div>
+          <span class="AppBadge" [class.Ok]="gasCylinder.present" [class.Off]="!gasCylinder.present">{{ gasCylinder.badge }}</span>
+        </div>
+        @if (gasCylinder.present) {
+          <div class="AppBlockBody">
+            @for (item of gasCylinder.lines; track item.label) {
+              <div class="AppLine" [class.Empty]="item.empty">
+                <span>{{ item.label }}</span>
+                <strong>{{ item.value }}</strong>
+              </div>
+            }
+          </div>
+        }
+      </section>
+
+      <div class="AppGroupLabel">Контакты</div>
+
+      <section class="AppBlock">
+        <div class="AppBlockHead">
+          <div class="AppBlockIcon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div class="AppBlockTitle">{{ app.fio || 'Владелец не указан' }}</div>
+        </div>
+        <div class="AppBlockBody">
+          @if (app.phoneNumber) {
+            <a class="AppContact" [href]="'tel:' + app.phoneNumber">{{ app.phoneNumber }}</a>
+          } @else {
+            <div class="AppBlockMeta">Телефон не указан</div>
+          }
+          @if (app.email) {
+            <a class="AppContact" [href]="'mailto:' + app.email">{{ app.email }}</a>
+          } @else {
+            <div class="AppBlockMeta">Почта не указана</div>
+          }
+        </div>
+      </section>
+
+      @let pto = ptoOf(app);
+      <section class="AppBlock" [class.Muted]="!pto.present">
+        <div class="AppBlockHead">
+          <div class="AppBlockIcon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="AppBlockTitle">ПТО</div>
+        </div>
+        <div class="AppBlockBody">
+          <div class="AppBlockText" [class.Empty]="!pto.present">{{ pto.text }}</div>
+          @if (pto.meta) { <div class="AppBlockMeta">{{ pto.meta }}</div> }
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div id="Tab-MediaData" class="TabContent" [class.Active]="detailsTab === 'media'" [class.FadeIn]="detailsTab === 'media' && tabFadeIn">
+    <div class="MediaSection">
+      <h4>Фотографии ({{ app.photos?.length || 0 }})</h4>
+      <div class="MediaGrid">
+        @if (app.photos?.length) {
+          @for (photo of app.photos; track $index) {
+            <div class="MediaCard">
+              <a [href]="photoUrl(photo)" target="_blank">
+                <div class="MediaPreview" [style.background-image]="'url(' + photoUrl(photo) + ')'"></div>
+              </a>
+              <div class="MediaLabel">{{ photo.vehiclePhotoType || 'Фото' }}</div>
+            </div>
+          }
+        } @else {
+          <div class="Empty">Нет фото</div>
+        }
+      </div>
+    </div>
+  </div>
+} @else {
+  <div class="DetailsHeader">
+    <h3>Заявка №—</h3>
+    <span class="StatusBadge StatusYellow">На модерации</span>
+  </div>
+  <div class="DetailsTabs" style="cursor: pointer;">
+    <span class="Tab Active">Данные ТС/Клиента</span>
+    <span class="TabLink">Фото и документы</span>
+  </div>
+  <div id="Tab-VehicleData" class="TabContent Active"></div>
+  <div id="Tab-MediaData" class="TabContent"></div>
+}

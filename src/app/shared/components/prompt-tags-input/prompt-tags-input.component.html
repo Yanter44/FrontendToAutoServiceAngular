@@ -1,0 +1,43 @@
+<div class="PromptTagsField">
+  <div #field
+       class="tagify PromptTagsTagify"
+       [class.tagify--focus]="focused()"
+       [class.tagify--empty]="!tags().length && !draft()"
+       [id]="id"
+       (click)="focusInput()">
+    @for (tag of tags(); track tag.promptId) {
+      <span class="tagify__tag">
+        <span title="remove tag" class="tagify__tag__removeBtn" role="button"
+              (mousedown)="$event.preventDefault(); remove(tag.promptId)"></span>
+        <div><span class="tagify__tag-text">{{ tag.value }}</span></div>
+      </span>
+    }
+    <input #draftInput
+           class="tagify__input"
+           type="text"
+           autocomplete="off"
+           [placeholder]="tags().length ? '' : placeholder()"
+           [ngModel]="draft()"
+           (ngModelChange)="onDraftChange($event)"
+           (focus)="onFocus()"
+           (blur)="onBlur()"
+           (keydown)="onKeydown($event)">
+  </div>
+</div>
+
+<div #dropdown
+     class="tagify__dropdown PromptTagsDropdown"
+     [class.PromptTagsDropdownOpen]="dropdownOpen()"
+     [style.top.px]="dropdownTop"
+     [style.left.px]="dropdownLeft"
+     [style.width.px]="dropdownWidth">
+  <div class="tagify__dropdown__wrapper">
+    @for (prompt of suggestions(); track prompt.promptId; let i = $index) {
+      <div class="tagify__dropdown__item"
+           [class.tagify__dropdown__item--active]="i === activeIndex()"
+           (mousedown)="$event.preventDefault(); select(prompt)">
+        {{ prompt.tag }}
+      </div>
+    }
+  </div>
+</div>

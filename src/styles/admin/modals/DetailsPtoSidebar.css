@@ -1,0 +1,266 @@
+.PtoInfoGroup {
+    width: 100%;
+    border: 1px solid #E6ECF5;
+    border-radius: 14px;
+    overflow: hidden;
+    background:var(--surface);
+    box-sizing: border-box;
+}
+
+.PtoInfoHeader {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    min-height: 54px;
+    padding: 0 16px;
+
+    background: #F5F8FD;
+    border-bottom: 1px solid #E8EEF6;
+
+    color:var(--text);
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.PtoInfoHeader svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+
+    color: #1A53FF;
+}
+
+.PtoInfoContent {
+    display: flex;
+    flex-direction: column;
+
+    padding: 4px 16px;
+}
+
+.PtoInfo {
+    display: grid;
+    grid-template-columns: 125px minmax(0, 1fr);
+    align-items: start;
+
+    min-height: 48px;
+    padding: 12px 0;
+
+    gap: 16px;
+
+    box-sizing: border-box;
+}
+
+.PtoInfo + .PtoInfo {
+    border-top: 1px solid #F0F3F7;
+}
+
+.PtoInfoPropertyName {
+    color:var(--muted);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 20px;
+}
+
+
+.PtoInfoPropertyContent {
+    color:var(--text);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+
+    word-break: break-word;
+}
+
+.PtoInfoPropertyContent {
+    overflow-wrap: anywhere;
+}
+
+.SidebarInfoList > hr {
+    display: none;
+}
+
+.PtoInfoGroup + hr + .PtoInfoGroup {
+    margin-top: 14px;
+}
+
+
+.PtoInfoHeader .bi-geo-alt {
+    color: #1A53FF;
+}
+
+
+.Workspace.SidebarOpen .DetailsPtoSidebar.Active {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateX(0);
+}
+
+.PricesSection {
+    width: 100%;
+    border: 1px solid #E6ECF5;
+    border-radius: 14px;
+    overflow: hidden;
+    background:var(--surface);
+    box-sizing: border-box;
+}
+
+.PricesSectionHeader {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    padding: 0;
+    background: #F5F8FD;
+    border-bottom: 1px solid #E8EEF6;
+    color:var(--text);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.VehicleTypeHeader,
+.ServiceCostHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 14px;
+    text-align: center;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+.VehicleTypeHeader {
+    border-right: 1px solid #E8EEF6;
+}
+
+.PricesSectionHeader svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    color: #1A53FF;
+}
+
+.VehicleTypeHeader span,
+.ServiceCostHeader span {
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    max-width: 100%;
+}
+
+.VehicleAndPriceSection {
+    display: flex;
+    flex-direction: column;
+}
+
+.PriceRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 16px;
+    border-bottom: 1px solid #EEF2F8;
+    font-size: 14px;
+    color:var(--text);
+    transition: background 0.15s ease;
+}
+
+.PriceRow:last-child {
+    border-bottom: none;
+}
+
+.PriceRow:hover {
+    background: #F8FAFE;
+}
+
+.PriceRow:nth-child(even) {
+    background: #FBFCFE;
+}
+
+.PriceRow:nth-child(even):hover {
+    background: #F3F7FE;
+}
+
+.PriceRow .VehicleName {
+    flex: 1 1 50%;
+    min-width: 0;
+    color:var(--text-secondary);
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.PriceRow .PriceValue {
+    flex: 1 1 50%;
+    text-align: right;
+    font-weight: 600;
+    color:var(--text);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.PricesSection .Empty {
+    padding: 24px 16px;
+    text-align: center;
+    color:var(--faint);
+    font-size: 13px;
+}
+
+
+@media (max-width: 480px) {
+    .PricesSectionHeader {
+        font-size: 12px;
+    }
+    .VehicleTypeHeader,
+    .ServiceCost {
+        padding: 10px 12px;
+        gap: 5px;
+    }
+    .PricesSectionHeader svg {
+        width: 18px;
+        height: 18px;
+    }
+    .PriceRow {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+}
+@media (max-width: 1024px) {
+
+    .Workspace.SidebarOpen .DetailsPtoSidebar.Active {
+        transform: translateX(0);
+        pointer-events: all;
+    }
+
+    .PtoInfo {
+        grid-template-columns: 110px minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+
+    .PtoInfoHeader {
+        padding: 0 14px;
+        min-height: 50px;
+    }
+
+    .PtoInfoContent {
+        padding: 4px 14px;
+    }
+
+    .PtoInfo {
+        grid-template-columns: 1fr;
+        gap: 3px;
+        padding: 11px 0;
+    }
+
+    .PtoInfoPropertyName {
+        font-size: 12px;
+    }
+
+    .PtoInfoPropertyContent {
+        font-size: 14px;
+    }
+}

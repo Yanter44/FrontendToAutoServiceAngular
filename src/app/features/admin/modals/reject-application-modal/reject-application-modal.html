@@ -1,0 +1,44 @@
+<section id="RejectApplicationModal" class="RejectApplicationModalSection" [class.Active]="isOpen()">
+  <div class="RejectApplicationModalOverlay" (click)="closeFromOverlay($event)"></div>
+  <div class="RejectApplicationModalCard">
+    <div class="RejectApplicationModalHeader">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      <h2>Отклонить заявку</h2>
+    </div>
+
+    <div class="RejectApplicationModalContent">
+      <span class="RejectApplicationModalWarningContentSpan">
+        Вы действительно хотите отклонить заявку {{ applicationLabel() }}?
+      </span>
+
+      <div class="RejectReasonField">
+        <label for="reject-reason">Причина отклонения</label>
+        <textarea
+          id="reject-reason"
+          class="RejectReasonTextarea"
+          rows="4"
+          maxlength="500"
+          placeholder="Опишите причину отклонения..."
+          [value]="rejectReason()"
+          (input)="rejectReason.set($any($event.target).value)"
+          [disabled]="isSubmitting()">
+        </textarea>
+
+        <div class="RejectReasonMeta">
+          <span class="RejectReasonError">{{ reasonError() }}</span>
+          <span class="RejectReasonCounter">{{ rejectReason().length }} / 500</span>
+        </div>
+      </div>
+
+      <div class="RejectApplicationModalFooter">
+        <button   
+          class="BtnSubmitDeletePrompt"
+          type="button"
+          [disabled]="isSubmitting()"
+          (click)="submitRejectApplication()">
+          {{ isSubmitting() ? 'Отправка...' : 'Отклонить' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

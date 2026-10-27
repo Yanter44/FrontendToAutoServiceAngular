@@ -1,0 +1,57 @@
+.PromptTagsField {
+  position: relative;
+  width: 100%;
+}
+
+.PromptTagsField .tagify {
+  display: flex;
+  width: 100%;
+  min-height: 48px;
+  height: auto;
+  padding: 6px 8px;
+  border:1px solid var(--border);
+  border-radius: 12px;
+  background:var(--surface);
+  line-height: 1.2;
+  cursor: text;
+}
+
+.PromptTagsField .tagify.tagify--focus {
+  border-color: #8bb5ff;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.09);
+}
+
+.EditApplicationPhotoFieldGroup .PromptTagsField .tagify input.tagify__input,
+.PromptTagsField .tagify input.tagify__input {
+  width: auto !important;
+  min-width: 8ch;
+  flex: 1 1 110px;
+  height: 28px !important;
+  min-height: 0 !important;
+  margin: 4px 2px;
+  padding: 0 6px !important;
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.tagify__dropdown.PromptTagsDropdown {
+  position: fixed;
+  z-index: 10000;
+  transform: none;
+  margin: 0;
+  display: none;
+}
+
+.tagify__dropdown.PromptTagsDropdown.PromptTagsDropdownOpen {
+  display: block;
+}
+
+.PromptTagsDropdown .tagify__dropdown__wrapper {
+  overflow-y: auto;
+  border-top-width: 1px;
+  max-height: 240px;
+}

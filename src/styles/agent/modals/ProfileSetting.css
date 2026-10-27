@@ -1,0 +1,125 @@
+
+.Profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 6px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    user-select: none;
+}
+.Profile:hover { background:var(--hover); }
+
+.ProfileArrow {
+    width: 16px;
+    height: 16px;
+    color:var(--muted);
+    transition: transform 0.2s ease;
+}
+
+.Profile.active .ProfileArrow {
+    transform: rotate(90deg);
+}
+
+.ProfileSetting {
+    position: absolute;
+    width: 280px;
+    background:var(--surface);
+    border-radius: 12px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.08);
+    border:1px solid var(--border);
+    z-index: 9999;
+    
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+}
+
+.ProfileSetting.Active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.ProfileCard { 
+    padding: 8px;
+}
+.ProfileHeader {
+    display: flex; 
+    align-items: center; 
+    gap: 12px; 
+    padding: 8px 12px;
+}
+
+.UserAvatar { 
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #1a53ff;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+ }
+.UserData { 
+    display: flex; 
+    flex-direction: column; 
+}
+.UserName { 
+    margin: 0; 
+    font-weight: 600; 
+    font-size: 14px; 
+    color:var(--text); 
+}
+.UserRole { 
+    margin: 0; 
+    font-size: 12px; 
+    color:var(--muted); 
+}
+.SeparationDivider { 
+    background:var(--border); 
+    height: 1px; 
+    margin: 8px 4px; 
+}
+.ProfileBody { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 2px; 
+}
+
+.MyProfileButton, .SignOutButton, .MySupportButton{
+    display: flex; 
+    align-items: center; 
+    gap: 12px; 
+    padding: 10px 12px; 
+    border-radius: 8px; 
+    cursor: pointer; 
+    color:var(--text-secondary); 
+    transition: all 0.2s ease;
+}
+.MyProfileButton svg, .SignOutButton svg, .MySupportButton svg { 
+    width: 20px; 
+    height: 20px; 
+    flex-shrink: 0; 
+}
+.MyProfileButton p,  .SignOutButton p, .MySupportButton p { 
+    margin: 0; 
+    font-size: 14px; 
+    font-weight: 500; 
+}
+
+.MyProfileButton:hover, 
+.MySupportButton:hover { 
+    background:var(--accent-soft); 
+    color: #1a53ff; 
+}
+.SignOutButton {
+    color: #ef4444; 
+}
+.SignOutButton:hover { 
+    background:var(--danger-soft); 
+    color: #dc2626; 
+}

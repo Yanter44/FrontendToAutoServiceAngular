@@ -1,0 +1,755 @@
+
+.EditApplicationPhotoSection {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease;
+}
+
+.EditApplicationPhotoSection.Active {
+    opacity: 1;
+    visibility: visible;
+}
+.EditApplicationPhotoFieldHeadersGroups{
+    display: flex;
+    flex-direction: column;
+}
+.EditApplicationPhotoOverlay {
+    position: absolute;
+    inset: 0;
+
+    background: rgba(15, 23, 42, 0.48);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.EditApplicationCard {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 760px;
+    max-width: calc(100vw - 32px);
+    max-height: 92vh;
+
+    background:var(--surface);
+
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    border-radius: 24px;
+
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+
+    box-shadow:
+        0 24px 70px rgba(15, 23, 42, 0.18),
+        0 8px 24px rgba(15, 23, 42, 0.08);
+
+    animation: EditApplicationCardShow 0.25s ease;
+}
+
+@keyframes EditApplicationCardShow {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -48%) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.EditApplicationHeader {
+    padding: 25px 32px 22px;
+
+    background:var(--surface);
+    border-bottom:1px solid var(--hover);
+
+    text-align: left;
+}
+
+.EditApplicationHeader h2 {
+    margin: 0;
+
+    color:var(--text);
+    font-size: 24px;
+    line-height: 1.25;
+    font-weight: 700;
+    letter-spacing: -0.4px;
+}
+
+.EditApplicationPhotoContent {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+
+    padding: 26px 32px 28px;
+
+    overflow-y: auto;
+
+    background:var(--surface);
+}
+
+.EditApplicationPhotoPreviewRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.EditApplicationPhotoPreviewCard {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.EditApplicationPhotoPreviewLabel {
+    color:var(--muted);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: -0.1px;
+    padding-left: 2px;
+}
+
+.EditApplicationPhotoOriginalPhotoHolder,
+.EditApplicationPhotoGeneratedPhotoResultHolder {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    min-height: 220px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    border: 1px solid #e4ebf5;
+    border-radius: 16px;
+
+    background:
+        linear-gradient(145deg, #f8fbff 0%, #f4f8fd 100%);
+
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+
+.PhotoZoomButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+
+    width: 34px;
+    height: 34px;
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 10px;
+    background: rgba(15, 23, 42, 0.72);
+    color: #fff;
+    cursor: pointer;
+
+    transition: background 0.15s ease;
+}
+
+.PhotoZoomButton svg {
+    width: 18px;
+    height: 18px;
+}
+
+.PhotoZoomButton:hover {
+    background: #2563eb;
+}
+
+.PhotoZoomOverlay {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 48px 24px;
+    box-sizing: border-box;
+
+    background: rgba(15, 23, 42, 0.82);
+}
+
+.PhotoZoomOverlay img {
+    max-width: min(1100px, 100%);
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+.PhotoZoomClose {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+
+    width: 40px;
+    height: 40px;
+    padding: 0;
+
+    border: none;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.16);
+    color: #fff;
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.PhotoZoomClose:hover {
+    background: rgba(255, 255, 255, 0.28);
+}
+
+.OriginalPhotoPreview,
+.GeneratedPhotoPreview {
+    position: relative;
+    z-index: 1;
+
+    display: block;
+    width: auto;
+    height: auto;
+
+    max-width: calc(100% - 24px);
+    max-height: calc(100% - 24px);
+
+    object-fit: contain;
+    border-radius: 10px;
+
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.10);
+}
+
+.GeneratedPhotoPlaceholder {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
+
+    box-sizing: border-box;
+    padding: 16px;
+
+    border: 2px dashed #c9d7ea;
+    border-radius: 12px;
+
+    color: #7a90ad;
+
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.4;
+    text-align: center;
+
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.GeneratedPhotoPlaceholder svg {
+    width: 30px;
+    height: 30px;
+    color: #a9bcd4;
+    flex-shrink: 0;
+}
+
+.GeneratedPhotoPlaceholder--loading {
+    border-style: solid;
+    border-color: #dbe6f5;
+}
+
+.GeneratedPhotoSpinner {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 2.5px solid #dbe6f5;
+    border-top-color: #2563eb;
+    animation: GeneratedPhotoSpin 0.8s linear infinite;
+}
+.EditApplicationPhotoFieldDominantHeader svg{
+    width: 22px;
+}
+.EditApplicationPhotoFieldDominantHeader span{
+    font-weight: 600;
+}
+.EditApplicationPhotoFieldDominantHeader{
+    display: flex;
+    gap: 10px;
+}
+@keyframes GeneratedPhotoSpin { 
+    to { transform: rotate(360deg); }
+}
+
+.EditApplicationPhotoFieldsGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.EditApplicationPhotoFieldGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+
+    --tags-disabled-bg: #F1F1F1;
+    --tags-border-color: #DDD;
+    --tags-hover-border-color: #CCC;
+    --tags-focus-border-color: #3595f6;
+    --tag-border-radius: 6px;
+    --tag-bg: #E9F0FE;
+    --tag-hover: #bdd3ff;
+    --tag-text-color: black;
+    --tag-text-color--edit: black;
+    --tag-pad: 0.3em 0.5em;
+    --tag-inset-shadow-size: 1.2em;
+    --tag-invalid-color: #e54444;
+    --tag-invalid-bg: rgb(200 72 72 / 50%);
+    --tag--min-width: 1ch;
+    --tag--max-width: 100%;
+    --tag-hide-transition: 0.3s;
+    --tag-remove-bg: rgba(211, 148, 148, 0.3);
+    --tag-remove-btn-color: black;
+    --tag-remove-btn-bg: none;
+    --tag-remove-btn-bg--hover: #e25b5b;
+    --input-color: inherit;
+    --placeholder-color: rgba(0, 0, 0, 0.4);
+    --placeholder-color-focus: rgba(0, 0, 0, 0.25);
+    --loader-size: .8em;
+    --readonly-striped: 1;
+}
+
+.EditApplicationPhotoFieldGroup label {
+    color:var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.3;
+    font-weight: 600;
+    letter-spacing: -0.1px;
+}
+
+.EditApplicationPhotoFieldGroup input,
+.EditApplicationPhotoFieldGroup select {
+    width: 100%;
+    height: 48px;
+
+    box-sizing: border-box;
+    padding: 0 15px;
+
+    border:1px solid var(--border);
+    border-radius: 12px;
+
+    outline: none;
+
+    background:var(--surface);
+
+    color:var(--text);
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.EditApplicationPhotoFieldGroup select {
+    cursor: pointer;
+    appearance: auto;
+}
+
+.EditApplicationPhotoFieldGroup input::placeholder {
+    color:var(--faint);
+    font-weight: 400;
+}
+
+.EditApplicationPhotoFieldGroup input:focus,
+.EditApplicationPhotoFieldGroup select:focus {
+    border-color: #8bb5ff;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.09);
+    background:var(--surface);
+}
+
+.EditApplicationPhotoFieldGroup input:hover,
+.EditApplicationPhotoFieldGroup select:hover {
+    border-color: #c6d3e3;
+}
+
+#EditApplicationPhotoTagsInput {
+    min-height: 48px;
+}
+
+.EditApplicationFooter {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 10px;
+
+    padding: 18px 32px 20px;
+
+    background:var(--surface);
+    border-top:1px solid var(--hover);
+}
+
+.BtnSubmitGeneratePhoto,
+.BtnSubmitConfirmGeneratedPhoto {
+    height: 46px;
+
+    box-sizing: border-box;
+    padding: 0 21px;
+
+    border-radius: 12px;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.15s ease,
+        opacity 0.2s ease;
+}
+
+.BtnSubmitGeneratePhoto {
+    color: #315a9a;
+    background: #f4f8ff;
+    border: 1px solid #dce8fa;
+}
+
+.BtnSubmitGeneratePhoto:hover {
+    background: #edf4ff;
+    border-color: #cbdcf5;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.07);
+}
+
+.BtnSubmitGeneratePhoto:active {
+    transform: scale(0.98);
+}
+
+.BtnSubmitConfirmGeneratedPhoto {
+    color: #ffffff;
+    background: #2563eb;
+    border: 1px solid #2563eb;
+    box-shadow: 0 5px 14px rgba(37, 99, 235, 0.20);
+}
+
+.BtnSubmitConfirmGeneratedPhoto:hover {
+    background: #1d4ed8;
+    border-color: #1d4ed8;
+    box-shadow: 0 7px 18px rgba(37, 99, 235, 0.25);
+    transform: translateY(-1px);
+}
+
+.BtnSubmitConfirmGeneratedPhoto:active {
+    transform: translateY(0);
+}
+
+.BtnSubmitGeneratePhoto:disabled,
+.BtnSubmitConfirmGeneratedPhoto:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+.EditApplicationPhotoContent::-webkit-scrollbar {
+    width: 6px;
+}
+
+.EditApplicationPhotoContent::-webkit-scrollbar-track {
+    background: transparent;
+    margin: 8px 0;
+}
+
+.EditApplicationPhotoContent::-webkit-scrollbar-thumb {
+    background: #d5deea;
+    border-radius: 100px;
+}
+
+.EditApplicationPhotoContent::-webkit-scrollbar-thumb:hover {
+    background: #b8c5d6;
+}
+.EditApplicationPhotoFieldAdditionalPhotosDropZonePlusIcon{
+    font-size: 40px;
+    line-height: 1;
+    color:var(--faint);
+    font-weight: 300;
+}
+.EditApplicationPhotoFieldAdditionalPhotosDropZoneText{
+    font-size: 15px;
+    font-weight: 500;
+    color:var(--text-secondary);
+}
+.EditApplicationPhotoFieldAdditionalPhotosAddNewPhotoDropZone{
+    position: relative;
+    width: 20%;
+    border:2px dashed var(--border-strong);
+    border-radius: 12px;
+    background:var(--surface-muted);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: center;
+    transition: border-color 0.2s ease, background 0.2s ease, transform 0.1s ease;
+    overflow: hidden;
+}
+.EditApplicationPhotoFieldAdditionalPhotosAddNewPhotoDropZone:hover {
+    border-color: #2563eb;
+    background:var(--accent-soft);
+}
+/* ─── Контейнер доп. фото: grid 5 колонок ─── */
+.EditApplicationPhotoFieldAdditionalPhotos {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 10px;
+    width: 100%;
+}
+
+/* ─── Карточка фото ─── */
+.EditApplicationPhotoFieldAdditionalPhotosItem {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    border:1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    background:var(--surface-muted);
+    animation: AddPhotoAppear 0.2s ease;
+}
+
+@keyframes AddPhotoAppear {
+    from { opacity: 0; transform: scale(0.92); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+.EditApplicationPhotoFieldAdditionalPhotosItem img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ─── Кнопка удаления ─── */
+.EditApplicationPhotoFieldAdditionalPhotosRemove {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    background: rgba(15, 23, 42, 0.65);
+    color: #fff;
+    font-size: 14px;
+    line-height: 1;
+    padding: 0;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.15s ease, background 0.15s ease;
+}
+
+.EditApplicationPhotoFieldAdditionalPhotosItem:hover .EditApplicationPhotoFieldAdditionalPhotosRemove {
+    opacity: 1;
+}
+
+.EditApplicationPhotoFieldAdditionalPhotosRemove:hover {
+    background: #ef4444;
+}
+
+/* ─── DropZone ─── */
+.EditApplicationPhotoFieldAdditionalPhotosAddNewPhotoDropZone {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border:2px dashed var(--border-strong);
+    border-radius: 12px;
+    background:var(--surface-muted);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: center;
+    transition: border-color 0.2s ease, background 0.2s ease, transform 0.1s ease;
+    overflow: hidden;
+}
+
+.EditApplicationPhotoFieldAdditionalPhotosAddNewPhotoDropZone:hover {
+    border-color: #2563eb;
+    background:var(--accent-soft);
+}
+
+.EditApplicationPhotoFieldAdditionalPhotosAddNewPhotoDropZone.Hidden {
+    display: none;
+}
+
+.EditApplicationPhotoFieldAdditionalPhotosAddNewPhotoDropZone.Dragover {
+    border-color: #2563eb;
+    background:var(--accent-soft);
+    transform: scale(0.98);
+}
+
+.EditApplicationPhotoFieldAdditionalPhotosDropZonePlusIcon {
+    font-size: 40px;
+    line-height: 1;
+    color:var(--faint);
+    font-weight: 300;
+}
+
+.EditApplicationPhotoFieldAdditionalPhotosDropZoneText {
+    font-size: 15px;
+    font-weight: 500;
+    color:var(--text-secondary);
+}
+
+.EditApplicationPhotoFieldAdditionalPhotosDropZoneHint {
+    font-size: 13px;
+    color:var(--faint);
+}
+
+.EditApplicationPhotoFieldAdditionalPhotosAddNewAdditionalPhotoFileInput {
+    display: none;
+}
+
+@media (max-width: 900px) {
+    .EditApplicationCard {
+        width: calc(100vw - 24px);
+        max-width: none;
+        max-height: calc(100dvh - 24px);
+        border-radius: 20px;
+    }
+
+    .EditApplicationHeader {
+        padding: 20px 20px 18px;
+    }
+
+    .EditApplicationHeader h2 {
+        font-size: 21px;
+    }
+
+    .EditApplicationPhotoContent {
+        gap: 18px;
+        padding: 20px;
+    }
+
+    .EditApplicationPhotoPreviewRow {
+        gap: 12px;
+    }
+
+    .EditApplicationPhotoOriginalPhotoHolder,
+    .EditApplicationPhotoGeneratedPhotoResultHolder {
+        min-height: 180px;
+        border-radius: 14px;
+    }
+
+    .GeneratedPhotoPlaceholder {
+        font-size: 12px;
+        padding: 12px;
+    }Ы
+
+    .GeneratedPhotoPlaceholder svg {
+        width: 26px;
+        height: 26px;
+    }
+
+    .EditApplicationFooter {
+        padding: 16px 20px;
+        gap: 8px;
+    }
+
+    .BtnSubmitGeneratePhoto,
+    .BtnSubmitConfirmGeneratedPhoto {
+        height: 44px;
+        padding: 0 16px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 640px) {
+    .EditApplicationPhotoPreviewRow {
+        grid-template-columns: 1fr;
+    }
+
+    .EditApplicationPhotoOriginalPhotoHolder,
+    .EditApplicationPhotoGeneratedPhotoResultHolder {
+        aspect-ratio: auto;
+        min-height: 200px;
+    }
+}
+
+@media (max-width: 520px) {
+    .EditApplicationCard {
+        width: calc(100vw - 16px);
+        max-height: calc(100dvh - 16px);
+        border-radius: 18px;
+    }
+
+    .EditApplicationHeader {
+        padding: 18px 18px 16px;
+    }
+
+    .EditApplicationHeader h2 {
+        font-size: 19px;
+    }
+
+    .EditApplicationPhotoContent {
+        padding: 17px 18px 20px;
+        gap: 17px;
+    }
+
+    .EditApplicationPhotoOriginalPhotoHolder,
+    .EditApplicationPhotoGeneratedPhotoResultHolder {
+        min-height: 175px;
+    }
+
+    .EditApplicationFooter {
+        padding: 14px 18px;
+        justify-content: stretch;
+    }
+
+    .BtnSubmitGeneratePhoto,
+    .BtnSubmitConfirmGeneratedPhoto {
+        width: 100%;
+    }
+
+    .EditApplicationFooter > .BtnSubmitConfirmGeneratedPhoto {
+        flex: 1;
+    }
+}

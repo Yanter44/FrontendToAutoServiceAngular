@@ -1,0 +1,152 @@
+<app-app-loader />
+
+<div id="AppContent">
+  <div class="AgentPage">
+    <aside class="Sidebar">
+      <div class="LogoContainer">
+        <img src="/assets/Images/car.png" class="LogoImage" alt="ТО-Агент">
+        <span class="LogoText">ТО-АГЕНТ</span>
+      </div>
+
+      <nav class="Navigation">
+        <a routerLink="/agent/applications" routerLinkActive="Active" class="MenuLink NavigationOrders" (click)="closeMobileNav()">
+          <svg class="MenuLinkSvgImage" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M18 3.00001V3.00001C19.6569 3.00001 21 4.34315 21 6.00001L21 8.14286C21 8.47698 21 8.64405 20.9234 8.76602C20.8834 8.82962 20.8296 8.8834 20.766 8.92336C20.644 9 20.477 9 20.1429 9L15 9M18 3.00001V3.00001C16.3431 3.00001 15 4.34315 15 6.00001L15 9M18 3.00001L7 3.00001C5.11438 3.00001 4.17157 3.00001 3.58579 3.58579C3 4.17158 3 5.11439 3 7.00001L3 21L6 20L9 21L12 20L15 21L15 9" stroke="currentColor"></path> <path d="M7 7L11 7" stroke="currentColor" stroke-linecap="round"></path> <path d="M8 11H7" stroke="currentColor" stroke-linecap="round"></path> <path d="M7 15L10 15" stroke="currentColor" stroke-linecap="round"></path> </svg>
+          <span class="MenuLinkSpan">Мои заявки</span>
+        </a>
+
+        <a routerLink="/agent/finances" routerLinkActive="Active" class="MenuLink NavigationFinances" (click)="closeMobileNav()">
+          <svg class="MenuLinkSvgImage" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M6 8H10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M20.8333 9H18.2308C16.4465 9 15 10.3431 15 12C15 13.6569 16.4465 15 18.2308 15H20.8333C20.9167 15 20.9583 15 20.9935 14.9979C21.5328 14.965 21.9623 14.5662 21.9977 14.0654C22 14.0327 22 13.994 22 13.9167V10.0833C22 10.006 22 9.96726 21.9977 9.9346C21.9623 9.43384 21.5328 9.03496 20.9935 9.00214C20.9583 9 20.9167 9 20.8333 9Z" stroke="currentColor" stroke-width="1.5"></path> <path d="M20.965 9C20.8873 7.1277 20.6366 5.97975 19.8284 5.17157C18.6569 4 16.7712 4 13 4L10 4C6.22876 4 4.34315 4 3.17157 5.17157C2 6.34315 2 8.22876 2 12C2 15.7712 2 17.6569 3.17157 18.8284C4.34315 20 6.22876 20 10 20H13C16.7712 20 18.6569 20 19.8284 18.8284C20.6366 18.0203 20.8873 16.8723 20.965 15" stroke="currentColor" stroke-width="1.5"></path> <path d="M17.9912 12H18.0002" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </svg>
+          <span class="MenuLinkSpan">Финансы</span>
+        </a>
+
+        <a routerLink="/agent/branches" routerLinkActive="Active" class="MenuLink NavigationBranches" (click)="closeMobileNav()">
+          <svg class="MenuLinkSvgImage" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" d="M5.75 21a1.75 1.75 0 110-3.5 1.75 1.75 0 010 3.5zM2.5 19.25a3.25 3.25 0 106.5 0 3.25 3.25 0 00-6.5 0zM5.75 6.5a1.75 1.75 0 110-3.5 1.75 1.75 0 010 3.5zM2.5 4.75a3.25 3.25 0 106.5 0 3.25 3.25 0 00-6.5 0zM18.25 15a1.75 1.75 0 110-3.5 1.75 1.75 0 010 3.5zM15 13.25a3.25 3.25 0 106.5 0 3.25 3.25 0 00-6.5 0z"></path> <path fill-rule="evenodd" d="M6.5 7.25c0 2.9 2.35 5.25 5.25 5.25h4.5V14h-4.5A6.75 6.75 0 015 7.25h1.5z"></path> <path fill-rule="evenodd" d="M5.75 16.75A.75.75 0 006.5 16V8A.75.75 0 005 8v8c0 .414.336.75.75.75z"></path> </svg>
+          <span class="MenuLinkSpan">Мои ветви</span>
+        </a>
+      </nav>
+    </aside>
+
+    <div class="SidebarOverlay" id="sidebarOverlay" (click)="closeMobileNav()"></div>
+
+    <main class="MainContent">
+      <header class="Header">
+        <button type="button" class="MobileMenuButton" id="mobileMenuButton" aria-label="Открыть меню" [attr.aria-expanded]="mobileNavOpen" (click)="toggleMobileNav($event)">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div class="UserProfile">
+          <app-theme-switch />
+          <div class="BalanceInfo">Доступный баланс:
+            <strong class="AgentBalanceValue" id="userbalance">{{ headerBalanceText() }}</strong>
+          </div>
+          <div class="NotificationBlock" id="NotificationTrigger" #notificationTrigger [class.Active]="notificationsOpen" (click)="toggleNotifications($event)">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M18.7491 9.70957V9.00497C18.7491 5.13623 15.7274 2 12 2C8.27256 2 5.25087 5.13623 5.25087 9.00497V9.70957C5.25087 10.5552 5.00972 11.3818 4.5578 12.0854L3.45036 13.8095C2.43882 15.3843 3.21105 17.5249 4.97036 18.0229C9.57274 19.3257 14.4273 19.3257 19.0296 18.0229C20.789 17.5249 21.5612 15.3843 20.5496 13.8095L19.4422 12.0854C18.9903 11.3818 18.7491 10.5552 18.7491 9.70957Z" stroke="currentColor" stroke-width="1.5"></path> <path opacity="0.5" d="M7.5 19C8.15503 20.7478 9.92246 22 12 22C14.0775 22 15.845 20.7478 16.5 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path> </svg>
+            @if (hub.unreadCount() > 0) {
+              <span class="NotificationCountBadge" id="NotificationCountField">{{ hub.unreadCount() }}</span>
+            }
+          </div>
+
+          <div class="Profile" id="profileTrigger" #profileTrigger [class.Active]="profileOpen" (click)="toggleProfile($event)">
+            <div class="UserAvatar" id="useravatarletter">{{ avatarLetter() }}</div>
+            <div class="UserData">
+              <p class="UserName" id="username">{{ displayName() }}</p>
+              <p class="UserRole" id="userrole">Должность: Агент</p>
+            </div>
+            <svg class="ProfileArrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M 15 10 L 10 16 L 5 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /> </svg>
+          </div>
+        </div>
+      </header>
+
+      <div class="Workspace" [class.SidebarOpen]="sidebarOpen()">
+        <div class="ContentArea">
+          <router-outlet />
+        </div>
+
+        <app-application-details-sidebar />
+      </div>
+    </main>
+  </div>
+
+  <div class="SheetBackdrop" id="sheetBackdrop" (click)="closeAllDropdowns()"></div>
+
+  <section class="ProfileSetting" id="profileDropdown" #profileDropdown [class.Active]="profileOpen">
+    <div class="ProfileCard">
+      <div class="ProfileHeader">
+        <div class="UserAvatar" id="DropDownAvatarLetter">{{ avatarLetter() }}</div>
+        <div class="UserData">
+          <p class="UserName" id="DropDownUsername">{{ displayName() }}</p>
+          <p class="UserRole" id="DropDownUserRole">Должность: Агент</p>
+        </div>
+        <button type="button" class="SheetCloseButton" id="ProfileSettingCloseBtn" aria-label="Закрыть" (click)="closeAllDropdowns(); $event.stopPropagation()">×</button>
+      </div>
+
+      <div class="SeparationDivider"></div>
+
+      <div class="ProfileBody">
+        <div class="MyProfileButton">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /> <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /> </svg>
+          <p>Мой профиль</p>
+        </div>
+
+        <div class="MySupportButton">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /> </svg>
+          <p>Поддержка</p>
+        </div>
+      </div>
+
+      <div class="SeparationDivider"></div>
+
+      <div class="SignOutButton" (click)="signOut()">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M9 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /> <path d="M16 17L21 12L16 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /> <path d="M21 12H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /> </svg>
+        <p>Выйти</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="NotificationModal" id="NotificationModalDropDown" #notificationDropdown [class.Active]="notificationsOpen">
+    <div class="NotificationModalCard">
+      <div class="NotificationModalHeader">
+        <span>Уведомления</span>
+        <div class="NotificationModalHeaderActions">
+          @if (hub.unreadCount() > 0) {
+            <button type="button" class="NotificationMarkAll" (click)="markAllNotifications($event)">Прочитать все</button>
+          }
+          <button type="button" class="SheetCloseButton" id="NotificationModalCloseBtn" aria-label="Закрыть" (click)="closeAllDropdowns(); $event.stopPropagation()">×</button>
+        </div>
+      </div>
+      <div class="NotificaitonModalSeparationDivider"></div>
+
+      <div class="NotificationModalBody">
+        @for (notification of notifications(); track notification.id) {
+          <div class="NotificationModalField" (click)="markNotificationRead(notification, $event)">
+            @if (!notification.isRead) {
+              <span class="NotificationModalMarkIsRead" aria-hidden="true"></span>
+            }
+            <div class="NotificationModalFieldImage">
+              <app-notification-icon [type]="notification.notificationType" />
+            </div>
+            <div class="NotificationModalTextContent">
+              <div class="NotificationModalFieldContentTitle">
+                <span>{{ notificationTitle(notification) }}</span>
+              </div>
+              <div class="NotificationModalFieldContentMessage">
+                <span>{{ notification.message }}</span>
+              </div>
+            </div>
+          </div>
+        }
+
+        @if (hub.hasMore()) {
+          <div class="NotificationModalFooter">
+            <div class="NotificationModalFooterSpanHolder">
+              <span (click)="showMoreNotifications($event)">{{ hub.loadingMore() ? 'Загрузка...' : 'Показать еще' }}</span>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <app-agent-modals />
+</div>

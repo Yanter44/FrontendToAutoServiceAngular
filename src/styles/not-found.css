@@ -1,0 +1,235 @@
+.NotFoundPage {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+     background:radial-gradient(circle at center, rgba(255, 255, 255, .20), rgb(255 255 255 / 30%)), url(/assets/Images/Backgrounds/background404.png) center center / cover no-repeat;
+    box-sizing: border-box;
+}
+
+.NotFoundPageContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: min(620px, calc(100% - 40px));
+    text-align: center;
+    animation: NotFoundPageAppear 0.35s ease;
+}
+
+.NotFoundPageImage {
+    display: block;
+
+    width: min(430px, 72vw);
+    height: auto;
+
+    object-fit: contain;
+
+    margin-bottom: 4px;
+}
+
+.NotFoundPageCode {
+    margin-top: -2px;
+
+    color: #1A53FF;
+
+    font-size: 76px;
+    line-height: 1;
+    font-weight: 800;
+    letter-spacing: -4px;
+}
+
+.NotFoundPageTitle {
+    margin: 14px 0 0;
+
+    color:var(--text);
+
+    font-size: 25px;
+    line-height: 32px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.NotFoundPageDescription {
+    margin: 10px 0 0;
+
+    color:var(--muted);
+
+    font-size: 14px;
+    line-height: 21px;
+    font-weight: 400;
+}
+
+.NotFoundPageActions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 26px;
+}
+
+
+.NotFoundPageHomeButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 220px;
+    height: 44px;
+
+    padding: 0 22px;
+
+    border: 1px solid #1A53FF;
+    border-radius: 9px;
+
+    background: #1A53FF;
+    color: #FFFFFF;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow: 0 5px 14px rgba(26, 83, 255, 0.16);
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.NotFoundPageHomeButton:hover {
+    background: #1247E8;
+    border-color: #1247E8;
+
+    box-shadow: 0 7px 18px rgba(26, 83, 255, 0.22);
+
+    transform: translateY(-1px);
+}
+
+.NotFoundPageHomeButton:active {
+    transform: translateY(0);
+
+    box-shadow: 0 3px 9px rgba(26, 83, 255, 0.15);
+}
+
+.NotFoundPageBackButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 36px;
+
+    padding: 0 18px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: transparent;
+    color:var(--muted);
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition:
+        color 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.NotFoundPageBackButton:hover {
+    color: #1A53FF;
+    background: #EDF3FF;
+}
+
+@keyframes NotFoundPageAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .NotFoundPageContent {
+        width: calc(100% - 32px);
+    }
+
+    .NotFoundPageImage {
+        width: min(360px, 78vw);
+    }
+
+    .NotFoundPageCode {
+        font-size: 64px;
+    }
+
+    .NotFoundPageTitle {
+        font-size: 22px;
+        line-height: 28px;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .NotFoundPage {
+        padding: 20px;
+    }
+
+    .NotFoundPageContent {
+        width: 100%;
+    }
+
+    .NotFoundPageImage {
+        width: 290px;
+        max-width: 82vw;
+    }
+
+    .NotFoundPageCode {
+        font-size: 56px;
+        letter-spacing: -3px;
+    }
+
+    .NotFoundPageTitle {
+        margin-top: 12px;
+
+        font-size: 20px;
+        line-height: 26px;
+    }
+
+    .NotFoundPageDescription {
+        font-size: 13px;
+        line-height: 20px;
+    }
+
+    .NotFoundPageActions {
+        width: 100%;
+        margin-top: 22px;
+    }
+
+    .NotFoundPageHomeButton {
+        width: min(100%, 260px);
+    }
+
+}

@@ -1,0 +1,522 @@
+.BranchesScreen {
+    height: 100%;
+    overflow-y: auto;
+    min-height: 0;
+}
+
+.BranchesScreen::-webkit-scrollbar {
+    width: 4px;
+}
+
+.BranchesScreen::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.BranchesScreen::-webkit-scrollbar-thumb {
+    background: #b8d4e3;
+    border-radius: 20px;
+}
+
+.BranchesPageTitle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.BranchesPageTitleIcon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background:var(--accent-soft);
+    color: #1a53ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.BranchesPageTitleIcon svg {
+    width: 22px;
+    height: 22px;
+}
+
+.BranchesPageTitle h2 {
+    font-size: 22px;
+    font-weight: 800;
+    color:var(--text);
+    line-height: 1.2;
+}
+
+.BranchesPageTitle p {
+    margin-top: 2px;
+    font-size: 13px;
+    color:var(--faint);
+    font-weight: 500;
+}
+
+.BranchesHeaderSection {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.BranchesSortSection {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+    margin-bottom: 15px;
+}
+
+.BranchesSearchSort {
+    width: 420px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 0 18px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(15, 23, 42, .05);
+    transition: .25s;
+}
+
+.BranchesSearchSort:hover {
+    border-color:var(--border);
+}
+
+.BranchesSearchSort:focus-within {
+    border-color: #4F7CFF;
+    box-shadow:
+        0 0 0 4px rgba(79, 124, 255, .12),
+        0 10px 25px rgba(79, 124, 255, .12);
+}
+
+.BranchesSearchSort svg {
+    width: 20px;
+    height: 20px;
+    fill:var(--faint);
+    flex-shrink: 0;
+}
+
+.BranchesSearchSort input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 15px;
+    color: #1f2937;
+}
+
+.BranchesSearchSort input::placeholder {
+    color:var(--faint);
+}
+
+.BtnAddNewBranche {
+    border: none;
+    background: #1a53ff;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: 0.2s;
+}
+
+.BtnAddNewBranche:hover {
+    background: #003fe0;
+}
+
+.BranchList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 6px;
+}
+
+.BranchCard {
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(15, 23, 42, .05);
+    overflow: hidden;
+}
+
+.BranchCardHeader {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 18px;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+}
+
+.BranchCardHeader::-webkit-details-marker,
+.BranchCardHeader::marker {
+    display: none;
+    content: '';
+}
+
+.BranchCardHeader:hover {
+    background:var(--surface-muted);
+}
+
+.BranchChevron {
+    width: 28px;
+    height: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    color:var(--faint);
+    flex-shrink: 0;
+}
+
+.BranchChevronIcon {
+    width: 16px;
+    height: 16px;
+    transition: transform .2s ease;
+}
+
+.BranchCard[open] .BranchChevronIcon {
+    transform: rotate(90deg);
+}
+
+.BranchAvatar,
+.AgentAvatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.BranchAvatar {
+    background:var(--accent-soft);
+    color: #1a53ff;
+}
+
+.BranchAvatar svg {
+    width: 18px;
+    height: 18px;
+}
+
+.AgentAvatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background:var(--accent-soft);
+    color: #1d4ed8;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.BranchIdentityText {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.BranchName,
+.AgentName {
+    font-weight: 800;
+    color:var(--text);
+    font-size: 15px;
+}
+
+.BranchHint,
+.AgentContacts {
+    font-size: 13px;
+    color:var(--faint);
+    font-weight: 500;
+}
+
+.BranchCardMeta {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.BranchMarkup {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 10px;
+    border-radius: 8px;
+    background:var(--accent-soft);
+    color: #1a53ff;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.BranchAgents {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0 16px 16px;
+}
+
+.BranchAgentCard {
+    display: grid;
+    grid-template-columns: minmax(220px, 1.2fr) minmax(280px, 2fr) auto;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 16px;
+    background:var(--surface-muted);
+    border:1px solid var(--hover);
+    border-radius: 14px;
+}
+
+.BranchAgentMain {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.BranchAgentInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.BranchAgentStats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(90px, 1fr));
+    gap: 12px;
+    grid-auto-flow: column;
+}
+
+.BranchAgentStat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.BranchAgentStatLabel {
+    font-size: 11px;
+    font-weight: 700;
+    color:var(--faint);
+    text-transform: uppercase;
+    letter-spacing: .4px;
+}
+
+.AgentBalance {
+    font-weight: 800;
+    color: #10b981;
+}
+
+.BtnDeleteBranch {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 32px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius: 8px;
+    color: #ef4444;
+    cursor: pointer;
+}
+
+.BtnDeleteBranch svg {
+    width: 16px;
+    height: 16px;
+}
+
+.BtnDeleteBranch:hover {
+    background:var(--danger-soft);
+    border-color: #ef4444;
+}
+
+.BranchEmpty {
+    padding: 22px 12px;
+    text-align: center;
+    color:var(--faint);
+    font-size: 14px;
+    background:var(--surface-muted);
+    border-radius: 14px;
+    border:1px dashed var(--border);
+}
+.BtnInviteAgent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px 16px;
+  background: transparent;
+  border: 2px dashed #c7cbd3;
+  border-radius: 8px;
+  color:var(--muted);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.BtnInviteAgent:hover {
+  border-color: #388bed;
+  color: #388bed;
+  background: rgba(56, 139, 237, 0.04);
+}
+
+.BtnInviteAgent svg {
+  width: 18px;
+  height: 18px;
+}
+
+.BranchAgents {
+    position: relative;
+    padding: 4px 16px 17px 62px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.BranchAgents::before {
+    content: '';
+    position: absolute;
+    left: 31px;
+    top: 24px;
+    bottom: 32px;
+    width: 1px;
+    max-height: calc(100% - 140px);
+    background:var(--border);
+    border-radius: 1px;
+}
+
+
+.BranchAgentCard {
+    position: relative;
+}
+
+
+.BranchAgentCard::before {
+    content: '';
+    position: absolute;
+    left: -32px;
+    top: -10px;            
+    width: 24px;
+    height: calc(50% + 10px);
+    border-left:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+    border-bottom-left-radius: 14px;
+    pointer-events: none;
+    transition: border-color .2s ease;
+}
+
+
+.BtnInviteAgent {
+    position: relative;
+    margin-left: -40px;
+    padding-left: 56px;
+    border-width: 1.5px;
+    color:var(--faint);
+    font-size: 13px;
+}
+
+.BtnInviteAgent::before {
+    content: '';
+    position: absolute;
+    left: -32px;
+    top: -10px;
+    width: 24px;
+    height: calc(50% + 10px);
+    border-left:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+    border-bottom-left-radius: 14px;
+    pointer-events: none;
+}
+
+
+.BranchAgentCard:hover::before,
+.BtnInviteAgent:hover::before {
+    border-color: #b8c8e8;
+}
+
+.BranchCard[open] .BranchAgents::before {
+    animation: BranchGrow .25s ease-out;
+}
+.BranchCard[open] .BranchAgentCard {
+    animation: BranchFadeIn .2s ease-out;
+}
+
+@keyframes BranchGrow {
+    from { transform: scaleY(0); transform-origin: top; }
+    to   { transform: scaleY(1); transform-origin: top; }
+}
+@keyframes BranchFadeIn {
+    from { opacity: 0; transform: translateX(-3px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+@media (max-width: 720px) {
+    .BranchAgents {
+        padding-left: 40px;
+    }
+    .BranchAgents::before {
+        left: 16px;
+    }
+    .BranchAgentCard::before,
+    .BtnInviteAgent::before {
+        left: -24px;
+        width: 18px;
+        border-bottom-left-radius: 10px;
+    }
+    .BtnInviteAgent {
+        margin-left: -32px;
+        padding-left: 40px;
+    }
+    .BranchList {
+        margin-top: 26px;
+    }
+}
+@media (max-width: 1100px) {
+    .BranchAgentCard {
+        grid-template-columns: 1fr auto;
+    }
+
+    .BranchAgentStats {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 1024px) {
+    .BranchesHeaderSection {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .BranchesSortSection,
+    .BranchesSearchSort {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .BranchCardHeader {
+        flex-wrap: wrap;
+    }
+
+    .BranchCardMeta {
+        width: 100%;
+        margin-left: 40px;
+        justify-content: flex-start;
+    }
+
+    .BranchAgentCard {
+        grid-template-columns: 1fr auto;
+    }
+}
+
+@media (max-width: 720px) {
+    .BranchAgentStats {
+        grid-template-columns: 1fr;
+    }
+}

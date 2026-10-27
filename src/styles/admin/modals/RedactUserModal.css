@@ -1,0 +1,801 @@
+.RedactUserModalSection {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.RedactUserModalRightContentSection::-webkit-scrollbar {
+    width: 6px;
+}
+
+.RedactUserModalRightContentSection::-webkit-scrollbar-track {
+    background: transparent;
+    margin: 8px 0; 
+}
+
+.RedactUserModalRightContentSection::-webkit-scrollbar-thumb {
+    background:var(--border-strong);
+    border-radius: 100px; 
+    transition: background 0.2s ease;
+}
+
+.RedactUserModalRightContentSection::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8; 
+}
+
+.RedactUserModalRightHistoryTableWrapper::-webkit-scrollbar {
+    width: 6px;
+}
+
+.RedactUserModalRightHistoryTableWrapper::-webkit-scrollbar-track {
+    background: transparent;
+    margin: 8px 0; 
+}
+
+.RedactUserModalRightHistoryTableWrapper::-webkit-scrollbar-thumb {
+    background:var(--border-strong);
+    border-radius: 100px; 
+    transition: background 0.2s ease;
+}
+
+.RedactUserModalRightHistoryTableWrapper::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8; 
+}
+.RedactUserModalOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(0 0 0 / 20%);
+    backdrop-filter: blur(2px);
+}
+/* ===== Улучшенная карточка лимита ===== */
+.RedactUserModalRightStatusCard--limit {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 20px;
+    background:linear-gradient(135deg, #f0f7ff 0%, var(--surface-muted) 100%);
+    border:1px solid var(--accent-soft);
+}
+
+.RedactUserModalRightStatusIcon {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    background:var(--surface);
+    border:1px solid var(--accent-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #4981F1;
+    box-shadow: 0 2px 8px rgba(73, 129, 241, .12);
+}
+
+.RedactUserModalRightStatusIcon svg {
+    width: 22px;
+    height: 22px;
+}
+
+.RedactUserModalRightStatusHint {
+    margin-left: auto;
+    font-size: 12px;
+    color:var(--muted);
+    text-align: right;
+    max-width: 160px;
+    line-height: 1.35;
+}
+
+/* Текущий лимит — крупнее и заметнее */
+.RedactUserModalRightUserDebitLimitInfo {
+    font-size: 22px;
+    font-weight: 700;
+    color:var(--text);
+    letter-spacing: -0.3px;
+}
+
+/* ===== Инпут с префиксом и суффиксом ===== */
+.RedactUserModalRightInputWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(15, 23, 42, .05);
+    transition: .25s;
+    overflow: hidden;
+}
+
+.RedactUserModalRightInputWrapper:focus-within {
+    border-color: #4981F1;
+    box-shadow: 0 0 0 4px rgba(73, 129, 241, .12);
+}
+
+.RedactUserModalRightInputPrefix {
+    padding: 0 4px 0 18px;
+    font-size: 15px;
+    font-weight: 600;
+    color:var(--muted);
+}
+
+.RedactUserModalRightInputSuffix {
+    padding: 0 18px 0 4px;
+    font-size: 12px;
+    font-weight: 600;
+    color:var(--faint);
+    letter-spacing: .5px;
+}
+
+.RedactUserModalRightCreditLimitInput {
+    flex: 1;
+    height: 48px;
+    padding: 0 8px;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 16px;
+    font-weight: 600;
+    color:var(--text);
+    box-shadow: none; /* перебиваем старую тень */
+    border-radius: 0;
+    font-family: inherit;
+}
+
+.RedactUserModalRightCreditLimitInput::placeholder {
+    color: #cbd5e1;
+    font-weight: 500;
+}
+
+/* Убираем старую обводку при фокусе — теперь фокус на wrapper */
+.RedactUserModalRightCreditLimitInput:focus {
+    outline: none;
+    border: none;
+    box-shadow: none;
+}
+
+/* ===== Подсказка под инпутом ===== */
+.RedactUserModalRightInputHint {
+    margin-top: 10px;
+    font-size: 12px;
+    color:var(--muted);
+    line-height: 1.4;
+}
+
+.RedactUserModalRightInputHint strong {
+    color:var(--text);
+    font-weight: 600;
+}
+
+/* ===== Пресеты ===== */
+.RedactUserModalRightPresets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.RedactUserModalRightPreset {
+    padding: 8px 14px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color:var(--text-secondary);
+    cursor: pointer;
+    transition: all .2s;
+    font-family: inherit;
+}
+
+.RedactUserModalRightPreset:hover {
+    border-color: #4981F1;
+    color: #4981F1;
+    background: #f0f7ff;
+}
+
+.RedactUserModalRightPreset.Active {
+    background: #4981F1;
+    border-color: #4981F1;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(73, 129, 241, .25);
+}
+.RedactUserModalCard {
+    position: relative;
+    width: 100%;
+    max-width: 440px; 
+    background:var(--surface);
+    border-radius: 16px;
+    z-index: 10001;
+    overflow: hidden;
+    border:1px solid var(--hover);
+
+    display: flex;
+    flex-direction: column;
+    max-height: 80vh;
+
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    transform: translateY(100px);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.RedactUserModalSection.Active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.RedactUserModalSection.Active .RedactUserModalCard {
+    transform: translateY(0);
+}
+.RedactUserModalSection {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.RedactUserModalOverlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+}
+
+.RedactUserModalCard {
+    position: relative;
+    background:var(--surface);
+    width: 950px;
+    max-width: 95%;
+    height: 800px;
+    max-height: 90vh;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 1001;
+}
+
+.RedactUserModalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 32px;
+    border-bottom: 1px solid var(--border);
+}
+.RedactUserModalRightCreditLimitInput{
+    height: 48px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 0 18px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(15, 23, 42, .05);
+    transition: .25s;
+}
+.RedactUserModalRightCreditLimitInput:focus{
+    outline: none;
+    border: 1px solid transparent;
+}
+.RedactUserModalTitle {
+    font-size: 22px;
+    color:var(--text);
+    font-weight: 700;
+}
+.RedactUserModalRightSelect {
+    position: relative;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 18px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius: 16px;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.RedactUserModalRightSelect:hover {
+    border-color:var(--border-strong);
+}
+
+
+.RedactUserModalDropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    width: 100%;
+    background:var(--surface);
+    border-radius: 16px;
+    border:1px solid var(--border);
+    box-shadow: 0 10px 30px rgba(15,23,42,.1);
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-5px);
+
+    transition: .2s;
+    z-index: 20;
+}
+
+
+.RedactUserModalRightSelect.Active 
+.RedactUserModalDropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+
+.RedactUserModalDropdownItem {
+    padding: 12px 18px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+
+.RedactUserModalDropdownItem:hover {
+    background:var(--surface-muted);
+}
+.RedactUserModalContent {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    flex-grow: 1;
+    height: calc(100% - 78px);
+}
+.RedactUserModalRightContentSection{
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+.RedactUserModalLeftContent {
+    background-color: var(--surface-muted);
+    border-right: 1px solid var(--border);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+.RedactUserModalLeftLabel {
+    font-size: 13px;
+    color:var(--muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 16px;
+}
+
+.RedactUserModalLeftMenu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.RedactUserModalLeftItem {
+    display: flex;
+    align-items: center;
+    padding: 14px 16px;
+    border-radius: 12px;
+    cursor: pointer;
+    background: transparent;
+    transition: all 0.2s;
+    position: relative;
+}
+
+.RedactUserModalLeftItem:hover {
+    background: var(--hover);
+}
+
+.RedactUserModalLeftItem.Active {
+    background:var(--hover) !important;
+}
+
+.RedactUserModalLeftIcon {
+    font-size: 20px;
+    margin-right: 14px;
+}
+
+.RedactUserModalLeftIcon svg {
+    width: 30px;
+    height: 30px;
+}
+
+.RedactUserModalRightSectionIcon svg {
+    width: 30px;
+    height: 30px;
+    color: #4981F1;
+}
+
+.RedactUserModalLeftText {
+    display: flex;
+    flex-direction: column;
+}
+
+.RedactUserModalLeftMenuTitle {
+    font-size: 15px;
+    font-weight: 600;
+    color: #005aff;
+}
+
+.RedactUserModalLeftMenuSub {
+    font-size: 12px;
+    color:var(--muted);
+    margin-top: 2px;
+}
+
+.RedactUserModalLeftActiveDot {
+    width: 8px;
+    height: 8px;
+    background-color: #2563eb;
+    border-radius: 50%;
+    position: absolute;
+    right: 16px;
+}
+
+.RedactUserModalLeftInfoBox {
+    margin-top: auto; 
+    text-align: center;
+    background: var(--accent-soft);
+    border: 1px solid rgba(73, 129, 241, 0.35);
+    border-radius: 12px;
+    padding: 14px;
+    font-size: 13px;
+    color: #4981F1;
+    line-height: 1.4;
+}
+
+.RedactUserModalRightContent.Active {
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+}
+.RedactUserModalRightContent{
+    display: none;
+}
+.RedactUserModalRightSectionHeader {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.RedactUserModalRightSectionIcon {
+    width: 48px;
+    height: 48px;
+    background: #E7EFFE;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+}
+
+.RedactUserModalRightSectionTitleBlock {
+    display: flex;
+    flex-direction: column;
+}
+
+.RedactUserModalRightSectionTitle {
+    font-size: 18px;
+    color:var(--text);
+    font-weight: 600;
+}
+
+.RedactUserModalRightSectionSub {
+    font-size: 14px;
+    color:var(--muted);
+    margin-top: 2px;
+}
+
+.RedactUserModalRightStatusCard {
+    background:var(--surface-muted);
+    border:1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    gap: 40px;
+    margin-bottom: 24px;
+}
+
+.RedactUserModalRightStatusBlock {
+    display: flex;
+    flex-direction: column;
+}
+
+.RedactUserModalRightLabel {
+    font-size: 13px;
+    color:var(--muted);
+    margin-bottom: 8px;
+}
+
+.RedactUserModalRightLabelBold {
+    font-weight: 600;
+    color:var(--text-secondary);
+}
+
+.RedactUserModalRightBadge {
+    background:var(--accent-soft);
+    color: #1e429f;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    display: inline-block;
+    width: fit-content;
+}
+
+.RedactUserModalRightDate {
+    font-size: 14px;
+    color:var(--text-secondary);
+    font-weight: 500;
+    padding-top: 4px;
+}
+
+.RedactUserModalRightFormGroup {
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+.RedactUserModalFooter {
+    margin-top: auto;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding-top: 20px;
+    margin-bottom: 30px;
+    margin-right: 30px;
+}
+
+.RedactUserModalBtnSubmit {
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: #2563eb;
+    border: none;
+    color: #fff;
+}
+
+.RedactUserModalBtnSubmit:hover {
+    background: #1d4ed8;
+}
+/* ===== Select с причиной ===== */
+.RedactUserModalRightSelectWrapper {
+    position: relative;
+    width: 100%;
+}
+
+.RedactUserModalRightBlockingReasonInput {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 100%;
+    height: 48px;
+    padding: 0 44px 0 18px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(15, 23, 42, .05);
+    font-size: 14px;
+    color:var(--text);
+    cursor: pointer;
+    transition: .25s;
+    font-family: inherit;
+}
+
+.RedactUserModalRightBlockingReasonInput:hover {
+    border-color:var(--border-strong);
+}
+
+.RedactUserModalRightBlockingReasonInput:focus {
+    outline: none;
+    border-color: #4981F1;
+    box-shadow: 0 0 0 4px rgba(73, 129, 241, .12);
+}
+
+.RedactUserModalRightSelectChevron {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    color:var(--muted);
+    pointer-events: none;
+}
+
+/* ===== Input комментария ===== */
+.RedactUserModalRightBlockingCommentInput {
+    height: 48px;
+    padding: 0 18px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(15, 23, 42, .05);
+    font-size: 14px;
+    color:var(--text);
+    transition: .25s;
+    font-family: inherit;
+}
+
+.RedactUserModalRightBlockingCommentInput::placeholder {
+    color:var(--faint);
+}
+
+.RedactUserModalRightBlockingCommentInput:focus {
+    outline: none;
+    border-color: #4981F1;
+    box-shadow: 0 0 0 4px rgba(73, 129, 241, .12);
+}
+
+/* ===== Бейджи статуса ===== */
+.RedactUserModalRightBadge.StatusActive {
+    background: #d6ebff;
+    color: #007fff;
+}
+
+.RedactUserModalRightBadge.StatusBlocked {
+    background: #fde8e8;
+    color: #de3838;
+}
+
+
+/* ===== Блок истории ===== */
+.RedactUserModalRightHistoryBlock {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.RedactUserModalRightHistoryHeader {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.RedactUserModalRightHistoryCount {
+    background:var(--hover);
+    color:var(--text-secondary);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 999px;
+}
+
+.RedactUserModalRightHistoryTableWrapper {
+    border:1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    background:var(--surface);
+    max-height: 220px;
+    overflow-y: auto;
+}
+
+.RedactUserModalRightHistoryTable {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.RedactUserModalRightHistoryTable thead th {
+    position: sticky;
+    top: 0;
+    background:var(--surface-muted);
+    color:var(--muted);
+    font-weight: 600;
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom:1px solid var(--border);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .3px;
+}
+
+.RedactUserModalRightHistoryTable tbody td {
+    padding: 12px 14px;
+    color:var(--text-secondary);
+    border-bottom:1px solid var(--hover);
+    vertical-align: middle;
+}
+
+.RedactUserModalRightHistoryTable tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.RedactUserModalRightHistoryTable tbody tr:hover {
+    background: #fafbfc;
+}
+
+.RedactUserModalRightHistoryEmpty td {
+    text-align: center;
+    color:var(--faint);
+    padding: 24px 14px;
+    font-style: italic;
+}
+
+/* Маленький бейдж в истории */
+.RedactUserModalRightHistoryStatus {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.RedactUserModalRightHistoryStatus.Active {
+    background: #def7ec;
+    color: #03543f;
+}
+
+.RedactUserModalRightHistoryStatus.Unblocked {
+    background: #e5e7eb;
+    color: #374151;
+}
+
+.RedactUserModalRightHistoryStatus.ActiveBlock {
+    background: #fde8e8;
+    color: #9b1c1c;
+}
+
+@media (max-width: 900px) {
+    .RedactUserModalCard {
+        width: calc(100vw - 16px);
+        max-width: none;
+        height: auto;
+        max-height: 92dvh;
+        margin: 8px;
+    }
+
+    .RedactUserModalContent {
+        grid-template-columns: 1fr;
+        height: auto;
+        overflow: auto;
+    }
+
+    .RedactUserModalLeftContent {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .RedactUserModalRightContent.Active {
+        padding: 20px;
+    }
+
+    .RedactUserModalRightStatusCard {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .RedactUserModalFooter {
+        margin-right: 16px;
+        justify-content: stretch;
+        flex-wrap: wrap;
+    }
+
+    .RedactUserModalBtnSubmit {
+        width: 100%;
+    }
+}

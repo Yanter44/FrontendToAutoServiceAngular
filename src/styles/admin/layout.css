@@ -1,0 +1,630 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Manrope', sans-serif;
+    background:var(--bg);
+    overflow: hidden;
+}
+
+.AgentPage {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    width: 100vw;
+    height: 100vh;
+}
+
+.MainContent {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.Sidebar {
+    background:var(--surface);
+    border-right:1px solid var(--border);
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+     transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.LogoContainer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 40px;
+    font-size: 20px;
+    font-weight: 800;
+    justify-content: center;
+}
+
+.LogoImage {
+    width: 30px;
+    height: 30px;
+}
+.Sidebar.Collapsed {
+    width: 80px;        
+    min-width: 80px;
+}
+
+
+.Sidebar.Collapsed .MenuLink {
+    justify-content: center;
+    padding: 12px;
+    position: relative;
+}
+.Sidebar {
+    background:var(--surface);
+    border-right:1px solid var(--border);
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    position: relative;
+}
+
+.Sidebar.Collapsed {
+    width: 80px;
+    min-width: 80px;
+}
+.Sidebar.Collapsed .MenuLink{
+    gap: 0px;
+}
+.Sidebar.Collapsed .LogoText,
+.Sidebar.Collapsed .MenuLinkSpan {
+    opacity: 0;
+    transform: scale(0.8);
+    width: 0;
+    margin: 0;
+}
+
+.SidebarToggle {
+    position: absolute;
+    top: 20px;
+    right: -14px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background:var(--surface);
+    border:1px solid var(--border);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.SidebarToggle:hover {
+    background:var(--hover);
+    border-color: #4F7CFF;
+    transform: scale(1.05);
+}
+
+.ToggleIcon {
+    width: 16px;
+    height: 16px;
+    color:var(--muted);
+    transition: transform 0.3s ease;
+}
+
+.Sidebar.Collapsed .ToggleIcon {
+    transform: rotate(180deg);
+}
+
+.Sidebar.Collapsed .MenuLink:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: calc(100% + 12px);
+    top: 50%;
+    transform: translateY(-50%);
+    background: #1f2937;
+    color: white;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+    z-index: 100;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    pointer-events: none;
+    animation: tooltipFadeIn 0.2s ease;
+}
+
+.Sidebar.Collapsed .LogoText {
+    opacity: 0;         
+    transform: scale(0.8); 
+    width: 0;              
+}
+
+.Sidebar.Collapsed .MenuLinkSpan {
+    opacity: 0;
+    transform: scale(0.8);
+    width: 0;
+}
+
+@keyframes BeautifulFadeIn {
+    from { opacity: 0; transform: translateX(-3px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+.MenuCategory {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color:var(--faint);
+    margin: 18px 0 10px 8px;
+    font-weight: 700;
+}
+
+.MenuLink {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px;
+    border-radius: 12px;
+    text-decoration: none;
+    color:var(--text-secondary);
+    cursor: pointer;
+    transition: 0.2s;
+    margin-bottom: 6px;
+}
+
+.MenuLink:hover {
+    background:var(--hover);
+}
+
+.MenuLink.Active {
+    background:var(--accent-soft);
+    color: #1a53ff;
+    font-weight: 700;
+    border-left: 3px solid;
+}
+
+.MenuLinkSvgImage {
+    width: 22px;
+    height: 22px;
+}
+.MenuLinkSpan{
+    opacity: 1;       
+    transform: scale(1);
+}
+.LogoText{
+    opacity: 1; 
+    transform: scale(1);
+}
+.SelectArrow{
+    position:absolute;
+
+    right:18px;
+    top:50%;
+
+    width:18px;
+    height:18px;
+
+    color:var(--faint);
+
+    transform:translateY(-50%);
+    pointer-events:none;
+    transition:
+        color .25s,
+        transform .25s;
+}
+
+.Header {
+    height: 72px;
+    background:var(--surface);
+    border-bottom:1px solid var(--border);
+    padding: 0 28px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.UserProfile {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.Profile{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.Profile:hover{
+    background:var(--accent-soft);
+    border-radius: 10px;
+}
+
+.UserData {
+    display: flex;
+    flex-direction: column;
+}
+
+.UserName {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.UserRole {
+    font-size: 12px;
+    color:var(--muted);
+}
+
+.Workspace {
+    display: grid;
+    grid-template-columns: 1fr 0px;
+    flex: 1;
+    overflow: hidden;
+    transition: grid-template-columns 0.3s ease;
+}
+
+.Workspace.SidebarOpen {
+    grid-template-columns: 1fr 380px;
+}
+
+.ContentArea {
+    overflow: hidden;
+}
+
+.ScreenContainer {
+    height: 100%;
+    overflow-y: auto;
+}
+
+.Hidden {
+    display: none !important;
+}
+
+.PromptActionsWrapper {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.UserActionsWrapper{
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.BtnIcon {
+    width: 20px;      
+    height: 20px;
+    object-fit: contain;
+    display: block;
+}
+
+
+.TableSection {
+    flex: 1;
+    overflow-y: auto;    
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    animation: BeautifulFadeIn .2s ease-out;
+}
+
+
+
+.TitleBlock h1 {
+    font-size: 28px;
+}
+
+.NotificationBlock {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.NotificationBlock svg {
+    width: 20px;
+    height: auto;
+    display: block;
+    transition: transform 0.2s ease-in-out;
+}
+
+.NotificationBlock:hover svg {
+    width: 24px;
+    height: 24px;
+    transform: scale(1.2);
+}
+
+.NotificationCountBadge {
+    position: absolute;
+    top: -4px;  
+    right: -4px;  
+    background-color: #ff4d4d;
+    color: #ffffff;          
+    font-family: inherit;
+    font-size: 11px;          
+    font-weight: 700;
+    min-width: 18px;      
+    height: 18px;
+    border-radius: 50%;  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+    box-sizing: border-box;
+    border:2px solid var(--surface);
+} 
+
+.BtnDeletePhoto:hover {
+    background: #ef4444;
+}
+
+.Hidden {
+    display: none !important;
+}
+
+.MobileMenuButton,
+.SidebarOverlay,
+.SheetBackdrop,
+.SheetCloseButton {
+    display: none;
+}
+
+.Navigation {
+    overflow-y: auto;
+    flex: 1;
+}
+.PaginationButton,
+.PaginationNumber{
+    min-width: 36px;
+    height: 36px;
+    border:1px solid var(--border);
+    border-radius: 8px;
+    background:var(--surface);
+    color:var(--text-secondary);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 6px 20px rgba(15, 23, 42, .05);
+    transition: background .2s, border-color .2s, color .2s, transform .15s, box-shadow .2s;
+}
+
+.PaginationButton:hover,
+.PaginationNumber:hover{
+    border-color:#4F7CFF;
+    color:#4F7CFF;
+    transform:translateY(-2px);
+    box-shadow:
+        0 10px 25px rgba(79,124,255,.15);
+}
+
+.PaginationButton:active,
+.PaginationNumber:active{
+    transform:translateY(0);
+}
+
+.PaginationNumber.Active{
+    background:#4F7CFF;
+    border-color:#4F7CFF;
+    color:white;
+    box-shadow:
+        0 10px 25px rgba(79,124,255,.30);
+}
+
+.PaginationDots{
+    color:var(--faint);
+    font-size:18px;
+    padding:0 4px;
+    user-select:none;
+}
+
+.ApplicationsPaginationButton:disabled{
+    opacity:.45;
+    cursor:not-allowed;
+    transform:none;
+    box-shadow:none;
+}
+
+@media (max-width: 1024px) {
+    .AgentPage {
+        grid-template-columns: 1fr !important;
+        width: 100%;
+        height: 100dvh;
+    }
+
+    .MobileMenuButton {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        width: 42px;
+        height: 42px;
+        border:1px solid var(--border);
+        border-radius: 12px;
+        background:var(--surface);
+        cursor: pointer;
+        flex-shrink: 0;
+        z-index: 20;
+    }
+
+    .MobileMenuButton span {
+        display: block;
+        width: 18px;
+        height: 2px;
+        background: #1e293b;
+        border-radius: 2px;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    body.MobileNavOpen .MobileMenuButton span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+
+    body.MobileNavOpen .MobileMenuButton span:nth-child(2) {
+        opacity: 0;
+    }
+
+    body.MobileNavOpen .MobileMenuButton span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+
+    .SidebarOverlay,
+    .SheetBackdrop {
+        display: block;
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 23, 42, 0.42);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.2s ease, visibility 0.2s ease;
+    }
+
+    .SidebarOverlay {
+        z-index: 1900;
+    }
+
+    .SheetBackdrop {
+        z-index: 9990;
+    }
+
+    body.MobileNavOpen .SidebarOverlay,
+    body.SheetOpen .SheetBackdrop {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: all;
+    }
+
+    .Sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: min(300px, 86vw) !important;
+        min-width: 0 !important;
+        z-index: 2000;
+        transform: translateX(-105%);
+        box-shadow: 8px 0 32px rgba(15, 23, 42, 0.12);
+        padding-top: 28px;
+        overflow-y: auto;
+    }
+
+    body.MobileNavOpen .Sidebar {
+        transform: translateX(0);
+    }
+
+    .Sidebar.Collapsed .LogoText,
+    .Sidebar.Collapsed .MenuLinkSpan {
+        opacity: 1;
+        transform: none;
+        width: auto;
+        margin: unset;
+    }
+
+    .Sidebar.Collapsed .MenuLink {
+        justify-content: flex-start;
+        padding: 14px;
+        gap: 12px;
+    }
+
+    .Sidebar.Collapsed .MenuLink:hover::after {
+        display: none;
+    }
+
+
+    .Header {
+        height: 64px;
+        padding: 0 14px;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    .UserProfile {
+        gap: 12px;
+        min-width: 0;
+    }
+
+    .Header .UserData,
+    .Header .ProfileArrow {
+        display: none;
+    }
+
+    .Workspace,
+    .Workspace.SidebarOpen {
+        grid-template-columns: 1fr !important;
+    }
+
+    .TableSection {
+        padding: 16px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .NotificationModal,
+    .ProfileSetting {
+        position: fixed !important;
+        left: 12px !important;
+        right: 12px !important;
+        top: auto !important;
+        bottom: max(12px, env(safe-area-inset-bottom)) !important;
+        width: auto !important;
+        max-width: none !important;
+        max-height: min(78dvh, 640px);
+        overflow: auto;
+        border-radius: 18px;
+        z-index: 9999;
+    }
+
+    .NotificationModalBody {
+        max-height: calc(78dvh - 150px);
+    }
+
+    .SheetCloseButton {
+        display: flex;
+        margin-left: auto;
+        width: 36px;
+        height: 36px;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        background:var(--hover);
+        border-radius: 10px;
+        font-size: 24px;
+        line-height: 1;
+        color:var(--text-secondary);
+        cursor: pointer;
+        flex-shrink: 0;
+    }
+
+    .ProfileHeader {
+        width: 100%;
+    }
+}
+
+@media (max-width: 640px) {
+    .TableSection {
+        padding: 12px;
+    }
+
+    .TitleBlock h1 {
+        font-size: 22px;
+    }
+}
+
+

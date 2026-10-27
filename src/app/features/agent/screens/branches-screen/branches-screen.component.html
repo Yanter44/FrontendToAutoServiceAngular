@@ -1,0 +1,99 @@
+<section class="TableSection">
+  <div class="BranchesPageTitle">
+    <div class="BranchesPageTitleIcon">
+      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" d="M5.75 21a1.75 1.75 0 110-3.5 1.75 1.75 0 010 3.5zM2.5 19.25a3.25 3.25 0 106.5 0 3.25 3.25 0 00-6.5 0zM5.75 6.5a1.75 1.75 0 110-3.5 1.75 1.75 0 010 3.5zM2.5 4.75a3.25 3.25 0 106.5 0 3.25 3.25 0 00-6.5 0zM18.25 15a1.75 1.75 0 110-3.5 1.75 1.75 0 010 3.5zM15 13.25a3.25 3.25 0 106.5 0 3.25 3.25 0 00-6.5 0z"></path> <path fill-rule="evenodd" d="M6.5 7.25c0 2.9 2.35 5.25 5.25 5.25h4.5V14h-4.5A6.75 6.75 0 015 7.25h1.5z"></path> <path fill-rule="evenodd" d="M5.75 16.75A.75.75 0 006.5 16V8A.75.75 0 005 8v8c0 .414.336.75.75.75z"></path> </svg>
+    </div>
+    <div>
+      <h2>Ветви</h2>
+      <p>Структура ваших агентов</p>
+    </div>
+  </div>
+
+  <div class="BranchesHeaderSection">
+    <div class="BranchesSortSection">
+      <div class="BranchesSearchSort">
+        <svg viewBox="-102.4 -102.4 1228.80 1228.80"> <path d="M448 768A320 320 0 1 0 448 128a320 320 0 0 0 0 640z m297.344-76.992l214.592 214.592-54.336 54.336-214.592-214.592a384 384 0 1 1 54.336-54.336z" /> </svg>
+        <input type="text" placeholder="Поиск по ветке, ФИО, email...">
+      </div>
+    </div>
+    <button class="BtnAddNewBranche" type="button" (click)="openCreateBranch()">+ Новая ветка</button>
+  </div>
+
+  @if (loading()) {
+    <app-screen-loading />
+  } @else if (branches().length === 0) {
+    <div class="BranchEmpty">У вас пока нет веток. Создайте первую!</div>
+  } @else {
+    <div class="BranchList">
+      @for (branch of branches(); track branch.id; let idx = $index) {
+        <details class="BranchCard" [open]="idx === 0">
+          <summary class="BranchCardHeader">
+            <span class="BranchChevron">
+              <svg class="BranchChevronIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 6 15 12 9 18"></polyline>
+              </svg>
+            </span>
+            <span class="BranchAvatar">
+              <svg viewBox="0 0 24 24" fill="currentColor"> <path fill-rule="evenodd" d="M5.75 21a1.75 1.75 0 110-3.5 1.75 1.75 0 010 3.5zM2.5 19.25a3.25 3.25 0 106.5 0 3.25 3.25 0 00-6.5 0zM5.75 6.5a1.75 1.75 0 110-3.5 1.75 1.75 0 010 3.5zM2.5 4.75a3.25 3.25 0 106.5 0 3.25 3.25 0 00-6.5 0zM18.25 15a1.75 1.75 0 110-3.5 1.75 1.75 0 010 3.5zM15 13.25a3.25 3.25 0 106.5 0 3.25 3.25 0 00-6.5 0z"></path> <path fill-rule="evenodd" d="M6.5 7.25c0 2.9 2.35 5.25 5.25 5.25h4.5V14h-4.5A6.75 6.75 0 015 7.25h1.5z"></path> <path fill-rule="evenodd" d="M5.75 16.75A.75.75 0 006.5 16V8A.75.75 0 005 8v8c0 .414.336.75.75.75z"></path> </svg>
+            </span>
+            <span class="BranchIdentityText">
+              <span class="BranchName">{{ branch.name }}</span>
+              <span class="BranchHint">
+                @if (branch.memberCount === 0) {
+                  Пока без агентов
+                } @else {
+                  {{ branch.memberCount }} в ветке
+                }
+              </span>
+            </span>
+            <span class="BranchCardMeta">
+              <span class="BranchMarkup">Наценка {{ branch.fee }} ₽</span>
+            </span>
+          </summary>
+
+          <div class="BranchAgents">
+            @if (branch.members.length === 0) {
+              <div class="BranchEmpty">В этой ветке пока нет агентов</div>
+            } @else {
+              @for (member of branch.members; track member.agentId) {
+                <article class="BranchAgentCard">
+                  <div class="BranchAgentMain">
+                    <div class="AgentAvatar">{{ member.fio.charAt(0).toUpperCase() }}</div>
+                    <div class="BranchAgentInfo">
+                      <span class="AgentName">{{ member.fio }}</span>
+                      <span class="AgentContacts">
+                        {{ member.email }}
+                      </span>
+                    </div>
+                  </div>
+                  <div class="BranchAgentStats">
+                    <div class="BranchAgentStat">
+                      <span class="BranchAgentStatLabel">Баланс</span>
+                      <span class="AgentBalance">{{ member.balance }} ₽</span>
+                    </div>
+                    <div class="BranchAgentStat">
+                      <span class="BranchAgentStatLabel">Кредитный лимит</span>
+                      <span>{{ member.debitLimit }} ₽</span>
+                    </div>
+                    <div class="BranchAgentStat">
+                      <span class="BranchAgentStatLabel">Задолженность</span>
+                      <span>{{ member.currentDebit }} ₽</span>
+                    </div>
+                    <div class="BranchAgentStat">
+                      <span class="BranchAgentStatLabel">В ветке с</span>
+                      <span>{{ member.regDate | date:'dd.MM.yyyy' }}</span>
+                    </div>
+                  </div>
+                </article>
+              }
+            }
+            <button type="button" class="BtnInviteAgent" (click)="openInviteAgent(branch.id, branch.name, $event)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"> <line x1="12" y1="5" x2="12" y2="19"></line> <line x1="5" y1="12" x2="19" y2="12"></line> </svg>
+              <span>Пригласить агента</span>
+            </button>
+          </div>
+        </details>
+      }
+    </div>
+  }
+</section>

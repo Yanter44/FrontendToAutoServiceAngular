@@ -1,0 +1,71 @@
+<div class="AuthShell">
+  <div class="LoginCard" [class.Hidden]="card !== 'login'">
+    <h2>Вход</h2>
+    <div class="LoginFields">
+      <div class="InputGroup">
+        <label>✉ Email</label>
+        <input type="email" [(ngModel)]="loginEmail" placeholder="Email" (keyup.enter)="login()">
+      </div>
+      <div class="InputGroup">
+        <label>🔒︎ Password</label>
+        <input type="password" [(ngModel)]="loginPassword" placeholder="Password" (keyup.enter)="login()">
+      </div>
+      <button type="button" class="LoginAndRegisterButton" [disabled]="submitting" (click)="login()">Войти</button>
+    </div>
+    <div class="LoginFooter">
+      <p>Нет аккаунта?</p>
+      <a href="#" (click)="$event.preventDefault(); showRegister()">Зарегистрироваться</a>
+    </div>
+  </div>
+
+  <div class="RegisterCard" [class.Hidden]="card !== 'register'">
+    <h2>Зарегистрироваться</h2>
+    <div class="RegisterFields">
+      <div class="InputGroup">
+        <label>✉ Email</label>
+        <input type="email" [(ngModel)]="registerEmail" placeholder="Email">
+      </div>
+      <div class="InputGroup">
+        <label>🔒︎ Password</label>
+        <input type="password" [(ngModel)]="registerPassword" placeholder="Password">
+      </div>
+      <button type="button" class="LoginAndRegisterButton" [disabled]="submitting" (click)="register()">Зарегистрироваться</button>
+    </div>
+    <div class="RegisterFooter">
+      <p>Есть аккаунт?</p>
+      <a href="#" (click)="$event.preventDefault(); showLogin()">Войти</a>
+    </div>
+  </div>
+
+  <div class="CodeCard" [class.Hidden]="card !== 'code'">
+    <h2>Введите код подтверждения</h2>
+    <p class="CardDescription">Мы только что отправили код на вашу почту, введите его ниже</p>
+    <div class="CodeFields">
+      <div class="CodeInputsContainer">
+        @for (digit of code; track $index) {
+          <input #codeInput class="CodeInput" type="text" maxlength="1"
+                 [ngModel]="code[$index]"
+                 (ngModelChange)="code[$index] = $event"
+                 (input)="onCodeInput($index, $event)"
+                 (keydown)="onCodeKeydown($index, $event)">
+        }
+      </div>
+      <button type="button" class="LoginAndRegisterButton" [disabled]="submitting" (click)="confirmCode()">Подтвердить</button>
+    </div>
+    <div class="CodeFooter">
+      <a href="#" (click)="$event.preventDefault(); register()">Отправить повторно</a>
+    </div>
+  </div>
+
+  <div class="NameCard" [class.Hidden]="card !== 'name'">
+    <h2>Завершите настройку аккаунта</h2>
+    <p class="CardDescription">Введите ваше имя и завершите настройку аккаунта</p>
+    <div class="NameFields">
+      <div class="InputGroup">
+        <label>👤 Имя</label>
+        <input type="text" [(ngModel)]="fio" placeholder="Имя" (keyup.enter)="finish()">
+      </div>
+      <button type="button" class="LoginAndRegisterButton" [disabled]="submitting" (click)="finish()">Подтвердить</button>
+    </div>
+  </div>
+</div>

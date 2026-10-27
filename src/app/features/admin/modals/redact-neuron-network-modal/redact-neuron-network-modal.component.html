@@ -1,0 +1,24 @@
+<section id="RedactNeuronNetworkModal" class="RedactNeuronNetworkModalSection" [class.Active]="isOpen()">
+  <div class="RedactNeuronNetworkModalOverlay" (click)="closeFromOverlay($event)"></div>
+  <div class="RedactNeuronNetworkModalCard">
+    <div class="RedactNeuronNetworkModalHeader">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1751ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v2M15 2v2M9 20v2M15 20v2M20 9h2M20 15h2M2 9h2M2 15h2"/></svg>
+      <h2>Редактировать</h2>
+    </div>
+    <div class="RedactNeuronNetworkModalContent">
+      <div class="RedactNeuronNetworkModalFieldsGroup">
+        <div class="RedactNeuronNetworkModalField">
+          <label>Название</label>
+          <input type="text" id="RedactNeuronNetworkNameInput" class="RedactNeuronNetworkModalInput" [(ngModel)]="redactNeuronName">
+        </div>
+        <div class="RedactNeuronNetworkModalField">
+          <label>Ссылка</label>
+          <input type="text" id="RedactNeuronNetworkLinkInput" class="RedactNeuronNetworkModalInput" [(ngModel)]="redactNeuronLink">
+        </div>
+      </div>
+      <div class="RedactNeuronNetworkModalFooter">
+        <button class="BtnSubmitRedactNeuronNetwork" type="button" (click)="submitRedactNeuronNetwork()">Подтвердить</button>
+      </div>
+    </div>
+  </div>
+</section>
